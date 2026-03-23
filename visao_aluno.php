@@ -8,5 +8,6 @@
 </head>
 <body>
     <h1>Página em Manutenção</h1>
+    <h2>Em breve, atualizações!</h2>
 </body>
 </html>
