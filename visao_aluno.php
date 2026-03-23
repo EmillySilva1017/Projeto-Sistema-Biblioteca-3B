@@ -7,6 +7,6 @@
     <title>Painel Aluno</title>
 </head>
 <body>
-    <h2>Em breve, atualizações!</h2>
+    <h1>Em breve, atualizações!</h1>
 </body>
 </html>
