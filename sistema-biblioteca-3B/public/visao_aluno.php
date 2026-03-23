@@ -7,7 +7,7 @@
     <title>Painel Aluno</title>
 </head>
 <body>
-    <h1>Página em Manutenção</h1>
+    <h3>Página em Manutenção</h3>
     <h2>Em breve, atualizações!</h2>
 </body>
 </html>
