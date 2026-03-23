@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Aluno - EEEP MM</title>
+    <title>Painel Aluno</title>
 </head>
 <body>
     <h1>Página em Manutenção</h1>
