@@ -9,6 +9,7 @@ mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,18 +19,19 @@ mysqli_close($conn);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
     <nav class="navbar navbar-dark shadow-sm sticky-top">
-    <div class="container-fluid">
-        <button class="btn btn-menu-toggle me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
-            <i class="bi bi-list"></i>
-        </button>
-        <span class="navbar-brand mb-0 h1 mx-auto text-uppercase" style="letter-spacing: 1px;">
-            Biblioteca Manoel Mano
-        </span>
-        <div style="width: 45px;"></div> 
-    </div>
-</nav>
+        <div class="container-fluid">
+            <button class="btn btn-menu-toggle me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+                <i class="bi bi-list"></i>
+            </button>
+            <span class="navbar-brand mb-0 h1 mx-auto text-uppercase" style="letter-spacing: 1px;">
+                Biblioteca Manoel Mano
+            </span>
+            <div style="width: 45px;"></div>
+        </div>
+    </nav>
     <?php include '../includes/menu.php'; ?>
 
     <div class="container">
@@ -43,6 +45,11 @@ mysqli_close($conn);
 
         <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
             <h2 class="fw-bold m-0">Gerenciar Turmas</h2>
+            <a href="promover_turmas.php"
+                class="btn btn-success fw-bold text-uppercase shadow-sm me-2"
+                onclick="return confirm('Deseja promover todas as turmas? O 3º ano será arquivado!')">
+                <i class="bi bi-arrow-up-circle"></i> Promover Séries
+            </a>
             <a href="form_turma.php" class="btn-add-turma text-uppercase shadow-sm">
                 <i class="bi bi-plus-lg"></i> ADD TURMA
             </a>
@@ -76,10 +83,10 @@ mysqli_close($conn);
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a href="editar.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-outline-warning">Editar</a>
-                                        <a href="excluir.php?id=<?= $turma['id_turma']; ?>" 
-                                           class="btn btn-sm btn-outline-danger"
-                                           onclick="return confirm('Tem certeza que deseja excluir?')">
-                                           Excluir
+                                        <a href="excluir.php?id=<?= $turma['id_turma']; ?>"
+                                            class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Tem certeza que deseja excluir?')">
+                                            Excluir
                                         </a>
                                     </div>
                                 </td>
@@ -93,4 +100,5 @@ mysqli_close($conn);
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
