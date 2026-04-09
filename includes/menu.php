@@ -9,10 +9,10 @@
 
     <div class="offcanvas-body p-0">
         <nav class="nav flex-column mt-3">
-            <a href="../painel_adm.php" class="nav-link py-3 px-4 border-bottom text-dark">
+            <a href="../painel/painel_adm.php" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-grid-1x2 me-2 text-success"></i> DASHBOARD
             </a>
-            <a href="../turmas/index.php" class="nav-link py-3 px-4 border-bottom text-dark active bg-light">
+            <a href="../turmas/index.php" class="nav-link py-3 px-4 border-bottom text-dark bg-light">
                 <i class="bi bi-people me-2 text-success"></i> TURMAS
             </a>
             <a href="###" class="nav-link py-3 px-4 border-bottom text-dark">
@@ -25,7 +25,7 @@
     </div>
 
     <div class="p-4 mt-auto border-top">
-        <a href="logout.php" class="text-danger text-decoration-none fw-bold">
+        <a href="../includes/logout.php" class="text-danger text-decoration-none fw-bold">
             <i class="bi bi-box-arrow-left me-2"></i> SAIR
         </a>
     </div>

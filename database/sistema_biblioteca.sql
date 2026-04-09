@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2026 at 01:31 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Tempo de geração: 10/04/2026 às 00:45
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sistema_biblioteca`
+-- Banco de dados: `sistema_biblioteca`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alunos`
+-- Estrutura para tabela `alunos`
 --
 
 CREATE TABLE `alunos` (
@@ -39,7 +39,7 @@ CREATE TABLE `alunos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `emprestimos`
+-- Estrutura para tabela `emprestimos`
 --
 
 CREATE TABLE `emprestimos` (
@@ -59,7 +59,7 @@ CREATE TABLE `emprestimos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `livros`
+-- Estrutura para tabela `livros`
 --
 
 CREATE TABLE `livros` (
@@ -76,7 +76,7 @@ CREATE TABLE `livros` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `livros`
+-- Despejando dados para a tabela `livros`
 --
 
 INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
@@ -6876,7 +6876,7 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `turmas`
+-- Estrutura para tabela `turmas`
 --
 
 CREATE TABLE `turmas` (
@@ -6888,7 +6888,7 @@ CREATE TABLE `turmas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `turmas`
+-- Despejando dados para a tabela `turmas`
 --
 
 INSERT INTO `turmas` (`id_turma`, `curso`, `identificador_curso`, `ano_conclusao`, `serie_atual`) VALUES
@@ -6899,7 +6899,7 @@ INSERT INTO `turmas` (`id_turma`, `curso`, `identificador_curso`, `ano_conclusao
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estrutura para tabela `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -6911,18 +6911,25 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_user`, `nome_user`, `email`, `senha`, `nivel`) VALUES
+(1, 'Administrador', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 1);
+
+--
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `alunos`
+-- Índices de tabela `alunos`
 --
 ALTER TABLE `alunos`
   ADD PRIMARY KEY (`id_aluno`),
   ADD KEY `fk_aluno_turma` (`fk_id_turma`);
 
 --
--- Indexes for table `emprestimos`
+-- Índices de tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
   ADD PRIMARY KEY (`id_emprestimos`),
@@ -6930,63 +6937,63 @@ ALTER TABLE `emprestimos`
   ADD KEY `fk_usuario_emprestimos` (`fk_id_user`);
 
 --
--- Indexes for table `livros`
+-- Índices de tabela `livros`
 --
 ALTER TABLE `livros`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `turmas`
+-- Índices de tabela `turmas`
 --
 ALTER TABLE `turmas`
   ADD PRIMARY KEY (`id_turma`);
 
 --
--- Indexes for table `usuario`
+-- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `alunos`
+-- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
   MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `emprestimos`
+-- AUTO_INCREMENT de tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
   MODIFY `id_emprestimos` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `turmas`
+-- AUTO_INCREMENT de tabela `turmas`
 --
 ALTER TABLE `turmas`
   MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- Restrições para tabelas despejadas
 --
 
 --
--- Constraints for table `alunos`
+-- Restrições para tabelas `alunos`
 --
 ALTER TABLE `alunos`
   ADD CONSTRAINT `fk_aluno_turma` FOREIGN KEY (`fk_id_turma`) REFERENCES `turmas` (`id_turma`) ON DELETE CASCADE;
 
 --
--- Constraints for table `emprestimos`
+-- Restrições para tabelas `emprestimos`
 --
 ALTER TABLE `emprestimos`
   ADD CONSTRAINT `fk_livros_emprestimos` FOREIGN KEY (`fk_id_livro`) REFERENCES `livros` (`id`),

@@ -21,7 +21,7 @@
         <div class="container-center">
             <div class="login-box">
                 <!-- logo -->
-                <img src="logo.png" class="logo" alt="Logo">
+                <img src="LogoEscola.png" class="logo" alt="Logo">
                 <h3 class="login-title">Bem-Vindo à Biblioteca</h3>
                 <form action="login.php" method="POST" class="needs-validation">
                     <!---Campo Email--->

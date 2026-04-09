@@ -2,6 +2,6 @@
 <?php 
     session_start();
     session_destroy();
-    header('Location: cadastro/index.php');
+    header('Location: ../cadastro/index.php');
     exit();
 ?>
