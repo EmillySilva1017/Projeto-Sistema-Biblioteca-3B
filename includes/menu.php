@@ -1,10 +1,12 @@
 <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel" style="width: 280px;">
+
     <div class="offcanvas-header border-bottom">
-        <div class="d-flex align-items-center">
-            <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">MM</div>
-            <h5 class="offcanvas-title fw-bold" id="sidebarMenuLabel" style="color: #2d572c;">EEEP MANOEL MANO</h5>
+        <div class="d-flex align-items-center w-100">
+            <div class="d-flex align-items-center justify-content-start" style="height: 60px;">
+                <img src="../img/Logo Manoteca.png" alt="Logo Manoteca" style="max-height: 100%; width: auto; object-fit: contain;">
+            </div>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
     <div class="offcanvas-body p-0">
@@ -20,6 +22,9 @@
             </a>
             <a href="####" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-journal-check me-2 text-success"></i> EMPRÉSTIMOS
+            </a>
+            <a href="../alunos/visualizar.php" class="nav-link py-3 px-4 border-bottom text-dark">
+                <i class="bi bi-people me-2 text-success"></i> ALUNOS
             </a>
         </nav>
     </div>
@@ -69,6 +74,14 @@
         color: var(--branco);
         border: 1px solid rgba(255, 255, 255, 0.5);
     }
-    .nav-link:hover { background-color: #f8f9fa; color: #2d572c !important; }
-    .nav-link.active { border-left: 5px solid #2d572c; font-weight: bold; }
+
+    .nav-link:hover {
+        background-color: #f8f9fa;
+        color: #2d572c !important;
+    }
+
+    .nav-link.active {
+        border-left: 5px solid #2d572c;
+        font-weight: bold;
+    }
 </style>

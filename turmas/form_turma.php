@@ -52,11 +52,11 @@ session_start();
 
                     <form action="add_turma.php" method="POST">
                         <div class="row">
-                            <div class="col-md-8 mb-3">
+                            <div class="col-12 col-md-8 mb-3">
                                 <label class="form-label fw-bold">Curso</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="curso" placeholder="Ex: Informática" required>
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-12 col-md-4 mb-3">
                                 <label class="form-label fw-bold">Letra / ID</label>
                                 <select name="id_curso" class="form-select form-select-lg border-2" required>
                                     <option value="" selected disabled>Selecione</option>

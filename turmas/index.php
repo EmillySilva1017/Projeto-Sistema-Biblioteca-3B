@@ -82,11 +82,11 @@ mysqli_close($conn);
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="editar.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-outline-warning">Editar</a>
-                                        <a href="excluir.php?id=<?= $turma['id_turma']; ?>"
-                                            class="btn btn-sm btn-outline-danger"
-                                            onclick="return confirm('Tem certeza que deseja excluir?')">
-                                            Excluir
+                                        <a href="editar.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-outline-warning">
+                                            <i class="bi bi-pencil"></i> <span class="d-none d-md-inline">Editar</span>
+                                        </a>
+                                        <a href="excluir.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-outline-danger">
+                                            <i class="bi bi-trash"></i> <span class="d-none d-md-inline">Excluir</span>
                                         </a>
                                     </div>
                                 </td>

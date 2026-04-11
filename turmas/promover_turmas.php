@@ -14,7 +14,7 @@ mysqli_query($conn, $sql_para_terceiro);
 $sql_para_segundo = "UPDATE turmas SET serie_atual = 2 WHERE serie_atual = 1";
 mysqli_query($conn, $sql_para_segundo);
 
-// Mensagem de sucesso para o seu alerta no index.php
+// Mensagem de sucesso para o index.php
 $_SESSION['mensagem'] = "Ano Letivo Atualizado! As turmas foram promovidas com sucesso.";
 
 mysqli_close($conn);
