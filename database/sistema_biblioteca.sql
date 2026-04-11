@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/04/2026 às 00:45
+-- Tempo de geração: 11/04/2026 às 03:04
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -30,11 +30,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `alunos` (
   `id_aluno` int(11) NOT NULL,
   `nome_aluno` varchar(255) NOT NULL,
+  `numero_chamada` int(3) DEFAULT NULL,
   `matricula` int(11) NOT NULL,
-  `curso` varchar(100) NOT NULL,
-  `serie_atual` varchar(1) NOT NULL,
   `fk_id_turma` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `alunos`
+--
+
+INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `numero_chamada`, `matricula`, `fk_id_turma`) VALUES
+(2, 'Lucas Pereira Lima', 32, 12398754, 4),
+(3, 'Emilly Rodrigues Silva', 18, 2834250, 1);
 
 -- --------------------------------------------------------
 
@@ -6894,7 +6901,16 @@ CREATE TABLE `turmas` (
 INSERT INTO `turmas` (`id_turma`, `curso`, `identificador_curso`, `ano_conclusao`, `serie_atual`) VALUES
 (1, 'Informática', 'B', '2026', '3'),
 (2, 'Enfermagem', 'A', '2026', '3'),
-(4, 'Desenvolvimento de Sistemas', 'E', '2028', '1');
+(4, 'Desenvolvimento de Sistemas', 'E', '2028', '1'),
+(5, 'Enfermagem', 'A', '2028', '1'),
+(6, 'Informática', 'B', '2028', '1'),
+(7, 'Administração', 'D', '2028', '1'),
+(8, 'Enfermagem', 'A', '2027', '2'),
+(9, 'Informática', 'B', '2027', '2'),
+(10, 'Desenvolvimento de Sistemas', 'E', '2027', '2'),
+(11, 'Administração', 'D', '2027', '2'),
+(12, 'Comércio', 'C', '2026', '3'),
+(13, 'Administração', 'D', '2026', '3');
 
 -- --------------------------------------------------------
 
@@ -6926,6 +6942,7 @@ INSERT INTO `usuario` (`id_user`, `nome_user`, `email`, `senha`, `nivel`) VALUES
 --
 ALTER TABLE `alunos`
   ADD PRIMARY KEY (`id_aluno`),
+  ADD UNIQUE KEY `matricula` (`matricula`),
   ADD KEY `fk_aluno_turma` (`fk_id_turma`);
 
 --
@@ -6962,7 +6979,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `emprestimos`
@@ -6974,7 +6991,7 @@ ALTER TABLE `emprestimos`
 -- AUTO_INCREMENT de tabela `turmas`
 --
 ALTER TABLE `turmas`
-  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
