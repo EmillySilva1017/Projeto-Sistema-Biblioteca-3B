@@ -23,6 +23,17 @@
                 <!-- logo -->
                 <img src="../img/LogoEscola.png" class="logo" alt="Logo">
                 <h3 class="login-title">Bem-Vindo à Biblioteca</h3>
+                <?php
+                    if (isset($_SESSION['mensagem'])):
+                ?>
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <?= $_SESSION['mensagem']; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+    
+                <?php unset($_SESSION['mensagem']); //limpa mensagem 
+                endif;
+                ?>
                 <form action="login.php" method="POST" class="needs-validation">
                     <!---Campo Email--->
                     <div class="mb-3 text-start">

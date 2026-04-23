@@ -26,15 +26,15 @@ body {
     margin-bottom: 20px;
 }
 
-.form-control {
+.form-control{
     border-radius: 10px;
-    border: 2px solid #0ea403;
+    border: 2px solid #00c817;
     padding: 10px;
 }
 
 .form-control:focus {
     box-shadow: none;
-    border-color: #0ea403;
+    border-color: #127c09;
 }
 
 .btn-login {
@@ -70,4 +70,16 @@ body {
 
 .link a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .box, .login-box {
+        padding: 20px; 
+        margin: 10px;  
+        border-radius: 15px;
+    }
+
+    .login-title, .title {
+        font-size: 1.5rem; 
+    }
 }

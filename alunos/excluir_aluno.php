@@ -30,6 +30,6 @@ if (mysqli_query($conn, $sql_delete)){
 mysqli_close($conn);
 
 // Redireciona de volta para a lista dos alunos
-header("Location: ../turmas/visualizar_turma.php?id=$id_turma_retorno");
+header("Location: visualizar.php?id=$id_turma_retorno");
 exit();
 ?>

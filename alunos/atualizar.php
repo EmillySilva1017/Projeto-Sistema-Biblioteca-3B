@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(mysqli_query($conn, $sqlAtualizar)){
         // Sucesso: Guarda a mensagem e vai para a LISTA
         $_SESSION['msg'] = "Cadastro do aluno <strong>$nome</strong> atualizado com sucesso!";
-        header('Location: ../turmas/visualizar_turma.php?id=' . $fk_id_turma); 
+        header('Location: visualizar.php?id=' . $fk_id_turma); 
         exit();
     } else {
         // Erro: Guarda o erro e volta para o formulário de EDIÇÃO
@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 } else {
     // Se alguém tentar acessar esse arquivo direto pelo link, manda de volta
-    header('Location: ../turmas/visualizar_turma.php');
+    header('Location: visualizar.php');
     exit();
 }
 

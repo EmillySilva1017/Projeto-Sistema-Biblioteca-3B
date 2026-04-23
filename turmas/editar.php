@@ -37,16 +37,6 @@ mysqli_close($conn);
     </style>
 </head>
 <body>
-
-    <nav class="navbar navbar-dark shadow-sm sticky-top">
-        <div class="container-fluid">
-            <button class="btn btn-outline-light me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
-                <i class="bi bi-list"></i>
-            </button>
-            <span class="navbar-brand mb-0 h1 mx-auto text-uppercase">Biblioteca Manoel Mano</span>
-        </div>
-    </nav>
-
     <?php include('../includes/menu.php'); ?>
 
     <main class="container py-5">

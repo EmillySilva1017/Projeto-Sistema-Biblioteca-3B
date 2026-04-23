@@ -2,7 +2,7 @@
 session_start();
 include('../includes/conexao.php');
 // Busca todas as turmas cadastradas
-$sqlTurmas = "SELECT id_turma, curso, identificador_curso, serie_atual FROM turmas ORDER BY curso ASC";
+$sqlTurmas = "SELECT id_turma, curso, identificador_curso, serie_atual FROM turmas ORDER BY serie_atual ASC, identificador_curso ASC";
 $resTurmas = mysqli_query($conn, $sqlTurmas);
 ?>
 <!DOCTYPE html>
@@ -17,15 +17,6 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
 </head>
 
 <body>
-    <nav class="navbar navbar-dark shadow-sm sticky-top">
-        <div class="container-fluid">
-            <button class="btn btn-outline-light me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
-                <i class="bi bi-list"></i>
-            </button>
-            <span class="navbar-brand mb-0 h1 mx-auto text-uppercase">Biblioteca Manoel Mano</span>
-        </div>
-    </nav>
-
     <?php include('../includes/menu.php'); ?>
 
     <div class="container py-5">
@@ -81,7 +72,7 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                         </div>
                         <!---Botao de cadastro--->
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                            <a href="visualizar.php" class="btn btn-danger px-4 fw-bold">Cancelar</a>
+                            <a href="visualizar.php" class="btn btn-light btn-lg px-4 fw-bold">Cancelar</a>
                             <button type="submit" class="btn btn-success px-5 shadow text-uppercase">Cadastrar Aluno</button>
                         </div>
                     </form>

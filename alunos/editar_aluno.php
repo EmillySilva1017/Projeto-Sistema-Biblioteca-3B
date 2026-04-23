@@ -3,7 +3,7 @@ session_start();
 include '../includes/conexao.php';
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header('Location: ../turmas/visualizar_turma.php');
+    header('Location: visualizar.php');
     exit();
 }
 
@@ -12,7 +12,7 @@ $sql_select = "SELECT * FROM alunos WHERE id_aluno = $id";
 $result = mysqli_query($conn, $sql_select);
 
 if (mysqli_num_rows($result) == 0) {
-    header('Location: ../turmas/visualizar_turma.php');
+    header('Location: visualizar.php');
     exit();
 }
 
@@ -40,15 +40,6 @@ $dados = mysqli_fetch_assoc($result);
 </head>
 
 <body>
-    <nav class="navbar navbar-dark shadow-sm sticky-top">
-        <div class="container-fluid">
-            <button class="btn btn-outline-light me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
-                <i class="bi bi-list"></i>
-            </button>
-            <span class="navbar-brand mb-0 h1 mx-auto text-uppercase">Biblioteca Manoel Mano</span>
-        </div>
-    </nav>
-
     <?php include('../includes/menu.php'); ?>
 
     <div class="container py-5">
@@ -107,7 +98,7 @@ $dados = mysqli_fetch_assoc($result);
                         </div>
                         <!---Botao de cadastro--->
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                            <a href="../turmas/visualizar_turma.php?id=<?= $dados['fk_id_turma'] ?>" class="btn btn-danger px-4 fw-bold">Cancelar</a>
+                            <a href="visualizar.php" class="btn btn-danger px-4 fw-bold">Cancelar</a>
                             <button type="submit" class="btn btn-success px-4 shadow fw-bold">Editar Aluno</button>
                         </div>
                     </form>

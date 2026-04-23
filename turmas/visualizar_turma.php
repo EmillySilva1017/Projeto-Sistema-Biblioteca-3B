@@ -57,7 +57,6 @@ $resAlunos = mysqli_query($conn, $sqlAlunos);
                         <th>Nº</th>
                         <th>Matrícula</th>
                         <th>Nome do Aluno</th>
-                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,15 +66,6 @@ $resAlunos = mysqli_query($conn, $sqlAlunos);
                                 <td><?= $aluno['numero_chamada'] ?></td>
                                 <td><?= $aluno['matricula'] ?></td>
                                 <td><?= $aluno['nome_aluno'] ?></td>
-                                <td>
-                                    <a href="../alunos/editar_aluno.php?id=<?= $aluno['id_aluno']; ?>"
-                                        class="btn btn-sm btn-warning">
-                                        Editar</a>
-                                    <a href="../alunos/excluir_aluno.php?id=<?= $aluno['id_aluno']; ?>"
-                                        class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Tem certeza que deseja excluir este aluno?')">
-                                        Excluir</a>
-                                </td>
                             </tr>
                         <?php endwhile; ?>
                     <?php else: ?>

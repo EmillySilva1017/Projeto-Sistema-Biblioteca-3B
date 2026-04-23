@@ -95,3 +95,15 @@ body {
     color: #ff9800;
     text-decoration: none;
 }
+
+@media (max-width: 480px) {
+    .box, .login-box {
+        padding: 20px; 
+        margin: 10px;  
+        border-radius: 15px;
+    }
+
+    .login-title, .title {
+        font-size: 1.5rem; 
+    }
+}

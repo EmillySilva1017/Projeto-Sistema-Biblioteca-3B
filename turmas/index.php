@@ -21,20 +21,9 @@ mysqli_close($conn);
 </head>
 
 <body>
-    <nav class="navbar navbar-dark shadow-sm sticky-top">
-        <div class="container-fluid">
-            <button class="btn btn-menu-toggle me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
-                <i class="bi bi-list"></i>
-            </button>
-            <span class="navbar-brand mb-0 h1 mx-auto text-uppercase" style="letter-spacing: 1px;">
-                Biblioteca Manoel Mano
-            </span>
-            <div style="width: 45px;"></div>
-        </div>
-    </nav>
     <?php include '../includes/menu.php'; ?>
 
-    <div class="container">
+    <div class="container mt-2">
         <?php if (isset($_SESSION['mensagem'])): ?>
             <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert">
                 <?= $_SESSION['mensagem']; ?>
@@ -81,14 +70,13 @@ mysqli_close($conn);
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <div class="btn-group">
-                                        <a href="editar.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-outline-warning">
-                                            <i class="bi bi-pencil"></i> <span class="d-none d-md-inline">Editar</span>
+                                        <a href="editar.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-warning">
+                                            <i class="bi bi-pencil"></i>
                                         </a>
-                                        <a href="excluir.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-outline-danger">
-                                            <i class="bi bi-trash"></i> <span class="d-none d-md-inline">Excluir</span>
+                                        <a href="excluir.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Tem certeza que deseja excluir esta turma? Esta ação não pode ser desfeita!')">
+                                            <i class="bi bi-trash"></i>
                                         </a>
-                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

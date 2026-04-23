@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11/04/2026 às 03:04
+-- Tempo de geração: 17/04/2026 às 02:44
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `alunos` (
 
 INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `numero_chamada`, `matricula`, `fk_id_turma`) VALUES
 (2, 'Lucas Pereira Lima', 32, 12398754, 4),
-(3, 'Emilly Rodrigues Silva', 18, 2834250, 1);
+(7, 'Emilly Rodrigues Silva', 18, 2834250, 1),
+(8, 'Guilherme Gomes', 24, 8765431, 1);
 
 -- --------------------------------------------------------
 
@@ -6979,7 +6980,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `emprestimos`
