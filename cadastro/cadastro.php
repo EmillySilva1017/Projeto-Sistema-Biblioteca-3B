@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include('../includes/conexao.php');
+/** @var mysqli $conn */
 
 // Verificação para saber se os campos estão ou não vazios
 if(empty($_POST['nome']) || empty($_POST['email']) || empty($_POST['senha'])){

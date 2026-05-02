@@ -1,5 +1,7 @@
 <?php session_start();
 include('../includes/conexao.php');
+/** @var mysqli $conn */
+
 // Pega o ID da turma pela URL
 $id_turma = mysqli_real_escape_string($conn, $_GET['id']);
 

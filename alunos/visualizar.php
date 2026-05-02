@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('../includes/conexao.php');
+/** @var mysqli $conn */
 
 //Logica para a barra de pesquisa
 $busca = "";

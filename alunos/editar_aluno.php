@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../includes/conexao.php';
+/** @var mysqli $conn */
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     header('Location: visualizar.php');

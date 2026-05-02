@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('../includes/conexao.php');
+/** @var mysqli $conn */
 
 $query = "SELECT * FROM turmas ORDER BY serie_atual ASC, identificador_curso ASC";
 $result = mysqli_query($conn, $query);

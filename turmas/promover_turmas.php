@@ -2,6 +2,8 @@
 session_start();
 include('../includes/conexao.php');
 
+/** @var mysqli $conn */
+
 // 1. Quem era do 3º ano (concluintes), a série vira 0
 $sql_concluir = "UPDATE turmas SET serie_atual = 0 WHERE serie_atual = 3";
 mysqli_query($conn, $sql_concluir);

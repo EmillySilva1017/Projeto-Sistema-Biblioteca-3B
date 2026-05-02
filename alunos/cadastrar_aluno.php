@@ -1,6 +1,8 @@
 <?php
 session_start();
 include('../includes/conexao.php');
+/** @var mysqli $conn */
+
 // Busca todas as turmas cadastradas
 $sqlTurmas = "SELECT id_turma, curso, identificador_curso, serie_atual FROM turmas ORDER BY serie_atual ASC, identificador_curso ASC";
 $resTurmas = mysqli_query($conn, $sqlTurmas);

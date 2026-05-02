@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../includes/conexao.php';
+/** @var mysqli $conn */
 
 // Verifica se o ID foi passado na URL
 if (!isset($_GET['id']) || empty($_GET['id'])) {
