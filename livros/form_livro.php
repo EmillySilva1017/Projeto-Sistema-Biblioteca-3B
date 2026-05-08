@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">Data Aquisição</label>
-                                <input type="date" class="form-control form-control-lg border-2" name="data_aquisicao" required>
+                                <input type="date" class="form-control form-control-lg border-2" name="ano_aquisicao" required>
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">CDD</label>
