@@ -19,7 +19,8 @@
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item text-danger" href="../includes/logout.php"><i class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
+                <li><a class="dropdown-item text-danger" href="../includes/logout.php" 
+                onclick="return confirm('Tem certeza que deseja sair?')"><i class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
             </ul>
         </div>
     </div>
@@ -42,7 +43,7 @@
             <a href="../painel/painel_adm.php" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-grid-1x2 me-2 text-success"></i> DASHBOARD
             </a>
-            <a href="###" class="nav-link py-3 px-4 border-bottom text-dark">
+            <a href="../livros/form_livro.php" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-book me-2 text-success"></i> LIVROS
             </a>
             <a href="####" class="nav-link py-3 px-4 border-bottom text-dark">

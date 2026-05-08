@@ -55,12 +55,9 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <style>
-    /* Forçamos o estilo no cabeçalho da tabela */
     .table thead.thead-esverdeada th {
         background-color: #d1e7dd !important;
-        /* Verde padrão Bootstrap "success" claro */
         color: #0f5132 !important;
-        /* Texto verde escuro */
         border-bottom: 2px solid #badbcc !important;
         padding-top: 15px !important;
         padding-bottom: 15px !important;

@@ -75,7 +75,7 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                         <!---Botao de cadastro--->
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                             <a href="visualizar.php" class="btn btn-light btn-lg px-4 fw-bold">Cancelar</a>
-                            <button type="submit" class="btn btn-success px-5 shadow text-uppercase">Cadastrar Aluno</button>
+                            <button type="submit" class="btn btn-orange btn-lg px-5 shadow text-uppercase">Cadastrar Livro</button>
                         </div>
                     </form>
                 </div>
