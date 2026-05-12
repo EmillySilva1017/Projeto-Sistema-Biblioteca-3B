@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $titulo = mysqli_real_escape_string($conn, $_POST['titulo']);
     $autor = mysqli_real_escape_string($conn, $_POST['autor']);
     $editora = mysqli_real_escape_string($conn, $_POST['editora']);
-    $ano_aquisicao = mysqli_real_escape_string($conn, $_POST['ano_aquisicao']);
+    $ano_aquisicao = date('Y', strtotime($_POST['ano_aquisicao']));
     $genero = mysqli_real_escape_string($conn, $_POST['genero']);
     $n_registro = mysqli_real_escape_string($conn, $_POST['n_registro']);
     $cdd = mysqli_real_escape_string($conn, $_POST['cdd']);
