@@ -66,8 +66,8 @@ mysqli_close($conn);
                                 <td><span class="badge bg-light text-dark border"><?php echo date('Y'); ?></span></td>
                                 <td><?= $turma['ano_conclusao'] ?></td>
                                 <td class="text-center">
-                                    <a href="visualizar_turma.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-visu fw-bold px-3">
-                                        VISUALIZAR
+                                    <a href="visualizar_turma.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-success fw-bold px-3">
+                                        <i class="bi bi-eye"></i>
                                     </a>
                                 </td>
                                 <td class="text-center">
