@@ -10,9 +10,9 @@ if (empty($_POST['email']) || empty($_POST['senha'])) {
 }
 
 $email = mysqli_real_escape_string($conn, $_POST['email']);
-$senha = mysqli_real_escape_string($conn, $_POST['senha']);
+$senha = $_POST['senha'];
 
-$query = "SELECT id_user, nome_user, email, nivel FROM usuario WHERE email = '$email' AND senha = MD5('$senha')";
+$query = "SELECT id_user, nome_user, email, senha, nivel FROM usuario WHERE email = '$email'";
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
@@ -22,20 +22,27 @@ if (!$result) {
 if (mysqli_num_rows($result) > 0) {
     $dados = mysqli_fetch_assoc($result);
 
-    $_SESSION['id_user'] = $dados['id_user'];
-    $_SESSION['nome'] = $dados['nome_user'];
-    $_SESSION['email'] = $dados['email'];
-    $_SESSION['nivel'] = $dados['nivel'];
+    if (password_verify($senha, $dados['senha'])) {
 
-    //verificação do destino da página
-    if ($dados['nivel'] == 1) {
-        header('Location: ../painel/painel_adm.php'); // redireciona para a página do administrador
+        $_SESSION['id_user'] = $dados['id_user'];
+        $_SESSION['nome'] = $dados['nome_user'];
+        $_SESSION['email'] = $dados['email'];
+        $_SESSION['nivel'] = $dados['nivel'];
+
+        // Verificação do destino da página
+        if ($dados['nivel'] == 1) {
+            header('Location: ../painel/painel_adm.php');
+        } else {
+            header('Location: ../painel/visao_aluno.php');
+        }
+        exit();
     } else {
-        header('Location: ../painel/visao_aluno.php'); // redireciona para a página de visualização dos alunos
+        // Senha incorreta
+        $_SESSION['mensagem'] = "Email ou senha incorretos!";
+        header('Location: index.php');
+        exit();
     }
-    exit();
 } else {
-    $_SESSION['nao_autenticado'] = true;
     $_SESSION['mensagem'] = "Email ou senha incorretos!";
     header('Location: index.php');
     exit();
