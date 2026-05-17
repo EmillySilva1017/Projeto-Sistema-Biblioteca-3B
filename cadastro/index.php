@@ -37,16 +37,16 @@
                 <form action="login.php" method="POST" class="needs-validation">
                     <!---Campo Email--->
                     <div class="mb-3 text-start">
-                        <label>Email</label>
-                        <input type="email" name="email" id="" class="form-control" required>
+                        <label>Endereço de Email</label>
+                        <input type="email" name="email" id="" class="form-control" placeholder="Email..." required>
                     </div>
                     <!---Campo Senha--->
                     <div class="mb-3 text-start">
                         <div class="mb-2 w-100">
                             <label>Senha</label>
-                            <a href="###" class="float-end">Forgot Password?</a>
+                            <a href="esqueceu_senha.php" class="float-end">Esqueceu a senha?</a>
                         </div>
-                        <input type="password" name="senha" id="" class="form-control" required>
+                        <input type="password" name="senha" id="" class="form-control" placeholder="Senha..." required>
                     </div>
                     <!--Botão de Login-->
                     <div class="d-flex align-items-center">

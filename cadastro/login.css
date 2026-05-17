@@ -28,13 +28,8 @@ body {
 
 .form-control{
     border-radius: 10px;
-    border: 2px solid #00c817;
+    border: 2px solid #eeeeee;
     padding: 10px;
-}
-
-.form-control:focus {
-    box-shadow: none;
-    border-color: #127c09;
 }
 
 .btn-login {
