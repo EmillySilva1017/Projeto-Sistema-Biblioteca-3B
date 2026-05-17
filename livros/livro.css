@@ -8,22 +8,22 @@
 
 .table-container {
   background-color: white;
-  border-radius: 0px;
+  border-radius: 5px;
   overflow: hidden;
 }
 
 .btn-filtrar {
-  background-color: #d37a00;
+  background-color: #df8508;
   color: white;
   font-weight: bold;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 10px 25px;
   transition: 0.2s;
 }
 
 .btn-filtrar:hover {
-  background-color: #b56800;
+  background-color: #ac6707;
   color: white;
 }
 
@@ -49,4 +49,22 @@
 .seta-paginacao.desativada {
   opacity: 0.25;
   pointer-events: none;
+}
+
+/* --- AJUSTES DE RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .container-fluid.px-5 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    .table th, .table td {
+        font-size: 0.85rem;
+        padding: 8px !important;
+    }
+    
+    .paginacao-link {
+        font-size: 1.1rem;
+        padding: 0 2px;
+    }
 }

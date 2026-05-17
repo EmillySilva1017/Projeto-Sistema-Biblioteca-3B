@@ -38,46 +38,46 @@
                     </div>
 
                     <form action="cadastro.php" method="POST">
-                        <div class="row">
-                            <div class="col-12 col-md-8 mb-3">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6 mb-1">
                                 <label class="form-label fw-bold">Titulo</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="titulo" required>
                             </div>
-                            <div class="col-12 col-md-4 mb-3">
+                            <div class="col-12 col-md-6 mb-1">
                                 <label class="form-label fw-bold">N° Registro</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="n_registro" required>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-12 col-md-6 mb-3">
                                 <label class="form-label fw-bold">Autor</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="autor" required>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-12 col-md-3 mb-3">
                                 <label class="form-label fw-bold">Editora</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="editora" required>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-12 col-md-3 mb-3">
                                 <label class="form-label fw-bold">Gênero</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="genero" required>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6 col-md-3 mb-1">
                                 <label class="form-label fw-bold">Data Aquisição</label>
                                 <input type="date" class="form-control form-control-lg border-2" name="ano_aquisicao" required>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-12 col-sm-6 col-md-3 mb-1">
                                 <label class="form-label fw-bold">CDD</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="cdd" required>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-12 col-sm-6 col-md-3 mb-1">
                                 <label class="form-label fw-bold">CDU</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="cdu" required>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-12 col-sm-6 col-md-3 mb-1">
                                 <label class="form-label fw-bold">Selo</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="selo" required>
                             </div>

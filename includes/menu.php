@@ -1,38 +1,48 @@
 <nav class="navbar navbar-dark shadow-sm sticky-top">
-    <div class="container-fluid">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
         <button class="btn btn-menu-toggle me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
             <i class="bi bi-list"></i>
         </button>
-        <div style="display: flex; justify-content: center; align-items: center;">
-            <a href="../painel/painel_adm.php">
-                <img src="../img/LogoEscola1-removebg.png" alt="Logo EEEP" style="height: 60px; width: 80px;">
+        <div class="d-flex align-items-center">
+
+            <a href="../painel/painel_adm.php" class="d-flex align-items-center text-decoration-none">
+                <img src="../img/LogoEscola1-removebg.png" alt="Logo EEEP" style="height: 50px; width: auto;"
+                    class="img-fluid">
+                <h4 class="text-white m-0 ms-2 d-none d-sm-inline-block fw-bold fs-5 text-truncate"
+                    style="max-width: 200px; @media(min-width: 768px){max-width: 100%;}">
+                    | EEEP Manoel Mano
+                </h4>
             </a>
-            <h2 style="color: white; margin-left: 10px;">| EEEP Manoel Mano</h2>
         </div>
         <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="me-2 d-none d-sm-inline"><?php echo $_SESSION['nome']; ?></span>
-                <i class="bi bi-person-circle fs-3"></i>
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="me-2 d-none d-sm-inline fw-semibold"><?php echo $_SESSION['nome']; ?></span>
+                <i class="bi bi-person-circle fs-3 text-white"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser">
-                <li><a class="dropdown-item" href="../painel/perfil.php"><i class="bi bi-person me-2"></i>Meu Perfil</a></li>
+            <ul class="dropdown-menu dropdown-menu-end shadow animate slideIn" aria-labelledby="dropdownUser">
+                <li><a class="dropdown-item py-2" href="../painel/perfil.php"><i class="bi bi-person me-2"></i>Meu
+                        Perfil</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item text-danger" href="../includes/logout.php" 
-                onclick="return confirm('Tem certeza que deseja sair?')"><i class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
+                <li><a class="dropdown-item py-2 text-danger" href="../login/logout.php"><i
+                            class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel" style="width: 280px;">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel"
+    style="width: 280px;">
 
     <!--Cabeçalho do Menu Lateral-->
     <div class="offcanvas-header border-bottom">
         <div class="d-flex align-items-center w-100">
             <div class="d-flex align-items-center justify-content-center" style="height: 120px; width: 100%;">
-                <img src="../img/Logo_Manoteca.png" alt="Logo Manoteca" style="height: auto; width: 80%; max-width: 220px; object-fit: contain;">
+                <img src="../img/Logo_Manoteca.png" alt="Logo Manoteca"
+                    style="height: auto; width: 80%; max-width: 220px; object-fit: contain;">
             </div>
             <button type="button" class="btn-close ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -63,7 +73,7 @@
     <!-- Rodapé do Menu Lateral -->
     <div class="p-4 mt-auto border-top">
         <a href="../includes/logout.php" class="text-danger text-decoration-none fw-bold"
-        onclick="return confirm('Tem certeza que deseja sair?')">
+            onclick="return confirm('Tem certeza que deseja sair?')">
             <i class="bi bi-box-arrow-left me-2"></i> SAIR
         </a>
     </div>
@@ -141,5 +151,26 @@
     .nav-link:hover {
         background-color: #f8f9fa;
         color: #2d572c !important;
+    }
+
+    /* --- RESPONSIVIDADE DA NAVBAR --- */
+    .navbar {
+        padding: 0.4rem 0.75rem !important;
+        /* Diminui o espaçamento interno no mobile */
+    }
+
+    @media (max-width: 576px) {
+
+        /* Ajusta o tamanho da imagem da logo em telas minúsculas para não empurrar os botões */
+        .navbar img {
+            height: 40px !important;
+        }
+
+        /* Garante que o dropdown de perfil não abra para fora da tela da direita */
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            left: auto;
+        }
     }
 </style>
