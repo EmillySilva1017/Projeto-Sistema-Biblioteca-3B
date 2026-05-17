@@ -44,25 +44,29 @@
                 <i class="bi bi-grid-1x2 me-2 text-success"></i> DASHBOARD
             </a>
             <a href="../livros/form_livro.php" class="nav-link py-3 px-4 border-bottom text-dark">
+                <i class="bi bi-clipboard2-plus text-success"></i> CADASTRO DE LIVROS
+            </a>
+            <a href="../livros/visualizacao_livro.php" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-book me-2 text-success"></i> LIVROS
             </a>
-            <a href="####" class="nav-link py-3 px-4 border-bottom text-dark">
+            <a href="../emprestimos/index.php" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-journal-check me-2 text-success"></i> EMPRÉSTIMOS
             </a>
             <a href="../turmas/index.php" class="nav-link py-3 px-4 border-bottom text-dark">
-                <i class="bi bi-people me-2 text-success"></i> TURMAS
+                <i class="bi bi-mortarboard-fill text-success"></i> TURMAS
             </a>
             <a href="../alunos/visualizar.php" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-people me-2 text-success"></i> ALUNOS
             </a>
         </nav>
     </div>
-    <!--Rodapé do Menu Lateral
+    <!-- Rodapé do Menu Lateral -->
     <div class="p-4 mt-auto border-top">
-        <a href="../includes/logout.php" class="text-danger text-decoration-none fw-bold">
+        <a href="../includes/logout.php" class="text-danger text-decoration-none fw-bold"
+        onclick="return confirm('Tem certeza que deseja sair?')">
             <i class="bi bi-box-arrow-left me-2"></i> SAIR
         </a>
-    </div>-->
+    </div>
 </div>
 
 <style>

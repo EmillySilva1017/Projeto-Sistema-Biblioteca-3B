@@ -1,0 +1,52 @@
+.thead-verde th {
+  background-color: #1c942f !important;
+  color: white !important;
+  padding: 15px !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.table-container {
+  background-color: white;
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+.btn-filtrar {
+  background-color: #d37a00;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 25px;
+  transition: 0.2s;
+}
+
+.btn-filtrar:hover {
+  background-color: #b56800;
+  color: white;
+}
+
+/* Estilização da Paginação */
+.paginacao-link {
+  color: #888888;
+  font-size: 1.3rem;
+  text-decoration: none;
+  padding: 0 4px;
+  transition: 0.2s;
+}
+.paginacao-link:hover {
+  color: #1c942f;
+}
+.paginacao-link.ativa {
+  color: #1c942f;
+}
+.seta-paginacao {
+  color: black;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.seta-paginacao.desativada {
+  opacity: 0.25;
+  pointer-events: none;
+}
