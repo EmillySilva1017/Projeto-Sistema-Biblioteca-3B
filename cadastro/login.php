@@ -31,7 +31,7 @@ if (mysqli_num_rows($result) > 0) {
 
         // Verificação do destino da página
         if ($dados['nivel'] == 1) {
-            header('Location: ../painel/painel_adm.php');
+            header('Location: ../livros/visualizacao_livro.php');
         } else {
             header('Location: ../painel/visao_aluno.php');
         }

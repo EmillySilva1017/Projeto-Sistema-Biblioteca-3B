@@ -41,7 +41,6 @@ body {
     border-bottom: 2px solid #dee2e6;
 }
 
-/* Botão laranja do protótipo */
 .btn-add-turma {
     background-color: var(--laranja-eeep);
     color: white;
@@ -57,19 +56,4 @@ body {
     background-color: #d88200;
     color: white;
     transform: translateY(-2px);
-}
-
-.btn-visu {
-    background-color: #00bcd4;
-    color: white;
-}
-
-.btn-edit {
-    background-color: #ffc107;
-    color: #000;
-}
-
-.btn-delete {
-    background-color: #dc3545;
-    color: white;
 }

@@ -1,9 +1,14 @@
 .thead-verde th {
   background-color: #1c942f !important;
   color: white !important;
+  border-bottom: 5px solid #df8508 !important;
   padding: 15px !important;
   font-weight: 600;
   font-size: 0.95rem;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #a8ffa8 !important; 
 }
 
 .table-container {

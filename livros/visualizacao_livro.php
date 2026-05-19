@@ -171,8 +171,8 @@ if ($busca_ativa) {
 
         <div class="table-container shadow-sm mb-3">
             <div class="table-responsive">
-                <table class="table table-striped table-hover align-middle text-center mb-0">
-                    <thead class="thead-verde">
+                <table class="table table-bordered table-striped table-hover align-middle mb-0">
+                    <thead class="thead-verde text-center">
                         <tr>
                             <th>Nº Registro</th>
                             <th>Título</th>
@@ -192,11 +192,11 @@ if ($busca_ativa) {
                         <?php elseif (isset($resLivros) && mysqli_num_rows($resLivros) > 0): ?>
                             <?php while ($livro = mysqli_fetch_assoc($resLivros)): ?>
                                 <tr>
-                                    <td><?= $livro['numero_registro'] ?></td>
+                                    <td class="text-center"><?= $livro['numero_registro'] ?></td>
                                     <td class="text-start"><strong><?= $livro['titulo_livro'] ?></strong></td>
                                     <td class="text-start"><?= $livro['autor'] ?></td>
                                     <td><?= $livro['genero'] ?></td>
-                                    <td>
+                                    <td class="text-center">
                                         <?php $situacao_provisoria = "Disponivel";
                                         if ($situacao_provisoria == "Disponivel") {
                                             echo '<span class="badge bg-success">Disponível</span>';
@@ -205,14 +205,16 @@ if ($busca_ativa) {
                                         }
                                         ?>
                                     </td>
-                                    <td>
-                                        <a href="editar_livro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-warning">
-                                            <i class="bi bi-pencil-fill"></i>
-                                        </a>
-                                        <a href="excluir_livro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Deseja excluir este exemplar?')">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <a href="editar_livro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-warning me-2">
+                                                <i class="bi bi-pencil-fill"></i>
+                                            </a>
+                                            <a href="excluir.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Deseja excluir este exemplar?')">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </a>
+                                    </div>
                                     </td>
                                 </tr>
                             <?php endwhile; ?>

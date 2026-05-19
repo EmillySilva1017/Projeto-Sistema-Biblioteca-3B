@@ -66,18 +66,20 @@ mysqli_close($conn);
                                 <td><span class="badge bg-light text-dark border"><?php echo date('Y'); ?></span></td>
                                 <td><?= $turma['ano_conclusao'] ?></td>
                                 <td class="text-center">
-                                    <a href="visualizar_turma.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-visu fw-bold px-3">
-                                        VISUALIZAR
+                                    <a href="visualizar_turma.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-success px-3">
+                                        <i class="bi bi-eye-fill"></i>
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                        <a href="editar.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-warning">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <a href="excluir.php?id=<?= $turma['id_turma']; ?>" class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Tem certeza que deseja excluir esta turma? Esta ação não pode ser desfeita!')">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <a href="editar_livro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-warning me-2">
+                                                <i class="bi bi-pencil-fill"></i>
+                                            </a>
+                                            <a href="excluir.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Deseja excluir este exemplar?')">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </a>
+                                    </div>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
