@@ -9,8 +9,8 @@ if ((empty($_POST['nova_senha'])) || (empty($_POST['confirmar_senha']))) {
     exit();
 }
 
-$nova_senha = mysqli_real_escape_string($conn, trim($_POST['nova_senha']));
-$confirmar_senha = mysqli_real_escape_string($conn, trim($_POST['confirmar_senha']));
+$nova_senha = trim($_POST['nova_senha']);
+$confirmar_senha = trim($_POST['confirmar_senha']);
 
 if ($nova_senha !== $confirmar_senha) {
     $_SESSION['msg'] = "As senhas não coincidem!";
@@ -33,7 +33,8 @@ if (password_verify($nova_senha, $row['senha'])) {
 $nova_senha_criptografada = password_hash($nova_senha, PASSWORD_DEFAULT);
 
 // ALTERAÇÃO DA SENHA NO BANCO
-$alterar_senha_sql = "UPDATE usuario SET senha = '$nova_senha_criptografada' WHERE email = '$_SESSION[email]' ";
+$email_sessao = mysqli_real_escape_string($conn, $_SESSION['email']);
+$alterar_senha_sql = "UPDATE usuario SET senha = '$nova_senha_criptografada' WHERE email = '$email_sessao' ";
 
 if (mysqli_query($conn, $alterar_senha_sql)) {
     unset($_SESSION['email']);
