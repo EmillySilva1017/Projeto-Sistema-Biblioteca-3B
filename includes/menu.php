@@ -59,7 +59,7 @@
             <a href="../livros/visualizacao_livro.php" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-book me-2 text-success"></i> LIVROS
             </a>
-            <a href="../emprestimos/index.php" class="nav-link py-3 px-4 border-bottom text-dark">
+            <a href="../emprestimos/cadastro_emprest.php" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-journal-check me-2 text-success"></i> EMPRÉSTIMOS
             </a>
             <a href="../turmas/index.php" class="nav-link py-3 px-4 border-bottom text-dark">
