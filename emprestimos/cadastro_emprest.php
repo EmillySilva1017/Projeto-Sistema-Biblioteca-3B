@@ -1,4 +1,15 @@
-<?php session_start(); ?>
+<?php session_start();
+include('../includes/conexao.php');
+/** @var mysqli $conn */
+date_default_timezone_set('America/Fortaleza');
+
+$id_turma = "SELECT id_turma FROM turmas";
+
+// Query para encontrar as turmas
+$sqlTurmas = "SELECT id_turma, curso, identificador_curso, serie_atual FROM turmas ORDER BY serie_atual ASC, identificador_curso ASC";
+$resTurmas = mysqli_query($conn, $sqlTurmas);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,29 +51,36 @@
                     <form action="cadastro.php" method="POST">
                         <div class="row g-3">
                             <div class="col-12 col-md-6 mb-1">
-                                <label class="form-label fw-bold">Titulo Livro</label>
-                                <input type="text" class="form-control form-control-lg border-2" name="titulo" required>
-                            </div>
-                            <div class="col-12 col-md-6 mb-1">
                                 <label class="form-label fw-bold">N° Registro</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="n_registro"
-                                    required>
+                                    id="n_registro" required autocomplete="off">
+                            </div>
+                            <div class="col-12 col-md-6 mb-1">
+                                <label class="form-label fw-bold">Titulo Livro</label>
+                                <input type="text" class="form-control form-control-lg border-2" name="titulo"
+                                id="titulo" readonly placeholder="Digite o registro para buscar..." required>
+                                
+                                <input type="hidden" name="fk_id_livro" id="fk_id_livro">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-12 col-md-6 mb-3">
                                 <label class="form-label fw-bold">Turma</label>
-                                <select name="turma" id="turma" class="form-control form-control-lg border-2" required>
+                                <select name="fk_id_turma" id="turma" class="form-control form-control-lg border-2" required>
                                     <option value="">Selecione uma turma</option>
-                                    <!-- Opções de turmas seriam populadas aqui -->
+                                    <?php while ($turma = mysqli_fetch_assoc($resTurmas)): ?>
+                                        <option value="<?= $turma['id_turma']; ?>">
+                                            <?= $turma['serie_atual'] ?>º <?= $turma['identificador_curso'] ?> -
+                                            <?= $turma['curso'] ?>
+                                        </option>
+                                    <?php endwhile; ?>
                                 </select>
                             </div>
                             <div class="col-12 col-md-6 mb-3">
                                 <label class="form-label fw-bold">Aluno</label>
                                 <select name="aluno" id="aluno" class="form-control form-control-lg border-2" required>
-                                    <option value="">Selecione o aluno</option>
-                                    <!-- Opções de alunos seriam populadas aqui -->
+                                    <option value="">Selecione a turma primeiro.</option>
                                 </select>
                             </div>
                         </div>
@@ -71,12 +89,13 @@
                             <div class="col-12 col-md-6 mb-1">
                                 <label class="form-label fw-bold">Data Saída</label>
                                 <input type="date" class="form-control form-control-lg border-2" name="data_saida"
-                                    required>
+                                    value="<?php echo date('Y-m-d'); ?>" required>
                             </div>
                             <div class="col-12 col-md-6 mb-1">
-                                <label class="form-label fw-bold">Data Devolução</label>
-                                <input type="date" class="form-control form-control-lg border-2" name="data_devolucao"
-                                    required>
+                                <?php $data_prevista = date('Y-m-d', strtotime('+7 days')); ?>
+                                <label class="form-label fw-bold">Data Prevista</label>
+                                <input type="date" class="form-control form-control-lg border-2" name="data_prevista"
+                                    value="<?php echo $data_prevista; ?>" required>
                             </div>
                         </div>
 
@@ -93,6 +112,73 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // AUTOMAÇÃO DOS ALUNOS
+        document.getElementById('turma').addEventListener('change', function () {
+            const idTurma = this.value;
+            const selectAluno = document.getElementById('aluno');
+
+            selectAluno.innerHTML = '<option value="">Carregando alunos...</option>';
+            selectAluno.disabled = true;
+
+            if (!idTurma) {
+                selectAluno.innerHTML = '<option value="">Selecione uma turma primeiro</option>';
+                return;
+            }
+
+            // Faz a busca em segundo plano
+            fetch('buscar_aluno.php?id_turma=' + idTurma)
+                .then(response => response.json())
+                .then(alunos => {
+                    selectAluno.innerHTML = '<option value="">Selecione o aluno</option>';
+
+                    if (alunos.length === 0) {
+                        selectAluno.innerHTML = '<option value="">Nenhum aluno nesta turma</option>';
+                    } else {
+                        alunos.forEach(aluno => {
+                            selectAluno.innerHTML += `<option value="${aluno.nome_aluno}">${aluno.nome_aluno}</option>`;
+                        });
+                        selectAluno.disabled = false;
+                    }
+                });
+        });
+
+        // AUTOMAÇÃO DOS LIVROS
+        document.getElementById('n_registro').addEventListener('blur', function () {
+            const nRegistro = this.value.trim();
+            const inputTitulo = document.getElementById('titulo');
+            const inputIdLivro = document.getElementById('fk_id_livro');
+
+            if (!nRegistro) {
+                inputTitulo.value = '';
+                inputIdLivro.value = '';
+                return;
+            }
+
+            inputTitulo.value = 'Buscando livro...';
+
+            // Faz a busca do livro pelo número de registro
+            fetch('buscar_livro.php?n_registro=' + encodeURIComponent(nRegistro))
+                .then(response => response.json())
+                .then(dados => {
+                    if (dados.sucesso) {
+                        // Se achou o livro, preenche o input automaticamente
+                        inputTitulo.value = dados.titulo;
+                        inputIdLivro.value = dados.id_livro;
+                    } else {
+                        // Se não achou, limpa e avisa
+                        inputTitulo.value = '';
+                        inputIdLivro.value = '';
+                        alert('Aviso: Nenhum livro encontrado com este Número de Registro.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar livro:', error);
+                    inputTitulo.value = 'Erro ao buscar livro';
+                });
+        });
+    </script>
 </body>
 
 </html>
