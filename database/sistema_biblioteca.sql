@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/05/2026 às 15:38
+-- Tempo de geração: 25/05/2026 às 22:54
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `alunos` (
 
 INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `numero_chamada`, `matricula`, `fk_id_turma`) VALUES
 (2, 'Lucas Pereira Lima', 32, 12398754, 4),
-(9, 'Emilly Rodrigues Silva', 18, 2834250, 9);
+(9, 'Emilly Rodrigues Silva', 18, 2834250, 9),
+(10, 'jose', 21, 12365412, 7);
 
 -- --------------------------------------------------------
 
@@ -52,16 +53,21 @@ INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `numero_chamada`, `matricula`, `
 CREATE TABLE `emprestimos` (
   `id_emprestimos` int(11) NOT NULL,
   `nome_aluno` varchar(255) NOT NULL,
-  `serie` varchar(1) NOT NULL,
-  `curso` varchar(100) NOT NULL,
   `fk_id_livro` int(11) NOT NULL,
-  `data_saida` datetime DEFAULT current_timestamp(),
+  `data_saida` date DEFAULT current_timestamp(),
   `data_prevista` date NOT NULL,
   `data_devolucao` datetime DEFAULT NULL,
-  `nome_bibliotecario` varchar(100) NOT NULL,
   `fk_id_user` int(11) NOT NULL,
-  `status` enum('Pendente','Entregue','Atrasado','Renovado') DEFAULT 'Pendente'
+  `status` enum('Pendente','Entregue','Atrasado','Renovado') DEFAULT 'Pendente',
+  `fk_id_turma` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `emprestimos`
+--
+
+INSERT INTO `emprestimos` (`id_emprestimos`, `nome_aluno`, `fk_id_livro`, `data_saida`, `data_prevista`, `data_devolucao`, `fk_id_user`, `status`, `fk_id_turma`) VALUES
+(1, 'Emilly Rodrigues Silva', 6051, '2026-05-20', '2026-05-27', NULL, 1, 'Pendente', 9);
 
 -- --------------------------------------------------------
 
@@ -878,7 +884,7 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (794, 'A Ira', 'Angela Carneiro', 'Ediouro', NULL, 'Sem Gênero', '028.5', '', '303', 'S'),
 (795, 'O Nariz', 'Luis Fernando Veríssimo', 'Ática', NULL, 'Sem Gênero', '028.5', '', '321', 'S'),
 (796, 'O domador de nuvens', 'Vanderlei Timóteo', 'RHJ', NULL, 'Sem Gênero', '028.5', '', '495', 'S'),
-(797, 'Dom Casmurro', 'Machado de Assis', 'Educarte', NULL, 'Sem Gênero', '028.5', '', '5157', 'N'),
+(797, 'Dom Casmurro', 'Machado de Assis', 'Educarte', NULL, 'Romance', '028.5', '', '5157', 'N'),
 (798, 'Ludi Vai À Praia', 'Luciana Sandroni', 'Editora AGIR', NULL, 'Sem Gênero', '028.5', '', '259', 'S'),
 (799, 'Amazonas', 'Thiago Mello', 'Bertrand Brasil', NULL, 'Sem Gênero', '918.11', '', '3344', 'S'),
 (800, 'A Ilha do Tesouro', 'Robert Louis Stevenson', 'Ática', NULL, 'Sem Gênero', '028.5', '', '272', 'S'),
@@ -2253,7 +2259,7 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (2197, 'A pequena prisão', 'Igor Mendes', 'N-1', NULL, 'Ciência Política', '32', '', '8868', 'S'),
 (2198, 'Vamos comprar um poeta', 'Afonso Cruz', 'dublinense', NULL, 'Sem Gênero', '869.3', '', '8688', 'S'),
 (2199, 'A mãe da mãe se sua mãe e suas filhas', 'Maria José Silveira', 'GloboKids', NULL, 'Sem Gênero', '869', '', '8689', 'S'),
-(2200, 'Dom Casmurro O Filme', 'Toni Brandão', 'bonsucesso', NULL, 'Sem Gênero', '028.5', '', '8810', 'S'),
+(2200, 'Dom Casmurro O Filme', 'Toni Brandão', 'bonsucesso', NULL, 'Romance', '028.5', '', '8810', 'S'),
 (2201, 'Cartas a uma negra', 'Françoise ega', 'TAIM', NULL, 'Cartas francesas', '846', '', '8766', 'S'),
 (2202, 'Prisioneiro B-3087', 'Alan Gratz', 'Joaquim', NULL, 'Sem Gênero', '940.5', '', '8833', 'S'),
 (2203, 'Do rock ao clássico', 'Arthur Dapieve', 'Bom de ler', NULL, 'Sem Gênero', '869.8', '', '8641', 'S'),
@@ -3611,36 +3617,36 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (3554, 'O Ateneu', 'Aluísio Azevedo', 'Companhia Editora Nacional', NULL, 'Sem Gênero', '869.93', '', '7172', 'N'),
 (3555, 'O Ateneu', 'Raul Pompéia', 'Editora Educarte', NULL, 'Sem Gênero', '', '', '5159', 'N'),
 (3556, 'O Ateneu', 'Raul Pompéia', 'Zahar', NULL, 'Sem Gênero', '869.93', '', '7451', 'N'),
-(3557, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7830', 'N'),
-(3558, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7831', 'N'),
-(3559, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7832', 'N'),
-(3560, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7833', 'N'),
-(3561, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7834', 'N'),
-(3562, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7835', 'N'),
-(3563, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7836', 'N'),
-(3564, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7837', 'N'),
-(3565, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7838', 'N'),
-(3566, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7839', 'N'),
-(3567, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7840', 'N'),
-(3568, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7841', 'N'),
-(3569, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7842', 'N'),
-(3570, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7843', 'N'),
-(3571, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7844', 'N'),
-(3572, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7845', 'N'),
-(3573, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7846', 'N'),
-(3574, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7847', 'N'),
-(3575, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7848', 'N'),
-(3576, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7849', 'N'),
-(3577, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7850', 'N'),
-(3578, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7851', 'N'),
-(3579, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7852', 'N'),
-(3580, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7853', 'N'),
-(3581, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7854', 'N'),
-(3582, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7855', 'N'),
-(3583, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7856', 'N'),
-(3584, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7857', 'N'),
-(3585, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7858', 'N'),
-(3586, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Sem Gênero', '869.3', '', '7859', 'N'),
+(3557, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7830', 'N'),
+(3558, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7831', 'N'),
+(3559, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7832', 'N'),
+(3560, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7833', 'N'),
+(3561, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7834', 'N'),
+(3562, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7835', 'N'),
+(3563, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7836', 'N'),
+(3564, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7837', 'N'),
+(3565, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7838', 'N'),
+(3566, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7839', 'N'),
+(3567, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7840', 'N'),
+(3568, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7841', 'N'),
+(3569, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7842', 'N'),
+(3570, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7843', 'N'),
+(3571, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7844', 'N'),
+(3572, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7845', 'N'),
+(3573, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7846', 'N'),
+(3574, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7847', 'N'),
+(3575, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7848', 'N'),
+(3576, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7849', 'N'),
+(3577, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7850', 'N'),
+(3578, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7851', 'N'),
+(3579, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7852', 'N'),
+(3580, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7853', 'N'),
+(3581, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7854', 'N'),
+(3582, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7855', 'N'),
+(3583, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7856', 'N'),
+(3584, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7857', 'N'),
+(3585, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7858', 'N'),
+(3586, 'A Braseilera de Pranzins', 'Camilo Castelo Branco', 'IBEP', NULL, 'Romance', '869.3', '', '7859', 'N'),
 (3587, 'Senhora', 'Jośe de Alencar', 'Record', NULL, 'Sem Gênero', '869.93', '', '2476', 'N'),
 (3588, 'Senhora', 'Jośe de Alencar', 'Companhia Editora Nacional', NULL, 'Sem Gênero', '869.93', '', '7800', 'N'),
 (3589, 'Senhora', 'Jośe de Alencar', 'Companhia Editora Nacional', NULL, 'Sem Gênero', '869.93', '', '7801', 'N'),
@@ -3796,9 +3802,9 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (3739, 'A Escrava Isaura', 'Bernardo Guimarães', 'ABC', NULL, 'Sem Gênero', '869.93', '', '6764', 'N'),
 (3740, 'A Escrava Isaura', 'Bernardo Guimarães', 'ABC', NULL, 'Sem Gênero', '869.93', '', '6765', 'N'),
 (3741, 'A Escrava Isaura', 'Bernardo Guimarães', 'L&PM Editores', NULL, 'Sem Gênero', '869.93', '', '3801', 'N'),
-(3742, 'A Escrava Isaura', 'Bernardo Guimarães', 'L&PM Editores', NULL, 'Sem Gênero', '869.93', '', '3802', 'N');
+(3742, 'A Escrava Isaura', 'Bernardo Guimarães', 'L&PM Editores', NULL, 'Sem Gênero', '869.93', '', '3802', 'N'),
+(3743, 'A Escrava Isaura', 'Bernardo Guimarães', 'L&PM Editores', NULL, 'Sem Gênero', '869.93', '', '3805', 'N');
 INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
-(3743, 'A Escrava Isaura', 'Bernardo Guimarães', 'L&PM Editores', NULL, 'Sem Gênero', '869.93', '', '3805', 'N'),
 (3744, 'A Escrava Isaura', 'Bernardo Guimarães', 'L&PM Editores', NULL, 'Sem Gênero', '869.93', '', '3806', 'N'),
 (3745, 'A Escrava Isaura', 'Bernardo Guimarães', 'L&PM Editores', NULL, 'Sem Gênero', '869.93', '', '3808', 'N'),
 (3746, 'A Escrava Isaura', 'Bernardo Guimarães', 'L&PM Editores', NULL, 'Sem Gênero', '869.93', '', '3809', 'N'),
@@ -3905,10 +3911,10 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (3847, 'O primo Basílio', 'Eça de Queiroz', 'Brink Brasil', NULL, 'Sem Gênero', '869.3', '', '8433', 'N'),
 (3848, 'O primo Basílio', 'Eça de Queiroz', 'Brink Brasil', NULL, 'Sem Gênero', '869.3', '', '8434', 'N'),
 (3849, 'Dom Casmurro', 'Machado de Assis', 'Brink Brasil', '2008', 'Romance', '869.93', '869.33', '8357', 'N'),
-(3850, 'Dom Casmurro', 'Machado de Assis', 'Brink Brasil', NULL, 'Sem Gênero', '869.93', '', '8358', 'N'),
-(3851, 'Dom Casmurro', 'Machado de Assis', 'Brink Brasil', NULL, 'Sem Gênero', '869.93', '', '8359', 'N'),
-(3852, 'Dom Casmurro', 'Machado de Assis', 'Brink Brasil', NULL, 'Sem Gênero', '869.93', '', '8360', 'N'),
-(3853, 'Dom Casmurro', 'Machado de Assis', 'Brink Brasil', NULL, 'Sem Gênero', '869.93', '', '8361', 'N'),
+(3850, 'Dom Casmurro', 'Machado de Assis', 'Brink Brasil', NULL, 'Romance', '869.93', '', '8358', 'N'),
+(3851, 'Dom Casmurro', 'Machado de Assis', 'Brink Brasil', NULL, 'Romance', '869.93', '', '8359', 'N'),
+(3852, 'Dom Casmurro', 'Machado de Assis', 'Brink Brasil', NULL, 'Romance', '869.93', '', '8360', 'N'),
+(3853, 'Dom Casmurro', 'Machado de Assis', 'Brink Brasil', NULL, 'Romance', '869.93', '', '8361', 'N'),
 (3854, 'Encarnação', 'José de Alencar', 'Brink Brasil', NULL, 'Sem Gênero', '869.93', '', '8362', 'N'),
 (3855, 'Encarnação', 'José de Alencar', 'Brink Brasil', NULL, 'Sem Gênero', '869.93', '', '8363', 'N'),
 (3856, 'Encarnação', 'José de Alencar', 'Brink Brasil', NULL, 'Sem Gênero', '869.93', '', '8364', 'N'),
@@ -4065,11 +4071,10 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (4007, 'O Albatroz Azul', 'João Ubaldo Ribeiro', 'Nova Fronteira', NULL, 'Sem Gênero', '869.93', '821.134.3(', '4762', 'S'),
 (4008, 'Senhora', 'José de Alencar', 'Editora Abril', NULL, 'Sem Gênero', '869.93', '', '6503', 'N'),
 (4009, 'As parceiras', 'Lya Luft', 'Record', NULL, 'Sem Gênero', '869.93', '', '3122', 'N'),
-(4010, '', 'Liberato Viera da Cunha', 'Sulina', NULL, 'Sem Gênero', '', '869.0(81)-', '2132', 'N'),
 (4011, 'A Normalista', 'Adolfo Caminha', 'FTP', NULL, 'Sem Gênero', '869.93', '', '1773', 'N'),
 (4012, 'Cidade de Deus', 'Paulo Lins', 'Companhia das Letras', NULL, 'Sem Gênero', '869,935', '', '2699', 'S'),
 (4013, 'Cidade de Deus', '', 'Companhia das Letras', NULL, 'Sem Gênero', '869,935', '', '2701', 'S'),
-(4014, 'Dom Casmurro', 'Machado de Assis', 'Editora Ática', NULL, 'Sem Gênero', '', '', '5999', 'N'),
+(4014, 'Dom Casmurro', 'Machado de Assis', 'Editora Ática', NULL, 'Romance', '', '', '5999', 'N'),
 (4015, 'Memórias de um Sargento de Milícias', 'Manuel Antônio de Almeida', 'Editora Educarte', NULL, 'Sem Gênero', '', '', '5156', 'N'),
 (4016, 'Grandes esperanças', 'Charles Dickens', 'Companhia das Letras', NULL, 'Ficção inglesa', '823', '', '7472', 'N'),
 (4017, 'Grandes esperanças', 'Charles Dickens', 'Companhia das Letras', NULL, 'Ficção inglesa', '823', '', '7473', 'N'),
@@ -4190,8 +4195,8 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (4135, 'O Nariz do Morto', 'Antonio Carlos Villaça', 'Ediouro', NULL, 'Sem Gênero', '869.93', '869.0(81)-', '2140', 'N'),
 (4136, 'A Madona de Cedro', 'Antonio Callado', 'Editora Nova Terra', NULL, 'Sem Gênero', '869.93', '869.0(81)-', '2141', 'N'),
 (4137, 'Memórias de um Sargento de Milícias', 'Manuel Antônio de Almeida', 'DCL', NULL, 'Sem Gênero', '869.93', '', '5490', 'N'),
-(4138, 'Dom Casmurro', 'Machado de Assis', 'Escala Educacional', NULL, 'Sem Gênero', '869.93', '', '6675', 'N'),
-(4139, 'Dom Casmurro', 'Machado de Assis', 'Escala Educacional', NULL, 'Sem Gênero', '869.93', '', '6676', 'N'),
+(4138, 'Dom Casmurro', 'Machado de Assis', 'Escala Educacional', NULL, 'Romance', '869.93', '', '6675', 'N'),
+(4139, 'Dom Casmurro', 'Machado de Assis', 'Escala Educacional', NULL, 'Romance', '869.93', '', '6676', 'N'),
 (4140, 'Capão Pecado', 'Ferréz', 'Objetiva', NULL, 'Sem Gênero', '869.3', '', '2803', 'S'),
 (4141, 'Memórias póstumas de Brás Cubas', '', '', NULL, 'Romance', '869.93', '', '6667', 'N'),
 (4142, 'Memórias póstumas de Brás Cubas', '', '', NULL, 'Romance', '869.93', '', '6668', 'N'),
@@ -4235,10 +4240,10 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (4180, 'A jangada de pedra', 'José Saramago', 'Companhia das Letras', NULL, 'Sem Gênero', '869.37', '', '6342', 'N'),
 (4181, 'Reflexos do Baile', 'Antonio Callado', 'Frente', NULL, 'Sem Gênero', '869.93', '869.0(81)-', '3431', 'S'),
 (4182, 'Sargento Getúlio', 'João Ubaldo Ribeiro', 'Alfaguara', NULL, 'Sem Gênero', '869.93', '821.134.3(', '3319', 'S'),
-(4183, 'Ensaio sobre a cegueira', 'José Saramago', 'Companhia das Letras', NULL, 'Sem Gênero', '869.37', '', '5080', 'N');
-INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
+(4183, 'Ensaio sobre a cegueira', 'José Saramago', 'Companhia das Letras', NULL, 'Sem Gênero', '869.37', '', '5080', 'N'),
 (4184, 'Dôra, Doralina', 'Rachel de Queiroz', 'José Olympio', NULL, 'Sem Gênero', '869.93', '821.134.3(', '3395', 'S'),
-(4185, 'Essa Terra', 'Antônio Torres', 'Civilização Brasileira', NULL, 'Sem Gênero', '869.93', '869.0(81)-', '3436', 'S'),
+(4185, 'Essa Terra', 'Antônio Torres', 'Civilização Brasileira', NULL, 'Sem Gênero', '869.93', '869.0(81)-', '3436', 'S');
+INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
 (4186, 'Equador', 'Miguel Sousa Tavares', 'Nova Fronteira', NULL, 'Sem Gênero', '869.3', '821.134.3-', '3503', 'S'),
 (4187, 'O Turista Acidental', 'Anne Tyler', 'Lionoart', NULL, 'Sem Gênero', '', '', '2308', 'N'),
 (4188, 'A Madona de Cedro', 'Antonio Callado', 'Vida Melhor', NULL, 'Sem Gênero', '869.93', '821.134.3(', '6086', 'S'),
@@ -4279,7 +4284,7 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (4223, 'Recordações do Escrivão Isaías Caminha', 'Lima Barreto', 'Record', NULL, 'Sem Gênero', '869.93', '869.0(81)-', '1975', 'N'),
 (4224, 'A Caminho de Casa', 'W. Bruce Cameron', 'Harper Collins', NULL, 'Ficção americana em Inglês', '813', '82-31(73)', '8890', 'N'),
 (4225, 'Livre para Voar', 'Wilson Frungilo Jr.', 'Ide', NULL, 'Sem Gênero', '869,935', '', '6359', 'N'),
-(4226, 'Dom Casmurro', 'Machado de Assis', 'Diário do Nordeste', NULL, 'Sem Gênero', '869.93', '', '6069', 'N'),
+(4226, 'Dom Casmurro', 'Machado de Assis', 'Diário do Nordeste', NULL, 'Romance', '869.93', '', '6069', 'N'),
 (4227, 'Homens e Caranguejos', 'Josué de Castro', 'Bertrand Brasil', NULL, 'Sem Gênero', '869.93', '821.134.3(', '1843', 'S'),
 (4228, 'Um certo capitão Rodrigo', 'Érico Veríssimo', 'Record', NULL, 'Sem Gênero', '869.93', '869.0(81)-', '1989', 'N'),
 (4229, 'O grande mentecapto', 'Fernando Sabino', 'Record', NULL, 'Sem Gênero', '869.93', '869.0(81)-', '1846', 'N'),
@@ -4675,10 +4680,10 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (4624, 'Na onda dos versos', 'Múltiplos autores', 'Editora Ática', NULL, 'Sem Gênero', '028.5', '', '48', 'S'),
 (4625, 'Na onda dos versos', 'Múltiplos autores', 'Editora Ática', NULL, 'Sem Gênero', '028.5', '', '96', 'S'),
 (4626, 'Discurso de um sonho e outros poemas', 'Múltiplos autores', 'Martins Fontes', NULL, 'Poema', '028.5', '', '77', 'S'),
-(4627, 'Discurso de um sonho e outros poemas', 'Múltiplos autores', 'Martins Fontes', NULL, 'Poema', '028.5', '', '78', 'S');
-INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
+(4627, 'Discurso de um sonho e outros poemas', 'Múltiplos autores', 'Martins Fontes', NULL, 'Poema', '028.5', '', '78', 'S'),
 (4628, 'Discurso de um sonho e outros poemas', 'Múltiplos autores', 'Martins Fontes', NULL, 'Poema', '028.5', '', '79', 'S'),
-(4629, 'Discurso de um sonho e outros poemas', 'Múltiplos autores', 'Martins Fontes', NULL, 'Poema', '028.5', '', '80', 'S'),
+(4629, 'Discurso de um sonho e outros poemas', 'Múltiplos autores', 'Martins Fontes', NULL, 'Poema', '028.5', '', '80', 'S');
+INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
 (4630, 'Discurso de um sonho e outros poemas', 'Múltiplos autores', 'Martins Fontes', NULL, 'Poema', '028.5', '', '81', 'S'),
 (4631, 'Discurso de um sonho e outros poemas', 'Múltiplos autores', 'Martins Fontes', NULL, 'Poema', '028.5', '', '82', 'S'),
 (4632, 'Discurso de um sonho e outros poemas', 'Múltiplos autores', 'Martins Fontes', NULL, 'Poema', '028.5', '', '83', 'S'),
@@ -5049,7 +5054,7 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (4997, 'Barrakovisk Resord', 'Well Morais', 'LCR', NULL, 'Sem Gênero', '82-34', '', '8576', 'N'),
 (4998, 'Barrakovisk Resord', 'Well Morais', 'LCR', NULL, 'Sem Gênero', '82-34', '', '8577', 'N'),
 (4999, 'Barrakovisk Resord', 'Well Morais', 'LCR', NULL, 'Sem Gênero', '82-34', '', '8578', 'N'),
-(5000, 'Dom Casmurro de Machado de Assis', 'Wellington Srbek e José Aguiar', 'Editora Nemo', NULL, 'Sem Gênero', '', '821.134.3(', '6909', 'S'),
+(5000, 'Dom Casmurro de Machado de Assis', 'Wellington Srbek e José Aguiar', 'Editora Nemo', NULL, 'Romance', '', '821.134.3(', '6909', 'S'),
 (5001, 'O melhor do conto brasileiro', 'Múltiplos autores', 'José Olympio', NULL, 'Sem Gênero', '869,930', '869.0(81)-', '5188', 'N'),
 (5002, 'O melhor do conto brasileiro', 'Múltiplos autores', 'José Olympio', NULL, 'Sem Gênero', '869,930', '869.0(81)-', '3628', 'N'),
 (5003, 'O médico e o monstro', 'Graphic Chillers', 'Prumo', NULL, 'Sem Gênero', '7,415,973', '741.5(73)', '6159', 'S'),
@@ -5079,11 +5084,11 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (5027, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8520', 'N'),
 (5028, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8521', 'N'),
 (5029, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8522', 'N'),
-(5030, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8523', 'N');
-INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
+(5030, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8523', 'N'),
 (5031, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8524', 'N'),
 (5032, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8525', 'N'),
-(5033, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8526', 'N'),
+(5033, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8526', 'N');
+INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
 (5034, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8527', 'N'),
 (5035, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8528', 'N'),
 (5036, 'Várias Histórias', 'Machado de Assis', 'IBEP', NULL, 'Sem Gênero', '869.93', '821.134.3(', '8529', 'N'),
@@ -5449,11 +5454,11 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (5396, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8182', 'S'),
 (5397, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8183', 'S'),
 (5398, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8184', 'S'),
-(5399, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8185', 'S');
-INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
+(5399, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8185', 'S'),
 (5400, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8186', 'S'),
 (5401, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8187', 'S'),
-(5402, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8188', 'S'),
+(5402, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8188', 'S');
+INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
 (5403, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8189', 'S'),
 (5404, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8190', 'S'),
 (5405, 'Admirável mundo novo', 'Aldous Huxley', 'Editora Globo', NULL, 'Sem Gênero', '813,087', '', '8191', 'S'),
@@ -5876,11 +5881,11 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (5822, 'A bailarina fantasma', 'Socorro Acioli', 'Seguinte', NULL, 'Sem Gênero', '028.5', '', '7442', 'N'),
 (5823, 'A bailarina fantasma', 'Socorro Acioli', 'Seguinte', NULL, 'Sem Gênero', '028.5', '', '7443', 'N'),
 (5824, 'Tubarão com a faca nas costas', 'Cezar Dias', 'Literatura para todos', NULL, 'Sem Gênero', '869.8', '821.134.3(', '3778', 'N'),
-(5825, 'A fonte onde se bebe', 'Cláudia Fares', 'Topbooks', NULL, 'Sem Gênero', '869.98', '', '2209', 'S');
-INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
+(5825, 'A fonte onde se bebe', 'Cláudia Fares', 'Topbooks', NULL, 'Sem Gênero', '869.98', '', '2209', 'S'),
 (5826, 'Farsa da Boa Preguiça', 'Ariano Suassuna', 'José Olympo', NULL, 'Sem Gênero', '869.92', '869.0(81)-', '4896', 'N'),
 (5827, 'O imitador de gato e outras crônicas', 'Lourenço Diaféria', 'Editora Ática', NULL, 'Crônica', '', '', '5431', 'S'),
-(5828, 'O imitador de gato e outras crônicas', 'Lourenço Diaféria', 'Editora Ática', NULL, 'Crônica', '', '', '5435', 'S'),
+(5828, 'O imitador de gato e outras crônicas', 'Lourenço Diaféria', 'Editora Ática', NULL, 'Crônica', '', '', '5435', 'S');
+INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
 (5829, 'Romeu e Julieta', 'Willian Shakespeare', 'Editora Pucminas', NULL, 'Sem Gênero', '', '82-2', '4835', 'N'),
 (5830, 'Nova Antologia Poética', 'Vinicius de Moraes', 'Companhia das Letras', NULL, 'Sem Gênero', '869.91', '', '2660', 'S'),
 (5831, 'Nova Antologia Poética', 'Vinicius de Moraes', 'Companhia das Letras', NULL, 'Sem Gênero', '869.91', '', '2661', 'S'),
@@ -5996,7 +6001,6 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (5944, 'As aventuras de Ripió Lacraia', 'Chico de Assis', 'Editora scipione', NULL, 'Sem Gênero', '028.5', '', '220', 'S'),
 (5945, 'As aventuras de Ripió Lacraia', 'Chico de Assis', 'Editora scipione', NULL, 'Sem Gênero', '028.5', '', '221', 'S'),
 (5946, 'Teatro da Obsessão: Nelson Rodrigues', 'Sábato Magaldi', 'Editora Global', NULL, 'Sem Gênero', '792,098', '', '4950', 'N'),
-(5947, '', 'Sábato Magaldi', 'Editora Global', NULL, 'Sem Gênero', '792,098', '', '1573', 'S'),
 (5948, 'A noite será como o dia', 'D. Marcos Barbosa O.S.B.', 'Agir', NULL, 'Sem Gênero', '', '', '5032', 'N'),
 (5949, 'Um moliére Imaginário', 'Cacá Brandão', 'Autêntica', NULL, 'Sem Gênero', '', '82-2', '3482', 'S'),
 (5950, 'O Pagador de Promessas', 'Dias Gomes', 'Bertrand Brasil', NULL, 'Sem Gênero', '869.92', '869.0(81)-', '3552', 'S'),
@@ -6311,13 +6315,13 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (6261, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '216', 'S'),
 (6262, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '217', 'S'),
 (6263, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '218', 'S'),
-(6264, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '219', 'S');
-INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
+(6264, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '219', 'S'),
 (6265, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '207', 'S'),
 (6266, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '208', 'S'),
 (6267, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '209', 'S'),
 (6268, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '210', 'S'),
-(6269, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '211', 'S'),
+(6269, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '211', 'S');
+INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
 (6270, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '212', 'S'),
 (6271, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '213', 'S'),
 (6272, 'Cabo de Guerra', 'Ivone Benedetti', 'Boitempo', NULL, 'Sem Gênero', '869.93', '821.134.3(', '188', 'S'),
@@ -6742,12 +6746,12 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (6691, 'A metamorfose', 'Franz Kafka', 'Editora Hedra', NULL, 'Sem Gênero', '833.7', '830', '648', 'S'),
 (6692, 'Os limites dos sentidos e os sentidos dos limites - Parte 1/2', 'Sérgio Sá', 'Sá Editora', NULL, 'Sem Gênero', '', '869.0(81)', '4460', 'S'),
 (6693, 'Os limites dos sentidos e os sentidos dos limites - Parte 1/2', 'Sérgio Sá', 'Sá Editora', NULL, 'Sem Gênero', '', '869.0(81)', '4457', 'S'),
-(6694, 'Os limites dos sentidos e os sentidos dos limites - Parte 1/2', 'Sérgio Sá', 'Sá Editora', NULL, 'Sem Gênero', '', '869.0(81)', '4458', 'S');
-INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
+(6694, 'Os limites dos sentidos e os sentidos dos limites - Parte 1/2', 'Sérgio Sá', 'Sá Editora', NULL, 'Sem Gênero', '', '869.0(81)', '4458', 'S'),
 (6695, 'Os limites dos sentidos e os sentidos dos limites - Parte 2/2', 'Sérgio Sá', 'Sá Editora', NULL, 'Sem Gênero', '', '869.0(81)', '4461', 'S'),
 (6696, 'Os limites dos sentidos e os sentidos dos limites - Parte 2/2', 'Sérgio Sá', 'Sá Editora', NULL, 'Sem Gênero', '', '869.0(81)', '4462', 'S'),
 (6697, 'Os limites dos sentidos e os sentidos dos limites - Parte 2/2', 'Sérgio Sá', 'Sá Editora', NULL, 'Sem Gênero', '', '869.0(81)', '4459', 'S'),
-(6698, 'Material de apoio para o aprendizado de LIBRAS', 'Alexandre dos Santos Figueira', 'Phorte Editora', NULL, 'Línguas de Sinais', '419', '81\'221.24', '6608', 'S'),
+(6698, 'Material de apoio para o aprendizado de LIBRAS', 'Alexandre dos Santos Figueira', 'Phorte Editora', NULL, 'Línguas de Sinais', '419', '81\'221.24', '6608', 'S');
+INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`, `genero`, `cdd`, `cdu`, `numero_registro`, `selo`) VALUES
 (6699, 'Temática Barsa - História', 'Grupo Planeta', 'Barsa Planeta', NULL, 'Ciências', '036.9', '30', '2917', 'N'),
 (6700, 'Temática Barsa - Economia e geografia', 'Grupo Planeta', 'Barsa Planeta', NULL, 'Ciências', '036.9', '30', '2918', 'N'),
 (6701, 'Temática Barsa - Filosofia', 'Grupo Planeta', 'Barsa Planeta', NULL, 'Ciências', '036.9', '30', '2919', 'N'),
@@ -6831,7 +6835,7 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (8831, 'O que é estatística', 'Sônia Vieira', 'Editora Brasiliense', NULL, 'Sem Gênero', '519.5', '', '5090', 'N'),
 (8832, 'O quinze', 'Rachel de Queiroz', 'José Olympio', NULL, 'Sem Gênero', '869.93', '821.134.3(', '1816', 'N'),
 (8833, 'Os sete crimes de édipo', 'Pedro Américo Corrêa Netto', 'AGIR', NULL, 'Sem Gênero', '616.89', '615.85', '1555', 'N'),
-(8834, 'Dom Casmurro', 'Machado de Assis', 'Martin Claret', NULL, 'Sem Gênero', '869-93', '', '7452', 'N'),
+(8834, 'Dom Casmurro', 'Machado de Assis', 'Martin Claret', NULL, 'Romance', '869-93', '', '7452', 'N'),
 (8835, 'A sútil arte de ligar o foda-se', 'Mark Manson', 'Intrínseca', NULL, 'Psicologia aplicada', '158', '159,947', '7479', 'N'),
 (8836, 'Mamãe, vou ter um bebê', 'Eve Bunting', 'Melhoramentos', NULL, 'Sem Gênero', '', '', '4833', 'N'),
 (8837, 'Embrulhada para presente', 'Gisele Costa', 'Prumo', NULL, 'Sem Gênero', '028.5', '', '7449', 'S'),
@@ -6915,7 +6919,7 @@ CREATE TABLE `usuario` (
   `id_user` int(11) NOT NULL,
   `nome_user` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `senha` varchar(100) NOT NULL,
+  `senha` varchar(255) NOT NULL,
   `nivel` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -6924,9 +6928,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_user`, `nome_user`, `email`, `senha`, `nivel`) VALUES
-(1, 'Administrador', 'admin@admin.com', '$2y$10$59EqrquebLNKM4JNvlmlieOEorsM5KlT9Ls3kVH5s65i7.1fOD0wq', 1),
-(3, 'Bibliotecário', 'biblio@escola.com', '$2y$10$krJuqMupmMcGJOTvaFdWwuf7ghECkAZtHd.bjfm7B.A0ViepIIHtW', 1),
-(4, 'bibliotecario', 'biblio@bib.com', '202cb962ac59075b964b07152d234b70', 1);
+(1, 'Administrador', 'admin@admin.com', '$2y$10$D7TakGwiAW8O3P7yjLLZF.5NFpBm2kdamC/Y7a9rwzUboysgCVrfu', 1),
+(3, 'Bibliotecário', 'biblio@escola.com', '$2y$10$krJuqMupmMcGJOTvaFdWwuf7ghECkAZtHd.bjfm7B.A0ViepIIHtW', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -6946,7 +6949,8 @@ ALTER TABLE `alunos`
 ALTER TABLE `emprestimos`
   ADD PRIMARY KEY (`id_emprestimos`),
   ADD KEY `fk_livros_emprestimos` (`fk_id_livro`),
-  ADD KEY `fk_usuario_emprestimos` (`fk_id_user`);
+  ADD KEY `fk_usuario_emprestimos` (`fk_id_user`),
+  ADD KEY `fk_emprestimo_turma` (`fk_id_turma`);
 
 --
 -- Índices de tabela `livros`
@@ -6974,13 +6978,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `id_emprestimos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_emprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `livros`
@@ -6998,7 +7002,7 @@ ALTER TABLE `turmas`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restrições para tabelas despejadas
@@ -7014,6 +7018,7 @@ ALTER TABLE `alunos`
 -- Restrições para tabelas `emprestimos`
 --
 ALTER TABLE `emprestimos`
+  ADD CONSTRAINT `fk_emprestimo_turma` FOREIGN KEY (`fk_id_turma`) REFERENCES `turmas` (`id_turma`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_livros_emprestimos` FOREIGN KEY (`fk_id_livro`) REFERENCES `livros` (`id`),
   ADD CONSTRAINT `fk_usuario_emprestimos` FOREIGN KEY (`fk_id_user`) REFERENCES `usuario` (`id_user`);
 COMMIT;
