@@ -101,7 +101,7 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                            <a href="lista_emprestimo.php" class="btn btn-light btn-lg px-4 fw-bold">Cancelar</a>
+                            <a href="list_emprest.php" class="btn btn-light btn-lg px-4 fw-bold">Cancelar</a>
                             <button type="submit" class="btn btn-orange btn-lg px-5 shadow text-uppercase">Cadastrar
                                 Empréstimo</button>
                         </div>

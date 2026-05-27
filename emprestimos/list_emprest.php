@@ -4,7 +4,7 @@ include('../includes/conexao.php');
 
 // Lógica para STATUS "Atrasado"
 date_default_timezone_set('America/Fortaleza');
-$hoje_formatado = date('Y-m-d'); // Pega apenas Ano-Mês-Dia para comparar com a data_prevista
+$hoje_formatado = date('Y-m-d');
 
 // Query que atualiza para "Atrasado" se passou da data prevista e não foi entregue
 $sql_atualiza_atrasados = "UPDATE emprestimos 
@@ -53,11 +53,12 @@ $total_paginas = ceil($total_registros / $itens_por_pagina);
 $sql_dados = "SELECT 
                 e.id_emprestimos, e.nome_aluno, e.data_saida,
                 e.data_prevista, e.data_devolucao, e.status,
-                l.numero_registro, l.titulo_livro,
+                i.nome_user, l.numero_registro, l.titulo_livro,
                 CONCAT(t.serie_atual, 'º ', t.identificador_curso, ' - ', t.curso) AS nome_turma
               FROM emprestimos e
               INNER JOIN livros l ON e.fk_id_livro = l.id
               INNER JOIN turmas t ON e.fk_id_turma = t.id_turma
+              INNER JOIN usuario i ON e.fk_id_user = i.id_user
               WHERE $where_clause
               ORDER BY e.data_saida DESC 
               LIMIT $itens_por_pagina OFFSET $offset";
@@ -93,7 +94,7 @@ $res_all_turmas = mysqli_query($conn, $sql_all_turmas);
         <form action="" method="GET" class="row g-3 mb-3 mt-1 align-items-end">
             <div class="col-12 col-md-3 position-relative">
                 <input type="text" name="busca" class="form-control input-custom ps-5"
-                    placeholder="Pesquisar por nome, turma ou data..." value="<?= htmlspecialchars($busca) ?>">
+                    placeholder="Pesquisar por nome, turma ou registro..." value="<?= htmlspecialchars($busca) ?>">
                 <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-4 text-muted"></i>
             </div>
             <div class="col-12 col-md-3">
@@ -148,6 +149,7 @@ $res_all_turmas = mysqli_query($conn, $sql_all_turmas);
                             <th>Data Saída</th>
                             <th>Data Prevista</th>
                             <th>Data Devolução</th>
+                            <th>Biblio</th>
                             <th>Status</th>
                             <th>Ações</th>
                         </tr>
@@ -178,6 +180,7 @@ $res_all_turmas = mysqli_query($conn, $sql_all_turmas);
                                     <td class="text-center"><?= $dt_saida ?></td>
                                     <td class="text-center"><?= $dt_prevista ?></td>
                                     <td class="text-center"><?= $dt_devolucao ?></td>
+                                    <td class="text-center"><?= $row['nome_user'] ?></td>
                                     <td class="text-center"><span class="badge <?= $badge_class ?>"><?= $row['status'] ?></span></td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-2">

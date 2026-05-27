@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/05/2026 às 22:54
+-- Tempo de geração: 27/05/2026 às 18:10
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -67,7 +67,8 @@ CREATE TABLE `emprestimos` (
 --
 
 INSERT INTO `emprestimos` (`id_emprestimos`, `nome_aluno`, `fk_id_livro`, `data_saida`, `data_prevista`, `data_devolucao`, `fk_id_user`, `status`, `fk_id_turma`) VALUES
-(1, 'Emilly Rodrigues Silva', 6051, '2026-05-20', '2026-05-27', NULL, 1, 'Pendente', 9);
+(2, 'Lucas Pereira Lima', 6051, '2026-05-11', '2026-06-02', NULL, 1, 'Renovado', 4),
+(4, 'Emilly Rodrigues Silva', 1127, '2026-05-26', '2026-06-02', NULL, 1, 'Pendente', 9);
 
 -- --------------------------------------------------------
 
@@ -6920,7 +6921,7 @@ CREATE TABLE `usuario` (
   `nome_user` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `nivel` int(1) NOT NULL DEFAULT 0
+  `nivel` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -6984,7 +6985,7 @@ ALTER TABLE `alunos`
 -- AUTO_INCREMENT de tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `id_emprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_emprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `livros`
@@ -7002,7 +7003,7 @@ ALTER TABLE `turmas`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restrições para tabelas despejadas
