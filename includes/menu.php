@@ -25,10 +25,6 @@
                 <li><a class="dropdown-item py-2" href="../painel/perfil.php"><i class="bi bi-person me-2"></i>Meu
                         Perfil</a></li>
                 <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item py-2 text-danger" href="../login/logout.php"><i
-                            class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
             </ul>
         </div>
     </div>
@@ -59,7 +55,7 @@
             <a href="../livros/visualizacao_livro.php" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-book me-2 text-success"></i> LIVROS
             </a>
-            <a href="../emprestimos/cadastro_emprest.php" class="nav-link py-3 px-4 border-bottom text-dark">
+            <a href="../emprestimos/list_emprest.php" class="nav-link py-3 px-4 border-bottom text-dark">
                 <i class="bi bi-journal-check me-2 text-success"></i> EMPRÉSTIMOS
             </a>
             <a href="../turmas/index.php" class="nav-link py-3 px-4 border-bottom text-dark">
@@ -71,7 +67,7 @@
         </nav>
     </div>
     <!-- Rodapé do Menu Lateral -->
-    <div class="p-4 mt-auto border-top">
+    <div class="p-4 mt-auto">
         <a href="../includes/logout.php" class="text-danger text-decoration-none fw-bold"
             onclick="return confirm('Tem certeza que deseja sair?')">
             <i class="bi bi-box-arrow-left me-2"></i> SAIR

@@ -20,11 +20,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data_prevista  = mysqli_real_escape_string($conn, $_POST['data_prevista']);
     
     // 2. Coleta o ID do bibliotecário logado na sessão
-    $fk_id_user     = intval($_SESSION['id_user']); 
+    $fk_id_user = intval($_SESSION['id_user']); 
 
     // Validação básica de segurança
     if ($fk_id_turma === 0 || empty($nome_aluno) || $fk_id_livro === 0) {
         $_SESSION['mensagem'] = "Erro: Dados incompletos ou inválidos no formulário.";
+        header("Location: cadastro_emprest.php");
+        exit;
+    }
+
+    //Trava de Segurança para que não haja empréstimos duplicados
+    $sql_trava = "SELECT id_emprestimos FROM emprestimos 
+                  WHERE fk_id_livro = $fk_id_livro 
+                  AND status IN ('Pendente', 'Atrasado', 'Renovado') 
+                  LIMIT 1";
+    $res_trava = mysqli_query($conn, $sql_trava);
+
+    if (mysqli_num_rows($res_trava) > 0) {
+        $_SESSION['mensagem'] = "Erro: Este livro já se encontra emprestado no momento!";
         header("Location: cadastro_emprest.php");
         exit;
     }
@@ -35,12 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (mysqli_query($conn, $sqlInsert)) {
         $_SESSION['mensagem'] = "Empréstimo cadastrado com sucesso!";
+        header("Location: list_emprest.php");
+        exit;
     } else {
         $_SESSION['mensagem'] = "Erro ao salvar no banco: " . mysqli_error($conn);
+        header("Location: cadastro_emprest.php");
+        exit;
     }
 
-    header("Location: cadastro_emprest.php");
-    exit;
 } else {
     header("Location: cadastro_emprest.php");
     exit;

@@ -13,9 +13,9 @@ if(empty($_POST['nome']) || empty($_POST['email']) || empty($_POST['senha'])){
 // Sanitização
 $nome = mysqli_real_escape_string($conn, trim($_POST['nome']));
 $email = mysqli_real_escape_string($conn, trim($_POST['email']));
-$senha = mysqli_real_escape_string($conn, trim($_POST['senha']));
+$senha = password_hash($senha, PASSWORD_DEFAULT);
 
-// Verifica se jáa existe alguém com este email
+// Verifica se já existe alguém com este email
 $sql = "SELECT count(*) AS total FROM usuario WHERE email = '$email' ";
 $result = mysqli_query($conn, $sql);
 $dados = mysqli_fetch_assoc($result);
@@ -28,7 +28,7 @@ if($dados['total'] > 0){
 
 //Inserir um novo usuário
 $sqlInserir = "INSERT INTO usuario (nome_user, email, senha)
-VALUES ('$nome', '$email', MD5('$senha'))";
+VALUES ('$nome', '$email', '$senha')";
 
 if(mysqli_query($conn, $sqlInserir)){
     $_SESSION['mensagem'] = "Cadastro realizado com sucesso! Faça login!";

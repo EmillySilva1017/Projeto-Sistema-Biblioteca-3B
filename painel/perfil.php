@@ -18,7 +18,7 @@ if (!isset($_SESSION['id_user'])) {
     <div class="container">
         <div class="row justify-content-center mb-3">
             <div class="d-flex align-items-center mt-2 mb-4">
-            <a href="index.php" class="btn btn-outline-secondary me-3 shadow-sm">
+            <a href="painel_adm.php" class="btn btn-outline-secondary me-3 shadow-sm">
                 <i class="bi bi-arrow-left"></i> <span class="d-none d-md-inline">Voltar</span>
             </a>
         </div>

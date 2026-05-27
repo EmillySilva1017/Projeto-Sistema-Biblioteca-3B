@@ -58,8 +58,8 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                             <div class="col-12 col-md-6 mb-1">
                                 <label class="form-label fw-bold">Titulo Livro</label>
                                 <input type="text" class="form-control form-control-lg border-2" name="titulo"
-                                id="titulo" readonly placeholder="Digite o registro para buscar..." required>
-                                
+                                    id="titulo" readonly placeholder="Digite o registro para buscar..." required>
+
                                 <input type="hidden" name="fk_id_livro" id="fk_id_livro">
                             </div>
                         </div>
@@ -67,7 +67,8 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                         <div class="row">
                             <div class="col-12 col-md-6 mb-3">
                                 <label class="form-label fw-bold">Turma</label>
-                                <select name="fk_id_turma" id="turma" class="form-control form-control-lg border-2" required>
+                                <select name="fk_id_turma" id="turma" class="form-control form-control-lg border-2"
+                                    required>
                                     <option value="">Selecione uma turma</option>
                                     <?php while ($turma = mysqli_fetch_assoc($resTurmas)): ?>
                                         <option value="<?= $turma['id_turma']; ?>">
@@ -162,22 +163,27 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
             fetch('buscar_livro.php?n_registro=' + encodeURIComponent(nRegistro))
                 .then(response => response.json())
                 .then(dados => {
+                    const btnSalvar = document.querySelector('button[type="submit"]'); // Pega seu botão de salvar
+
                     if (dados.sucesso) {
-                        // Se achou o livro, preenche o input automaticamente
                         inputTitulo.value = dados.titulo;
                         inputIdLivro.value = dados.id_livro;
+                        btnSalvar.disabled = false; // Garante que o botão está liberado
                     } else {
-                        // Se não achou, limpa e avisa
                         inputTitulo.value = '';
                         inputIdLivro.value = '';
-                        alert('Aviso: Nenhum livro encontrado com este Número de Registro.');
+                        btnSalvar.disabled = true; // Bloqueia o botão para impedir o envio!
+                        alert(dados.msg); // Mostra a mensagem dinâmica ("já emprestado" ou "não encontrado")
                     }
-                })
+                }) 
                 .catch(error => {
-                    console.error('Erro ao buscar livro:', error);
-                    inputTitulo.value = 'Erro ao buscar livro';
+                    console.error('Erro na busca do livro:', error);
+                    inputTitulo.value = '';
+                    inputIdLivro.value = '';
+                    btnSalvar.disabled = true; // Bloqueia o botão em caso de erro
+                    alert('Ocorreu um erro ao buscar o livro. Tente novamente.');
                 });
-        });
+            });
     </script>
 </body>
 
