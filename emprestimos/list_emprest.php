@@ -15,7 +15,7 @@ $sql_atualiza_atrasados = "UPDATE emprestimos
 mysqli_query($conn, $sql_atualiza_atrasados);
 
 // --- 1. CONFIGURAÇÃO DA PAGINAÇÃO ---
-$itens_por_pagina = 15;
+$itens_por_pagina = 8;
 $pagina_atual = isset($_GET['pagina']) ? intval($_GET['pagina']) : 1;
 if ($pagina_atual < 1) $pagina_atual = 1;
 $offset = ($pagina_atual - 1) * $itens_por_pagina;
@@ -64,10 +64,6 @@ $sql_dados = "SELECT
               LIMIT $itens_por_pagina OFFSET $offset";
 $res_dados = mysqli_query($conn, $sql_dados);
 
-// Carrega as turmas para o select do filtro
-$sql_all_turmas = "SELECT id_turma, curso, identificador_curso, serie_atual FROM turmas ORDER BY serie_atual ASC";
-$res_all_turmas = mysqli_query($conn, $sql_all_turmas);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,44 +84,58 @@ $res_all_turmas = mysqli_query($conn, $sql_all_turmas);
 <body>
     <?php include '../includes/menu.php'; ?>
 
-    <!--- Filtros e Botão de Cadastrar Empréstimo--->
     <div class="container-fluid px-4 pt">
 
-        <form action="" method="GET" class="row g-3 mb-3 mt-1 align-items-end">
-            <div class="col-12 col-md-3 position-relative">
-                <input type="text" name="busca" class="form-control input-custom ps-5"
-                    placeholder="Pesquisar por nome, turma ou registro..." value="<?= htmlspecialchars($busca) ?>">
-                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-4 text-muted"></i>
+        <div class="row align-items-center mt-3 mb-3">
+            <div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
+                <h2 class="fw-bold text-dark mb-0">Gestão de Empréstimos</h2>
             </div>
-            <div class="col-12 col-md-3">
-                <select name="turma" class="form-select input-custom">
-                    <option value="">Filtrar por Turma</option>
-                    <?php while($t = mysqli_fetch_assoc($res_all_turmas)): ?>
-                        <option value="<?= $t['id_turma'] ?>" <?= $turma_filtro == $t['id_turma'] ? 'selected' : '' ?>>
-                            <?= $t['serie_atual'] ?>º <?= $t['identificador_curso'] ?> - <?= $t['curso'] ?>
-                        </option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <div class="col-12 col-md-2">
-                <select name="status" class="form-select input-custom">
-                    <option value="">Filtrar por Status</option>
-                    <option value="Pendente" <?= $status_filtro == 'Pendente' ? 'selected' : '' ?>>Pendente</option>
-                    <option value="Entregue" <?= $status_filtro == 'Entregue' ? 'selected' : '' ?>>Entregue</option>
-                    <option value="Atrasado" <?= $status_filtro == 'Atrasado' ? 'selected' : '' ?>>Atrasado</option>
-                    <option value="Renovado" <?= $status_filtro == 'Renovado' ? 'selected' : '' ?>>Renovado</option>
-                </select>
-            </div>
-            <div class="col-12 col-lg-2 text-lg-end">
-                <button type="submit" class="btn btn-filtrar w-100 shadow-sm fw-bold">
-                    Filtrar </button>
-            </div>
-            <div class="col-12 col-lg-2 text-lg-end">
-                <a href="cadastro_emprest.php" class="btn btn-success w-100 shadow-sm fw-bold">
-                    <i class="bi bi-plus-lg"></i> Novo Empréstimo
+            <div class="col-12 col-md-6 text-center mt-3 text-md-end">
+                <a href="cadastro_emprest.php" class="btn btn-success btn-mobile-full px-4 py-2 fw-bold rounded-3 shadow-sm">
+                    <i class="bi bi-plus-circle me-2"></i> Novo Empréstimo
                 </a>
             </div>
-        </form>
+        </div>
+
+        <!--- Filtros e Botão de Cadastrar Empréstimo--->
+            <form action="" method="GET" class="row g-3 align-items-end mb-4">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <input type="text" name="busca" class="form-control input-custom ps-5"    
+                    placeholder="Pesquisar por Aluno, Titulo ou Registro..." value="<?= htmlspecialchars($busca) ?>">
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <select name="turma" class="form-select form-control-custom">
+                            <option value="0">Todas as Turmas</option>
+                            <?php 
+                            $sql_t = "SELECT id_turma, CONCAT(serie_atual, 'º ', identificador_curso, ' - ', curso) as t_nome FROM turmas ORDER BY serie_atual, identificador_curso";
+                            $res_t = mysqli_query($conn, $sql_t);
+                            while($t = mysqli_fetch_assoc($res_t)):
+                            ?>
+                                <option value="<?= $t['id_turma'] ?>" <?= $turma_filtro == $t['id_turma'] ? 'selected' : '' ?>><?= $t['t_nome'] ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <select name="status" class="form-select form-control-custom">
+                            <option value="">Todos os Status</option>
+                            <option value="Pendente" <?= $status_filtro == 'Pendente' ? 'selected' : '' ?>>Pendente</option>
+                            <option value="Renovado" <?= $status_filtro == 'Renovado' ? 'selected' : '' ?>>Renovado</option>
+                            <option value="Atrasado" <?= $status_filtro == 'Atrasado' ? 'selected' : '' ?>>Atrasado</option>
+                            <option value="Entregue" <?= $status_filtro == 'Entregue' ? 'selected' : '' ?>>Entregue</option>
+                        </select>
+                    </div>
+                <div class="col-12 col-sm-6 col-md-12 col-lg-3 d-flex gap-2">
+                        <button type="submit" class="btn btn-filtrar flex-grow-1">
+                            <i class="bi bi-funnel-fill me-2"></i> Filtrar
+                        </button>
+                        <?php if(!empty($busca) || $turma_filtro > 0 || !empty($status_filtro)): ?>
+                            <a href="list_emprest.php" class="btn d-inline-flex align-items-center justify-content-center rounded-3 px-3" style="height: 45px;" title="Limpar Filtros">
+                                <i class="bi bi-x-circle fs-5"></i>
+                            </a>
+                        <?php endif; ?>
+                </div>
+            </form>
 
         <?php if (isset($_SESSION['mensagem'])): ?>
         <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -134,22 +144,28 @@ $res_all_turmas = mysqli_query($conn, $sql_all_turmas);
         </div>
         <?php unset($_SESSION['mensagem']); endif; ?>
 
-        <div class="mb-2">
-            <h2 class="fw-bold text-dark">Gestão de Empréstimos</h2>
-        </div>
-        <div class="table-container shadow-sm mb-3">
+        <div class="table-container shadow-sm mb-4">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover align-middle mb-0">
+                    
+                    <colgroup>
+                        <col class="col-registro">
+                        <col class="col-obra">
+                        <col class="col-aluno">
+                        <col class="col-turma">
+                        <col class="col-datas"> <col class="col-datas"> <col class="col-datas"> <col class="col-status">
+                        <col class="col-acoes">
+                    </colgroup>
+
                     <thead class="thead-verde text-center">
                         <tr>
-                            <th>N° Registro</th>
-                            <th>Obra</th>
+                            <th>N° Reg.</th>
+                            <th>Obra / Título</th>
                             <th>Aluno</th>
                             <th>Turma</th>
-                            <th>Data Saída</th>
-                            <th>Data Prevista</th>
-                            <th>Data Devolução</th>
-                            <th>Biblio</th>
+                            <th>Saída</th>
+                            <th>Prevista</th>
+                            <th>Devolução</th>
                             <th>Status</th>
                             <th>Ações</th>
                         </tr>
@@ -157,73 +173,104 @@ $res_all_turmas = mysqli_query($conn, $sql_all_turmas);
                     <tbody>
                         <?php if(mysqli_num_rows($res_dados) == 0): ?>
                             <tr>
-                                <td colspan="9" class="text-center text-muted py-4">Nenhum empréstimo encontrado.</td>
+                                <td colspan="9" class="text-center py-4 text-muted">Nenhum empréstimo encontrado para os filtros aplicados.</td>
                             </tr>
-                        <?php else: ?>
-                            <?php while($row = mysqli_fetch_assoc($res_dados)): 
-                                // Formata as datas para exibição brasileira
+                        <?php else: 
+                            while($row = mysqli_fetch_assoc($res_dados)):
                                 $dt_saida = date('d/m/Y', strtotime($row['data_saida']));
                                 $dt_prevista = date('d/m/Y', strtotime($row['data_prevista']));
-                                $dt_devolucao = !empty($row['data_devolucao']) ? date('d/m/Y', strtotime($row['data_devolucao'])) : '-';
+                                $dt_devolucao = !empty($row['data_devolucao']) ? date('d/m/Y H:i', strtotime($row['data_devolucao'])) : '-';
                                 
-                                // Define a cor do Badge baseado no Status
-                                $badge_class = 'bg-warning text-dark';
-                                if($row['status'] == 'Entregue') $badge_class = 'bg-success';
-                                if($row['status'] == 'Atrasado') $badge_class = 'bg-danger';
+                                $badge_class = 'bg-secondary';
+                                if($row['status'] == 'Pendente') $badge_class = 'bg-primary';
                                 if($row['status'] == 'Renovado') $badge_class = 'bg-info text-dark';
-                            ?>
+                                if($row['status'] == 'Atrasado') $badge_class = 'bg-danger';
+                                if($row['status'] == 'Entregue') $badge_class = 'bg-success';
+                        ?>
                             <tr>
-                                    <td class="text-center fw-bold"><?= $row['numero_registro'] ?></td>
-                                    <td><?= $row['titulo_livro'] ?></td>
-                                    <td><?= $row['nome_aluno'] ?></td>
-                                    <td><?= $row['nome_turma'] ?></td>
-                                    <td class="text-center"><?= $dt_saida ?></td>
-                                    <td class="text-center"><?= $dt_prevista ?></td>
-                                    <td class="text-center"><?= $dt_devolucao ?></td>
-                                    <td class="text-center"><?= $row['nome_user'] ?></td>
-                                    <td class="text-center"><span class="badge <?= $badge_class ?>"><?= $row['status'] ?></span></td>
-                                    <td class="text-center">
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <?php if($row['status'] != 'Entregue'): ?>
-                                                <a href="acoes_emprest.php?acao=devolver&id=<?= $row['id_emprestimos'] ?>" 
-                                                   class="btn btn-success" title="Dar Devolução" onclick="return confirm('Confirmar devolução deste livro?')">
-                                                    <i class="bi bi-arrow-bar-up"></i>
-                                                </a>
-                                                <a href="acoes_emprest.php?acao=renovar&id=<?= $row['id_emprestimos'] ?>" 
-                                                   class="btn btn-orange text-dark" title="Renovar +7 dias" onclick="return confirm('Deseja renovar este empréstimo por mais 7 dias?')">
-                                                    <i class="bi bi-arrow-clockwise"></i>
-                                                </a>
-                                            <?php endif; ?>
-                                            <a href="acoes_emprest.php?acao=excluir&id=<?= $row['id_emprestimos'] ?>" 
-                                               class="btn btn-danger" title="Excluir Histórico" onclick="return confirm('Tem certeza que deseja apagar permanentemente este registro do histórico?')">
-                                                <i class="bi bi-trash"></i>
+                                <td class="text-center fw-bold"><?= $row['numero_registro'] ?></td>
+                                
+                                <td class="fw-bold text-dark">
+                                    <span class="text-truncate-custom" title="<?= htmlspecialchars($row['titulo_livro']) ?>">
+                                        <?= htmlspecialchars($row['titulo_livro']) ?>
+                                    </span>
+                                </td>
+                                
+                                <td>
+                                    <span class="text-truncate-custom" title="<?= htmlspecialchars($row['nome_aluno']) ?>">
+                                        <?= htmlspecialchars($row['nome_aluno']) ?>
+                                    </span>
+                                </td>
+                                
+                                <td class="text-center text-muted small">
+                                    <span class="text-truncate-custom" title="<?= $row['nome_turma'] ?>">
+                                        <?= $row['nome_turma'] ?>
+                                    </span>
+                                </td>
+                                
+                                <td class="text-center small"><?= $dt_saida ?></td>
+                                <td class="text-center fw-bold small"><?= $dt_prevista ?></td>
+                                <td class="text-center text-muted small"><?= $dt_devolucao ?></td>
+                                <td class="text-center">
+                                    <span class="badge <?= $badge_class ?> px-2 py-2 rounded-pill w-100" style="max-width: 95px; font-size: 0.75rem;">
+                                        <?= $row['status'] ?>
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <?php if($row['status'] != 'Entregue'): ?>
+                                        <div class="d-flex justify-content-center gap-1">
+                                            <a href="acoes_emprest.php?acao=devolver&id=<?= $row['id_emprestimos'] ?>" class="btn btn-sm btn-success px-2" title="Devolver Livro">
+                                                <i class="bi bi-check-lg"></i>
+                                            </a>
+                                            <a href="acoes_emprest.php?acao=renovar&id=<?= $row['id_emprestimos'] ?>" class="btn btn-sm btn-warning text-dark px-2" title="Renovar Prazo">
+                                                <i class="bi bi-arrow-repeat"></i>
                                             </a>
                                         </div>
-                                    </td>
-                                </tr>
-                            <?php endwhile; ?>
-                        <?php endif; ?>
+                                    <?php else: ?>
+                                        <span class="text-success small fw-bold" style="font-size: 0.8rem;"><i class="bi bi-cloud-check-fill"></i> Ok</span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endwhile; endif; ?>
                     </tbody>
                 </table>
             </div>
         </div>
         <!-- Paginação -->
-         <?php if($total_paginas > 1): ?>
-            <nav aria-label="Navegação de página">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item <?= $pagina_atual <= 1 ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?pagina=<?= $pagina_atual - 1 ?>&busca=<?= $busca ?>&turma=<?= $turma_filtro ?>&status=<?= $status_filtro ?>">Anterior</a>
-                    </li>
-                    <?php for($i = 1; $i <= $total_paginas; $i++): ?>
-                        <li class="page-item <?= $pagina_atual == $i ? 'active' : '' ?>">
-                            <a class="page-link" href="?pagina=<?= $i ?>&busca=<?= $busca ?>&turma=<?= $turma_filtro ?>&status=<?= $status_filtro ?>"><?= $i ?></a>
-                        </li>
-                    <?php endfor; ?>
-                    <li class="page-item <?= $pagina_atual >= $total_paginas ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?pagina=<?= $pagina_atual + 1 ?>&busca=<?= $busca ?>&turma=<?= $turma_filtro ?>&status=<?= $status_filtro ?>">Próximo</a>
-                    </li>
-                </ul>
-            </nav>
+        <?php if ($total_paginas > 1): ?>
+            <div class="d-flex justify-content-center align-items-center my-4 gap-2">
+                
+                <a href="?pagina=<?= $pagina_atual - 1 ?>&busca=<?= urlencode($busca) ?>&turma=<?= $turma_filtro ?>&status=<?= $status_filtro ?>"
+                   class="seta-paginacao <?= ($pagina_atual <= 1) ? 'desativada' : '' ?>" title="Página Anterior">
+                    <i class="bi bi-caret-left-fill"></i>
+                </a>
+
+                <?php
+                // Configuração matemática para exibir no máximo 5 bolinhas centrais
+                $max_bolinhas = 5; 
+            
+                $inicio = max(1, $pagina_atual - floor($max_bolinhas / 2));
+                $fim = min($total_paginas, $inicio + $max_bolinhas - 1);
+
+                // Ajusta o início caso o fim tenha encostado no limite máximo de páginas
+                if ($fim - $inicio + 1 < $max_bolinhas) {
+                    $inicio = max(1, $fim - $max_bolinhas + 1);
+                }
+
+                // Renderiza as bolinhas dinâmicas mantendo os filtros ativos na URL
+                for ($i = $inicio; $i <= $fim; $i++): ?>
+                    <a href="?pagina=<?= $i ?>&busca=<?= urlencode($busca) ?>&turma=<?= $turma_filtro ?>&status=<?= $status_filtro ?>"
+                       class="paginacao-link <?= ($i == $pagina_atual) ? 'ativa' : '' ?>" title="Página <?= $i ?>">
+                        <i class="bi bi-circle-fill"></i>
+                    </a>
+                <?php endfor; ?>
+
+                <a href="?pagina=<?= $pagina_atual + 1 ?>&busca=<?= urlencode($busca) ?>&turma=<?= $turma_filtro ?>&status=<?= $status_filtro ?>"
+                   class="seta-paginacao <?= ($pagina_atual >= $total_paginas) ? 'desativada' : '' ?>" title="Próxima Página">
+                    <i class="bi bi-caret-right-fill"></i>
+                </a>
+
+            </div>
         <?php endif; ?>
     </div>
         

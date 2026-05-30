@@ -1,10 +1,19 @@
-.btn-filtrar{
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f6f9; /* Alinhado com o fundo cinza claro do dashboard */
+}
+
+.btn-filtrar {
   background-color: #df8508;
   color: white;
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  transition: 0.2s;
+  transition: 0.2s ease;
+  height: 45px; /* Altura ideal para toque no telemóvel */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-filtrar:hover {
@@ -19,14 +28,67 @@
   padding: 15px !important;
   font-weight: 600;
   font-size: 0.95rem;
+  white-space: nowrap; 
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #a8ffa8 !important; 
+  background-color: rgba(28, 148, 47, 0.05) !important; 
 }
 
 .table-container {
   background-color: white;
-  border-radius: 5px;
+  border-radius: 12px;
   overflow: hidden;
+  border: none;
+}
+
+.form-control-custom {
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+}
+
+.form-control-custom:focus {
+  border-color: #1c942f;
+  box-shadow: 0 0 0 0.25rem rgba(28, 148, 47, 0.25);
+}
+a{
+  text-decoration: none;
+  color: #1c942f;
+}
+.paginacao-link {
+  color: #888888;
+  font-size: 1.3rem;
+  text-decoration: none;
+  padding: 0 4px;
+  transition: 0.2s;
+}
+.paginacao-link:hover {
+  color: #1c942f;
+}
+.paginacao-link.ativa {
+  color: #1c942f;
+}
+.seta-paginacao {
+  color: black;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.seta-paginacao.desativada {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+
+/* Ajustes para ecrãs pequenos (Telemóveis) */
+@media (max-width: 767.98px) {
+  .btn-mobile-full {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .mb-mobile-3 {
+    margin-bottom: 1rem !important;
+  }
 }
