@@ -1,3 +1,9 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+}
+
 .thead-verde th {
   background-color: #1c942f !important;
   color: white !important;
@@ -8,7 +14,7 @@
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #a8ffa8 !important; 
+  background-color: #a8ffa8 !important;
 }
 
 .table-container {
@@ -58,18 +64,19 @@
 
 /* --- AJUSTES DE RESPONSIVIDADE --- */
 @media (max-width: 768px) {
-    .container-fluid.px-5 {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-    }
-    
-    .table th, .table td {
-        font-size: 0.85rem;
-        padding: 8px !important;
-    }
-    
-    .paginacao-link {
-        font-size: 1.1rem;
-        padding: 0 2px;
-    }
+  .container-fluid.px-5 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .table th,
+  .table td {
+    font-size: 0.85rem;
+    padding: 8px !important;
+  }
+
+  .paginacao-link {
+    font-size: 1.1rem;
+    padding: 0 2px;
+  }
 }

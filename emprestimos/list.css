@@ -4,7 +4,7 @@ body {
 }
 
 .btn-filtrar {
-  background-color: #df8508;
+  background-color: #0052cc;
   color: white;
   font-weight: bold;
   border: none;
@@ -17,7 +17,7 @@ body {
 }
 
 .btn-filtrar:hover {
-  background-color: #ac6707;
+  background-color: #1ab9c2;
   color: white;
 }
 
@@ -79,6 +79,19 @@ a{
   pointer-events: none;
 }
 
+.btn-relatorio{
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-flex;
+  font-weight: bold;
+  transition: 0.2s ease;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Ajustes para ecrãs pequenos (Telemóveis) */
 @media (max-width: 767.98px) {

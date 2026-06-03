@@ -42,6 +42,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
+    // Trava de Segurança para que não possa haver empréstimo para um aluno que esta com pendencias
+    $sql_pendencias = "SELECT id_emprestimos FROM emprestimos 
+                       WHERE nome_aluno = '$nome_aluno' 
+                       AND status IN ('Pendente', 'Atrasado', 'Renovado') 
+                       LIMIT 1";
+    $res_pendencias = mysqli_query($conn, $sql_pendencias);
+
+    if (mysqli_num_rows($res_pendencias) > 0) {
+        $_SESSION['mensagem'] = "Erro: Este aluno possui empréstimos pendentes!";
+        header("Location: cadastro_emprest.php");
+        exit;
+    }
+
     // 3. Executa o INSERT salvando a fk_id_turma junto
     $sqlInsert = "INSERT INTO emprestimos (nome_aluno, data_saida, data_prevista, fk_id_turma, fk_id_livro, fk_id_user) 
                   VALUES ('$nome_aluno', '$data_saida', '$data_prevista', $fk_id_turma, $fk_id_livro, $fk_id_user)";

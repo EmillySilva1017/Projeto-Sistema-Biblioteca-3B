@@ -38,14 +38,6 @@ switch ($acao) {
             $_SESSION['mensagem'] = "Empréstimo renovado com sucesso por mais 7 dias!";
         }
         break;
-
-    case 'excluir':
-        // Remove de vez o registro histórico
-        $sql = "DELETE FROM emprestimos WHERE id_emprestimos = $id";
-        if (mysqli_query($conn, $sql)) {
-            $_SESSION['mensagem'] = "Histórico de empréstimo excluído do sistema.";
-        }
-        break;
 }
 
 header("Location: list_emprest.php");

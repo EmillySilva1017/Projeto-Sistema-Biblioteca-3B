@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27/05/2026 às 18:10
+-- Tempo de geração: 02/06/2026 às 02:14
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -42,7 +42,8 @@ CREATE TABLE `alunos` (
 INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `numero_chamada`, `matricula`, `fk_id_turma`) VALUES
 (2, 'Lucas Pereira Lima', 32, 12398754, 4),
 (9, 'Emilly Rodrigues Silva', 18, 2834250, 9),
-(10, 'jose', 21, 12365412, 7);
+(10, 'jose', 21, 12365412, 7),
+(11, 'Guilherme Gomes', 24, 1498647, 9);
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,15 @@ CREATE TABLE `emprestimos` (
 
 INSERT INTO `emprestimos` (`id_emprestimos`, `nome_aluno`, `fk_id_livro`, `data_saida`, `data_prevista`, `data_devolucao`, `fk_id_user`, `status`, `fk_id_turma`) VALUES
 (2, 'Lucas Pereira Lima', 6051, '2026-05-11', '2026-06-02', NULL, 1, 'Renovado', 4),
-(4, 'Emilly Rodrigues Silva', 1127, '2026-05-26', '2026-06-02', NULL, 1, 'Pendente', 9);
+(4, 'Emilly Rodrigues Silva', 1127, '2026-05-26', '2026-06-02', NULL, 1, 'Pendente', 9),
+(5, 'jose', 6064, '2026-05-30', '2026-06-06', NULL, 1, 'Pendente', 7),
+(6, 'Guilherme Gomes', 2162, '2026-05-30', '2026-06-06', '2026-05-30 19:29:50', 1, 'Entregue', 9),
+(7, 'jose', 820, '2026-05-11', '2026-05-18', NULL, 1, 'Atrasado', 7),
+(8, 'Emilly Rodrigues Silva', 5525, '2026-05-04', '2026-05-11', NULL, 1, 'Atrasado', 9),
+(9, 'jose', 4429, '2026-05-04', '2026-05-11', NULL, 1, 'Atrasado', 7),
+(10, 'Emilly Rodrigues Silva', 443, '2026-05-11', '2026-05-18', NULL, 1, 'Atrasado', 9),
+(11, 'Lucas Pereira Lima', 2203, '2026-05-11', '2026-05-18', NULL, 1, 'Atrasado', 4),
+(12, 'Guilherme Gomes', 878, '2026-05-11', '2026-05-18', NULL, 1, 'Atrasado', 9);
 
 -- --------------------------------------------------------
 
@@ -6908,7 +6917,10 @@ INSERT INTO `turmas` (`id_turma`, `curso`, `identificador_curso`, `ano_conclusao
 (7, 'Administração', 'D', '2028', '2'),
 (8, 'Enfermagem', 'A', '2027', '3'),
 (9, 'Informática', 'B', '2027', '3'),
-(10, 'Desenvolvimento de Sistemas', 'E', '2027', '3');
+(10, 'Desenvolvimento de Sistemas', 'E', '2027', '3'),
+(14, 'Enfermagem', 'A', '2028', '1'),
+(15, 'Informática', 'B', '2028', '1'),
+(16, 'Desenvolvimento de Sistemas', 'E', '2028', '1');
 
 -- --------------------------------------------------------
 
@@ -6979,13 +6991,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `id_emprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_emprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `livros`
@@ -6997,7 +7009,7 @@ ALTER TABLE `livros`
 -- AUTO_INCREMENT de tabela `turmas`
 --
 ALTER TABLE `turmas`
-  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`

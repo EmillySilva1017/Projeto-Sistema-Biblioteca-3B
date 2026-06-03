@@ -19,12 +19,10 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="This is a login page template based on Bootstrap 5">
     <title>Cadastro de Empréstimo</title>
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Fonte -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Ícones -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="cadastro.css">
 </head>
 
 <body>
@@ -32,81 +30,77 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
 
     <main class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-12 col-lg-8">
                 <?php if (isset($_SESSION['mensagem'])): ?>
                     <div class="alert alert-info alert-dismissible fade show mb-4" role="alert">
                         <?= $_SESSION['mensagem']; ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     <?php unset($_SESSION['mensagem']); endif; ?>
-                <div class="card card-form p-4 p-md-5">
-                    <div class="d-flex align-items-center mb-4">
-                        <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3"
-                            style="width: 50px; height: 50px;">
-                            <i class="bi bi-journal-richtext fs-2"></i>
+                <div class="card card-cadastro">
+                    <div class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
+                        <div>
+                            <h4 class="fw-bold mb-1"><i class="bi bi-bookmark-plus me-2"></i> Novo Empréstimo</h4>
+                            <p class="small text-white-50 mb-0">Preencha os dados abaixo para registrar a saída da obra.</p>
                         </div>
-                        <h2 class="fw-bold m-0">Cadastrar Empréstimo</h2>
                     </div>
+                    <div class="card-body p-4 p-md-">
+                        <form action="cadastro.php" method="POST" id="formEmprestimo">
+                            <div class="row g-4">
+                                <div class="col-12 col-md-4">
+                                    <label class="form-label fw-bold">N° Registro</label>
+                                    <input type="text" class="form-control form-control-lg border-2" name="n_registro"
+                                        id="n_registro" required autocomplete="off">
+                                </div>
+                                <div class="col-12 col-md-8">
+                                    <label class="form-label fw-bold">Titulo Livro</label>
+                                    <input type="text" class="form-control form-control-lg border-2" name="titulo"
+                                        id="titulo" readonly placeholder="Digite o registro para buscar..." required>
+    
+                                    <input type="hidden" name="fk_id_livro" id="fk_id_livro">
+                                </div>
 
-                    <form action="cadastro.php" method="POST">
-                        <div class="row g-3">
-                            <div class="col-12 col-md-6 mb-1">
-                                <label class="form-label fw-bold">N° Registro</label>
-                                <input type="text" class="form-control form-control-lg border-2" name="n_registro"
-                                    id="n_registro" required autocomplete="off">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label fw-bold">Turma</label>
+                                    <select name="fk_id_turma" id="turma" class="form-control form-control-lg border-2"
+                                        required>
+                                        <option value="">Selecione uma turma</option>
+                                        <?php while ($turma = mysqli_fetch_assoc($resTurmas)): ?>
+                                            <option value="<?= $turma['id_turma']; ?>">
+                                                <?= $turma['serie_atual'] ?>º <?= $turma['identificador_curso'] ?> -
+                                                <?= $turma['curso'] ?>
+                                            </option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label fw-bold">Aluno</label>
+                                    <select name="aluno" id="aluno" class="form-control form-control-lg border-2" required>
+                                        <option value="">Selecione a turma primeiro.</option>
+                                    </select>
+                                </div>
+    
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label fw-bold">Data Saída</label>
+                                    <input type="date" class="form-control form-control-lg border-2" name="data_saida"
+                                        value="<?php echo date('Y-m-d'); ?>" required>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <?php $data_prevista = date('Y-m-d', strtotime('+7 days')); ?>
+                                    <label class="form-label fw-bold">Data Prevista</label>
+                                    <input type="date" class="form-control form-control-lg border-2" name="data_prevista"
+                                        value="<?php echo $data_prevista; ?>" required>
+                                </div>
+                                
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                    <button type="submit" class="btn btn-salvar btn-lg px-5 shadow text-uppercase">Cadastrar Empréstimo</button>
+                                    <a href="list_emprest.php" class="btn btn-outline-danger btn-cancelar btn-lg px-4 fw-bold">Cancelar</a>
+                                </div>
+                                
                             </div>
-                            <div class="col-12 col-md-6 mb-1">
-                                <label class="form-label fw-bold">Titulo Livro</label>
-                                <input type="text" class="form-control form-control-lg border-2" name="titulo"
-                                    id="titulo" readonly placeholder="Digite o registro para buscar..." required>
+                        </form>
 
-                                <input type="hidden" name="fk_id_livro" id="fk_id_livro">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 col-md-6 mb-3">
-                                <label class="form-label fw-bold">Turma</label>
-                                <select name="fk_id_turma" id="turma" class="form-control form-control-lg border-2"
-                                    required>
-                                    <option value="">Selecione uma turma</option>
-                                    <?php while ($turma = mysqli_fetch_assoc($resTurmas)): ?>
-                                        <option value="<?= $turma['id_turma']; ?>">
-                                            <?= $turma['serie_atual'] ?>º <?= $turma['identificador_curso'] ?> -
-                                            <?= $turma['curso'] ?>
-                                        </option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <label class="form-label fw-bold">Aluno</label>
-                                <select name="aluno" id="aluno" class="form-control form-control-lg border-2" required>
-                                    <option value="">Selecione a turma primeiro.</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col-12 col-md-6 mb-1">
-                                <label class="form-label fw-bold">Data Saída</label>
-                                <input type="date" class="form-control form-control-lg border-2" name="data_saida"
-                                    value="<?php echo date('Y-m-d'); ?>" required>
-                            </div>
-                            <div class="col-12 col-md-6 mb-1">
-                                <?php $data_prevista = date('Y-m-d', strtotime('+7 days')); ?>
-                                <label class="form-label fw-bold">Data Prevista</label>
-                                <input type="date" class="form-control form-control-lg border-2" name="data_prevista"
-                                    value="<?php echo $data_prevista; ?>" required>
-                            </div>
-                        </div>
-
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                            <a href="list_emprest.php" class="btn btn-light btn-lg px-4 fw-bold">Cancelar</a>
-                            <button type="submit" class="btn btn-orange btn-lg px-5 shadow text-uppercase">Cadastrar
-                                Empréstimo</button>
-                        </div>
-
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -172,7 +166,7 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                     } else {
                         inputTitulo.value = '';
                         inputIdLivro.value = '';
-                        btnSalvar.disabled = true; // Bloqueia o botão para impedir o envio!
+                        btnSalvar.disabled = false; // Bloqueia o botão para impedir o envio!
                         alert(dados.msg); // Mostra a mensagem dinâmica ("já emprestado" ou "não encontrado")
                     }
                 }) 
