@@ -1,28 +1,11 @@
 <?php
 session_start();
-include '../includes/conexao.php';
+include('../includes/conexao.php');
 /** @var mysqli $conn */
 
-if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header('Location: visualizar.php');
-    exit();
-}
-
-$id = mysqli_real_escape_string($conn, $_GET['id']);
-$sql_select = "SELECT * FROM alunos WHERE id_aluno = $id";
-$result = mysqli_query($conn, $sql_select);
-
-if (mysqli_num_rows($result) == 0) {
-    header('Location: visualizar.php');
-    exit();
-}
-
-// Busca das turmas para o select do formulário
-$sql_turmas = "SELECT * FROM turmas ORDER BY serie_atual, identificador_curso ASC";
-$resTurmas = mysqli_query($conn, $sql_turmas);
-
-$dados = mysqli_fetch_assoc($result);
-
+// Busca todas as turmas cadastradas
+$sqlTurmas = "SELECT id_turma, curso, identificador_curso, serie_atual FROM turmas ORDER BY serie_atual ASC, identificador_curso ASC";
+$resTurmas = mysqli_query($conn, $sqlTurmas);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +13,7 @@ $dados = mysqli_fetch_assoc($result);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Aluno - EEEP</title>
+    <title>Cadastrar Aluno - EEEP</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -55,35 +38,34 @@ $dados = mysqli_fetch_assoc($result);
                     <div
                         class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
                         <div>
-                            <h4 class="fw-bold mb-1"><i class="bi bi-pencil-fill me-2"></i> Editar Aluno</h4>
-                            <p class="small text-white-50 mb-0">Preencha os dados abaixo para editar o aluno.
+                            <h4 class="fw-bold mb-1"><i class="bi bi-people-fill me-2"></i> Novo Aluno</h4>
+                            <p class="small text-white-50 mb-0">Preencha os dados abaixo para registrar o novo aluno.
                             </p>
                         </div>
                     </div>
                     <div class="card-body p-4 p-md-5">
-                        <form action="atualizar.php" method="post">
-                            <input type="hidden" name="id_aluno" value="<?= $dados['id_aluno'] ?>">
+                        <form action="add_aluno.php" method="post">
                             <!-- Campos do formulário -->
                             <div class="row g-4">
                                 <div class="col-12 col-md-2 mb-3">
                                     <label for="numero_chamada" class="form-label fw-bold">Nº</label>
-                                    <input type="number" class="form-control" name="numero_chamada"
-                                        value="<?= $dados['numero_chamada'] ?>" required>
+                                    <input type="number" class="form-control" name="numero_chamada" min="1" max="99"
+                                        placeholder="01" required>
                                 </div>
+                                <!---Campo Nome--->
                                 <div class="col-12 col-md-10 mb-3">
                                     <label for="nome" class="form-label fw-bold">Nome do Aluno</label>
-                                    <input type="text" class="form-control" name="nome"
-                                        value="<?= $dados['nome_aluno'] ?>" required>
+                                    <input type="text" class="form-control" id="nome" name="nome" required>
                                 </div>
                             </div>
                             <div class="row g-4">
+                                <!---Campo Turma--->
                                 <div class="col-12 col-md-6">
-                                    <!---Campo Turma--->
                                     <label for="fk_id_turma" class="form-label fw-bold">Turma</label>
                                     <select name="fk_id_turma" class="form-select" required>
+                                        <option value="">Selecione a Turma</option>
                                         <?php while ($turma = mysqli_fetch_assoc($resTurmas)): ?>
-                                        <option value="<?= $turma['id_turma']; ?>"
-                                            <?= ($turma['id_turma'] == $dados['fk_id_turma']) ? 'selected' : '' ?>>
+                                        <option value="<?= $turma['id_turma']; ?>">
                                             <?= $turma['serie_atual'] ?>º
                                             <?= $turma['identificador_curso'] ?> -
                                             <?= $turma['curso'] ?>
@@ -94,13 +76,13 @@ $dados = mysqli_fetch_assoc($result);
                                 <!---Campo Matricula--->
                                 <div class="col-12 col-md-6">
                                     <label for="matricula" class="form-label fw-bold">Matrícula</label>
-                                    <input type="text" name="matricula" class="form-control"
-                                        value="<?= $dados['matricula'] ?>" required>
+                                    <input type="text" name="matricula" class="form-control" placeholder="Ex: 25034279"
+                                        required>
                                 </div>
                             </div>
-                            <!---Botao de edição--->
+                            <!---Botao de cadastro--->
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                                <button type="submit" class="btn btn-salvar btn-lg px-5 shadow text-uppercase">Salvar</button>
+                                <button type="submit" class="btn btn-salvar btn-lg px-5 shadow text-uppercase">Cadastrar Aluno</button>
                                     <a href="visualizar.php"
                                     class="btn btn-outline-danger btn-cancelar btn-lg px-4 fw-bold">Cancelar</a>
                             </div>

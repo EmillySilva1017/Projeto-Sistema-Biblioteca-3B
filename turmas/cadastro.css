@@ -3,7 +3,6 @@ body {
   background-color: #f4f6f9;
   color: #333;
 }
-
 .card-cadastro {
   background: #ffffff;
   border: none;
@@ -19,7 +18,6 @@ body {
   padding: 15px;
   border-bottom: 5px solid #df8508; /* Linha Laranja padrão do sistema */
 }
-
 .form-label {
   font-weight: 500;
   color: #495057;

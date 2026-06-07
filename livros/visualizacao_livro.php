@@ -29,13 +29,24 @@ $busca_ativa = !empty($busca) || !empty($macro_genero);
 if ($busca_ativa) {
 
     // query base para contagem e listagem dos livros
-    $sql = "SELECT id, numero_registro, titulo_livro, autor, genero FROM livros WHERE 1=1";
-    $sql_count = "SELECT COUNT(*) as total FROM livros WHERE 1=1";
+    $sql = "SELECT l.id, l.numero_registro, l.titulo_livro, l.autor, l.genero,
+                   CASE 
+                       WHEN EXISTS (
+                           SELECT 1 FROM emprestimos e 
+                           WHERE e.fk_id_livro = l.id 
+                           AND e.status IN ('Pendente', 'Renovado', 'Atrasado')
+                       ) THEN 'Emprestado'
+                       ELSE 'Disponível'
+                   END AS status_livro
+            FROM livros l 
+            WHERE 1=1";
+
+    $sql_count = "SELECT COUNT(*) as total FROM livros l WHERE 1=1";
     $where_filtros = "";
 
     // Filtro por Texto (Título, Autor ou Registro)
     if (!empty($busca)) {
-        $where_filtros .= " AND (titulo_livro LIKE '%$busca%' OR autor LIKE '%$busca%' OR numero_registro LIKE '%$busca%')";
+        $where_filtros .= " AND (l.titulo_livro LIKE '%$busca%' OR l.autor LIKE '%$busca%' OR l.numero_registro LIKE '%$busca%')";
     }
 
     // Filtro por Macro-gênero (Mapeando os termos técnicos do banco de dados)
@@ -100,6 +111,7 @@ if ($busca_ativa) {
     // Segundo passo da paginação: Trazer apenas as linhas da página atual ordenadas
     $sql .= " ORDER BY titulo_livro ASC LIMIT $itens_por_pagina OFFSET $offset";
     $resLivros = mysqli_query($conn, $sql);
+
 }
 
 ?>
@@ -116,22 +128,25 @@ if ($busca_ativa) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="livro.css">
+    <link rel="stylesheet" href="botoes.css">
 
 </head>
 
 <body>
     <?php include('../includes/menu.php'); ?>
 
-    <div class="container-fluid px-5">
-        <form action="" method="GET" class="row g-3 mb-4 mt-1 align-items-end">
+    <div class="container-fluid mt-4 px-3 px-sm-4">
+        <h2 class="text-center mb-3 fw-bold text-dark">Gestão de Livros</h2>
+
+        <form action="" method="GET" class="row g-3 mb-4 align-items-end">
             <div class="col-12 col-md-5 position-relative">
-                <input type="text" name="busca" class="form-control input-custom ps-5"
+                <input type="text" name="busca" class="form-control form-control-custom ps-5"
                     placeholder="Pesquisar por título, autor ou registro..." value="<?= htmlspecialchars($busca) ?>">
                 <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-4 text-muted"></i>
             </div>
 
-            <div class="col-12 col-md-4">
-                <select name="genero" class="form-select input-custom">
+            <div class="col-12 col-sm-6 col-md-4">
+                <select name="genero" class="form-select form-control-custom input-custom">
                     <option value="">Gênero</option>
                     <option value="Ciências" <?= ($macro_genero == 'Ciências') ? 'selected' : '' ?>>Ciências</option>
                     <option value="Conto" <?= ($macro_genero == 'Conto') ? 'selected' : '' ?>>Conto</option>
@@ -153,8 +168,18 @@ if ($busca_ativa) {
                 </select>
             </div>
 
-            <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-filtrar w-100">Filtrar</button>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-filtrar flex-grow-1">
+                        <i class="bi bi-funnel me-2"></i>Filtrar
+                    </button>
+
+                    <?php if ($busca_ativa): ?>
+                        <a href="visualizacao_livro.php" class="btn btn-limpar" title="Limpar todos os filtros">
+                            <i class="bi bi-x-circle me-2"></i> Limpar
+                        </a>
+                    <?php endif; ?>
+                </div>
             </div>
         </form>
 
@@ -163,18 +188,23 @@ if ($busca_ativa) {
                 <?= $_SESSION['mensagem']; ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        <?php unset($_SESSION['mensagem']); endif; ?>
-
-        <div class="mb-2">
-            <h2 class="fw-bold text-dark">Gestão de Livros</h2>
-        </div>
+            <?php unset($_SESSION['mensagem']); endif; ?>
 
         <div class="table-container shadow-sm mb-3">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover align-middle mb-0">
+                    <colgroup>
+                        <col class="col-registro">
+                        <col class="col-obra">
+                        <col class="col-autor">
+                        <col class="col-genero">
+                        <col class="col-status">
+                        <col class="col-acoes">
+                    </colgroup>
+
                     <thead class="thead-verde text-center">
                         <tr>
-                            <th>Nº Registro</th>
+                            <th>N° Reg.</th>
                             <th>Título</th>
                             <th>Autor</th>
                             <th>Gênero</th>
@@ -192,29 +222,43 @@ if ($busca_ativa) {
                         <?php elseif (isset($resLivros) && mysqli_num_rows($resLivros) > 0): ?>
                             <?php while ($livro = mysqli_fetch_assoc($resLivros)): ?>
                                 <tr>
-                                    <td class="text-center"><?= $livro['numero_registro'] ?></td>
-                                    <td class="text-start"><strong><?= $livro['titulo_livro'] ?></strong></td>
-                                    <td class="text-start"><?= $livro['autor'] ?></td>
-                                    <td><?= $livro['genero'] ?></td>
-                                    <td class="text-center">
-                                        <?php $situacao_provisoria = "Disponivel";
-                                        if ($situacao_provisoria == "Disponivel") {
-                                            echo '<span class="badge bg-success">Disponível</span>';
-                                        } else {
-                                            echo '<span class="badge bg-danger">Emprestado</span>';
-                                        }
-                                        ?>
+                                    <td class="text-center fw-bold"><?= $livro['numero_registro'] ?></td>
+                                    <td class="fw-bold text-dark">
+                                        <span class="text-truncate-custom"
+                                            title="<?= htmlspecialchars($livro['titulo_livro']) ?>">
+                                            <?= htmlspecialchars($livro['titulo_livro']) ?>
+                                        </span>
+                                    </td>
+                                    <td class="text-start small"><?= $livro['autor'] ?></td>
+                                    <td class="text-center text-muted small">
+                                        <span class="text-truncate-custom" title="<?= $livro['genero'] ?>">
+                                            <?= $livro['genero'] ?>
+                                        </span>
+                                    </td>
+                                    <td class="text-center align-middle">
+                                        <?php if ($livro['status_livro'] === 'Disponível'): ?>
+                                            <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-bold"
+                                                style="font-size: 0.8rem;">
+                                                <i class="bi bi-check-circle-fill me-1"></i> Disponível
+                                            </span>
+                                        <?php else: ?>
+                                            <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill fw-bold"
+                                                style="font-size: 0.8rem;">
+                                                <i class="bi bi-bookmark-dash-fill me-1"></i> Emprestado
+                                            </span>
+                                        <?php endif; ?>
                                     </td>
                                     <td class="text-center">
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <a href="editar_livro.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-warning me-2">
+                                        <div class="d-flex justify-content-center gap-1">
+                                            <a href="editar_livro.php?id=<?= $livro['id'] ?>"
+                                                class="btn btn-sm btn-warning px-2">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </a>
-                                            <a href="excluir.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-danger"
+                                            <a href="excluir.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-danger px-2"
                                                 onclick="return confirm('Deseja excluir este exemplar?')">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
-                                    </div>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endwhile; ?>

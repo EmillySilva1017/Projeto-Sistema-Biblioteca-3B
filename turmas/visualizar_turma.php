@@ -24,6 +24,7 @@ $resAlunos = mysqli_query($conn, $sqlAlunos);
     <title>Visualizar Turma - EEEP</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="lista.css">
 </head>
 
 <body>
@@ -35,48 +36,54 @@ $resAlunos = mysqli_query($conn, $sqlAlunos);
             </div>
             <?php unset($_SESSION['msg']); ?>
         <?php endif; ?>
-
-        <div class="d-flex align-items-center mb-4">
-            <a href="index.php" class="btn btn-outline-secondary me-3 shadow-sm">
-                <i class="bi bi-arrow-left"></i> <span class="d-none d-md-inline">Voltar</span>
+        
+        <div class="d-flex align-items-center gap-3 mt-3 mb-4">
+            <a href="index.php"
+                class="btn btn-outline-secondary shadow-sm d-inline-flex align-items-center justify-content-center"
+                style="height: 42px; width: 42px; min-width: 42px; border-radius: 10px;">
+                <i class="bi bi-arrow-left fs-5"></i>
             </a>
-            <h2 class="fw-bold m-0">Alunos da Turma</h2>
+            <h2 class="fw-bold m-0 text-dark fs-3 text-truncate">Alunos da Turma</h2>
         </div>
 
         <div class="card border-0 shadow-sm mb-4" style="border-left: 5px solid #2d572c !important;">
             <div class="card-body">
                 <h4 class="text-uppercase fw-bold mb-1" style="color: #2d572c;">
-                    <?= $dadosTurma['serie_atual'] ?>º <?= $dadosTurma['curso'] ?> - <?= $dadosTurma['identificador_curso'] ?>
+                    <?= $dadosTurma['serie_atual'] ?>º <?= $dadosTurma['identificador_curso'] ?> -
+                    <?= $dadosTurma['curso'] ?>
                 </h4>
                 <p class="text-muted mb-0">Ano de Conclusão: <?= $dadosTurma['ano_conclusao'] ?></p>
             </div>
         </div>
 
-        <div class="table-responsive bg-white p-3 rounded shadow-sm">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Nº</th>
-                        <th>Matrícula</th>
-                        <th>Nome do Aluno</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (mysqli_num_rows($resAlunos) > 0): ?>
-                        <?php while ($aluno = mysqli_fetch_assoc($resAlunos)): ?>
-                            <tr>
-                                <td><?= $aluno['numero_chamada'] ?></td>
-                                <td><?= $aluno['matricula'] ?></td>
-                                <td><?= $aluno['nome_aluno'] ?></td>
-                            </tr>
-                        <?php endwhile; ?>
-                    <?php else: ?>
+        <div class="table-container shadow-sm mb-4">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover align-middle mb-0">
+                    <thead class="thead-verde text-center">
                         <tr>
-                            <td colspan="2" class="text-center text-muted">Nenhum aluno cadastrado nesta turma.</td>
+                            <th>Nº Chamada</th>
+                            <th>Matrícula</th>
+                            <th>Nome do Aluno</th>
                         </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php if (mysqli_num_rows($resAlunos) > 0): ?>
+                            <?php while ($aluno = mysqli_fetch_assoc($resAlunos)): ?>
+                                <tr>
+                                    <td class="text-center"><?= $aluno['numero_chamada'] ?></td>
+                                    <td class="text-center"><?= $aluno['matricula'] ?></td>
+                                    <td class="text-center"><?= $aluno['nome_aluno'] ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="3" class="text-center text-muted">Nenhum aluno cadastrado nesta turma.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 

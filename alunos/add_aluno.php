@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($_POST['nome']) || empty($_POST['matricula'])) {
         $_SESSION['mensagem'] = "Preencha todos os campos!";
         $_SESSION['tipo_mensagem'] = "danger";
-        header('Location: cadastrar_aluno.php');
+        header('Location: cadastro_aluno.php');
         exit();
     }
     //Limpeza dos dados contra SQL Injection
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (mysqli_num_rows($resCheck) > 0) {
         $_SESSION['mensagem'] = "Erro: Esta matrícula já está cadastrada!";
         $_SESSION['tipo_mensagem'] = "danger";
-        header('Location: cadastrar_aluno.php');
+        header('Location: cadastro_aluno.php');
         exit();
     }
 
@@ -37,12 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //Executamos e verificamos se deu certo
     if (mysqli_query($conn, $sqlInserir)) {
         $_SESSION['mensagem'] = "Aluno cadastrado com sucesso!";
-        header('Location: cadastrar_aluno.php');
+        header('Location: cadastro_aluno.php');
         exit();
     } else {
         // Se der erro no banco (ex: coluna com nome errado)
         $_SESSION['mensagem'] = "Erro ao salvar no banco: " . mysqli_error($conn);
-        header('Location: cadastrar_aluno.php');
+        header('Location: cadastro_aluno.php');
         exit();
     }
 }

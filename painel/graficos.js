@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     beginAtZero: true, 
                     ticks: {
                         stepSize: 1, 
-                        color: '#8492a6'
+                        color: '#3b3c3f'
                     },
                     grid: {
                         color: '#f1f3f5' 
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 x: {
                     ticks: {
-                        color: '#8492a6',
+                        color: '#393b3e',
                         maxRotation: 45, // Evita textos atropelados no celular inclinando-os se preciso
                         minRotation: 0
                     },

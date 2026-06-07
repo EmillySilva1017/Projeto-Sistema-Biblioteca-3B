@@ -79,7 +79,7 @@ $res_dados = mysqli_query($conn, $sql_dados);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- Ícones -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="list.css">
+    <link rel="stylesheet" href="list.css"> <link rel="stylesheet" href="botoes.css">
 </head>
 
 <body>
@@ -88,28 +88,28 @@ $res_dados = mysqli_query($conn, $sql_dados);
     <div class="container-fluid px-4 pt">
 
         <div class="row align-items-center mt-3 mb-3">
-            <div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
+            <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
                 <h2 class="fw-bold text-dark mb-0">Gestão de Empréstimos</h2>
             </div>
-            <div
-                class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
+            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
                 <a href="cadastro_emprest.php"
-                    class="btn btn-success px-4 py-2 fw-bold rounded-3 shadow-sm w-sm-auto flex-fill flex-md-none">
+                    class="btn btn-emprest px-4 py-2 fw-bold rounded-3 shadow-sm w-sm-auto flex-fill flex-md-none">
                     <i class="bi bi-plus-circle me-2"></i> Novo Empréstimo
                 </a>
                 <a href="gerar_relatorio.php"
-                    class="btn btn-danger px-4 py-2 fw-bold rounded-3 shadow-sm w-sm-auto flex-fill flex-md-none"
+                    class="btn btn-relatorio px-4 py-2 fw-bold rounded-3 shadow-sm w-sm-auto flex-fill flex-md-none"
                     target="_blank">
-                    <i class="bi bi-file-earmark-pdf-fill me-2"></i> Gerar Relatório (PDF)
+                    <i class="bi bi-file-earmark-pdf-fill me-2"></i> Gerar PDF
                 </a>
             </div>
         </div>
 
         <!--- Filtros e Botão de Cadastrar Empréstimo--->
         <form action="" method="GET" class="row g-3 align-items-end mb-4">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 position-relative">
                 <input type="text" name="busca" class="form-control form-control-custom ps-5"
                     placeholder="Pesquisar por Aluno, Titulo..." value="<?= htmlspecialchars($busca) ?>">
+                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-4 text-muted"></i>
             </div>
 
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -141,7 +141,7 @@ $res_dados = mysqli_query($conn, $sql_dados);
                 </button>
                 <?php if (!empty($busca) || $turma_filtro > 0 || !empty($status_filtro)): ?>
                 <a href="list_emprest.php"
-                    class="btn d-inline-flex align-items-center justify-content-center rounded-3 px-3"
+                    class="btn btn-danger d-inline-flex align-items-center justify-content-center rounded-3 px-3"
                     style="height: 45px;" title="Limpar Filtros">
                     <i class="bi bi-x-circle fs-5"></i>
                 </a>

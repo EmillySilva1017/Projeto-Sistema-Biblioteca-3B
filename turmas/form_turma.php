@@ -6,24 +6,17 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Turma - EEEP</title>
+    <title>Cadastro de Turma</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
-        :root { --verde-eeep: #2d572c; --laranja-eeep: #f39200; }
-        body { background-color: #f4f7f6; }
-        .navbar { background-color: var(--verde-eeep) !important; border-bottom: 4px solid var(--laranja-eeep); }
-        .card-form { border: none; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .btn-orange { background-color: var(--laranja-eeep); color: white; font-weight: bold; border: none; }
-        .btn-orange:hover { background-color: #d88200; color: white; }
-    </style>
+    <link rel="stylesheet" href="cadastro.css">
 </head>
 <body>
     <?php include('../includes/menu.php'); ?>
 
     <main class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-12 col-lg-8">
                 
                 <?php if (isset($_SESSION['mensagem'])): ?>
                     <div class="alert alert-info alert-dismissible fade show mb-4" role="alert">
@@ -32,51 +25,53 @@ session_start();
                     </div>
                 <?php unset($_SESSION['mensagem']); endif; ?>
 
-                <div class="card card-form p-4 p-md-5">
-                    <div class="d-flex align-items-center mb-4">
-                        <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
-                            <i class="bi bi-people-fill fs-4"></i>
+                <div class="card card-cadastro">
+                    <div class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
+                        <div>
+                            <h4 class="fw-bold mb-1"><i class="bi bi-mortarboard-fill me-2"></i> Cadastro de Turma</h4>
+                            <p class="small text-white-50 mb-0">Insira as informações técnicas para integrar a turma ao sistema.</p>
                         </div>
-                        <h2 class="fw-bold m-0">Cadastrar Nova Turma</h2>
                     </div>
-
-                    <form action="add_turma.php" method="POST">
-                        <div class="row">
-                            <div class="col-12 col-md-8 mb-3">
-                                <label class="form-label fw-bold">Curso</label>
-                                <input type="text" class="form-control form-control-lg border-2" name="curso" placeholder="Ex: Informática" required>
+                    <div class="card-body p-4 p-md-5">
+                        <form action="add_turma.php" method="POST">
+                            <div class="row g-3 mb-4">
+                                <div class="col-12 col-md-8">
+                                    <label class="form-label">Curso</label>
+                                    <input type="text" class="form-control" name="curso" placeholder="Ex: Informática" required>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <label class="form-label">Letra / ID</label>
+                                    <select name="id_curso" class="form-select" required>
+                                        <option value="" selected disabled>Selecione</option>
+                                        <option value="A">A</option><option value="B">B</option>
+                                        <option value="C">C</option><option value="D">D</option><option value="E">E</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-12 col-md-4 mb-3">
-                                <label class="form-label fw-bold">Letra / ID</label>
-                                <select name="id_curso" class="form-select form-select-lg border-2" required>
-                                    <option value="" selected disabled>Selecione</option>
-                                    <option value="A">A</option><option value="B">B</option>
-                                    <option value="C">C</option><option value="D">D</option><option value="E">E</option>
-                                </select>
+    
+                            <div class="row g-3 mb-4">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">Série Atual</label>
+                                    <select name="serie_atual" class="form-select" required>
+                                        <option value="1">1º Ano</option>
+                                        <option value="2">2º Ano</option>
+                                        <option value="3">3º Ano</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">Ano de Conclusão</label>
+                                    <input type="number" name="ano_conclusao" class="form-control" value="<?= date('Y');?>" required>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Série Atual</label>
-                                <select name="serie_atual" class="form-select form-select-lg border-2" required>
-                                    <option value="1">1º Ano</option>
-                                    <option value="2">2º Ano</option>
-                                    <option value="3">3º Ano</option>
-                                </select>
+    
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                <button type="submit" class="btn btn-salvar btn-lg px-5 shadow text-uppercase">Cadastrar
+                                    Turma</button>
+                                <a href="index.php"
+                                    class="btn btn-outline-danger btn-cancelar btn-lg px-4 fw-bold">Cancelar</a>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Ano de Conclusão</label>
-                                <input type="number" name="ano_conclusao" class="form-control form-control-lg border-2" value="<?= date('Y');?>" required>
-                                <small class="text-muted">Ano final da jornada.</small>
-                            </div>
-                        </div>
-
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                            <a href="index.php" class="btn btn-light btn-lg px-4 fw-bold">Cancelar</a>
-                            <button type="submit" class="btn btn-orange btn-lg px-5 shadow text-uppercase">Cadastrar Turma</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

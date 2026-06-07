@@ -30,15 +30,13 @@
                     <?php unset($_SESSION['mensagem']); endif; ?>
 
                 <div class="card card-cadastro">
-                    <div
-                        class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
+                    <div class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="fw-bold mb-1"><i class="bi bi-book-half me-2"></i> Cadastro de Obra</h4>
-                            <p class="small text-white-50 mb-0">Insira as informações técnicas para integrar o livro ao
-                                acervo.</p>
+                            <p class="small text-white-50 mb-0">Insira as informações técnicas para integrar o livro ao acervo.</p>
                         </div>
                     </div>
-                    <div class="card-body p-4 p-m">
+                    <div class="card-body p-4 p-md-5">
                         <form action="cadastro.php" method="POST">
                             <div class="row g-3 mb-4">
                                 <div class="col-12 col-md-3">

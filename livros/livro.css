@@ -19,23 +19,13 @@ body {
 
 .table-container {
   background-color: white;
-  border-radius: 5px;
+  border-radius: 12px;
   overflow: hidden;
-}
-
-.btn-filtrar {
-  background-color: #df8508;
-  color: white;
-  font-weight: bold;
   border: none;
-  border-radius: 10px;
-  padding: 10px 25px;
-  transition: 0.2s;
 }
 
-.btn-filtrar:hover {
-  background-color: #ac6707;
-  color: white;
+.col-titulo {
+  min-width: 200px; /* ou um valor fixo como min-width: 200px; */
 }
 
 /* Estilização da Paginação */
@@ -78,5 +68,15 @@ body {
   .paginacao-link {
     font-size: 1.1rem;
     padding: 0 2px;
+  }
+
+  .btn-mobile-full {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .mb-mobile-3 {
+    margin-bottom: 1rem !important;
   }
 }
