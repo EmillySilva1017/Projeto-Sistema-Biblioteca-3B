@@ -30,7 +30,7 @@ if (mysqli_num_rows($result) > 0) {
         $_SESSION['nivel'] = $dados['nivel'];
 
         if ($dados['nivel'] == 1) {
-            header('Location: ../livros/visualizacao_livro.php');
+            header('Location: ../painel/painel_adm.php');
         } else {
             header('Location: ../painel/visao_aluno.php');
         }

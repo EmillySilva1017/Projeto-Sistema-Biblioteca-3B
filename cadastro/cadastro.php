@@ -13,7 +13,9 @@ if(empty($_POST['nome']) || empty($_POST['email']) || empty($_POST['senha'])){
 // Sanitização
 $nome = mysqli_real_escape_string($conn, trim($_POST['nome']));
 $email = mysqli_real_escape_string($conn, trim($_POST['email']));
-$senha = password_hash($senha, PASSWORD_DEFAULT);
+
+$senha_pura = trim($_POST['senha']); 
+$senha = password_hash($senha_pura, PASSWORD_DEFAULT);
 
 // Verifica se já existe alguém com este email
 $sql = "SELECT count(*) AS total FROM usuario WHERE email = '$email' ";
