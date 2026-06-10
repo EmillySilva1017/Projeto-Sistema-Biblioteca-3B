@@ -1,1 +1,93 @@
-Criando o primeiro commit
+# <img src="img/LogoDark.png" alt="ManoTeca Logo" width="50" align="center"> ManoTeca - Sistema de Gestão de Biblioteca Escolar
+
+O **ManoTeca** é um sistema web desenvolvido para modernizar, organizar e automatizar os processos de gerenciamento da biblioteca da **Escola Estadual de Ensino Profissional Manoel Mano** (Curso Técnico em Informática - 3º Ano B). 
+
+O projeto substitui os controles manuais por uma solução digital integrada, facilitando o controle de acervo, empréstimos, turmas e a emissão de relatórios de pendências de forma ágil e segura.
+
+---
+
+## 📸 Demonstração do Sistema
+
+Aqui estão algumas das principais interfaces desenvolvidas para o sistema:
+
+### Dashboard (Painel Interativo)
+Controle em tempo real de livros cadastrados, empréstimos ativos, devoluções e pendências com gráficos dinâmicos.
+![Dashboard](img/Tela Dashboard.png)
+
+### Gerenciamento de Empréstimos
+Visualização fiel e ao vivo do status de cada livro (quem deve e quem entregou), facilitando a identificação de atrasos.
+![Empréstimos](IMG/Tela Emprestimos.png)
+
+### Controle de Turmas
+Módulo para cadastro e visualização de turmas com o recurso de automação para promover turmas de ano letivo.
+![Turmas](img/Tela Turmas.png)
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+O projeto foi construído utilizando o seguinte conjunto de tecnologias:
+
+* **Backend:** PHP
+* **Frontend:** HTML5, CSS3, JavaScript
+* **Framework CSS:** Bootstrap (para uma interface moderna e responsiva)
+* **Banco de Dados:** MySQL (gerenciado via PHPMyAdmin)
+* **Servidor Local:** XAMPP
+* **Biblioteca Adicional:** FPDF (para geração de relatórios estruturados em PDF)
+
+---
+
+## 📂 Estrutura do Projeto
+
+O repositório está organizado nas seguintes pastas e módulos principais:
+
+* `📁 cadastro/`: Contém a lógica de controle de acesso, incluindo telas de login, criação de novas contas e o fluxo de recuperação de conta ("esqueci a senha").
+* `📁 painel/`: Central do sistema. Abriga os **dashboards** contendo informações interativas, gráficos e indicadores de desempenho da biblioteca em tempo real.
+* `📁 alunos/`: Módulo responsável pelo cadastro, edição e visualização dos dados dos alunos.
+* `📁 turmas/`: Gerenciamento das turmas da escola. Conta com uma funcionalidade automatizada para **promover turmas** de ano letivo.
+* `📁 livros/`: Fluxo de cadastro manual e visualização do acervo de livros disponíveis.
+* `📁 emprestimos/`: Módulo principal de operação. Permite registrar saídas e devoluções, acompanhar o status fiel de quem deve ou quem entregou, e emitir relatórios de alunos em atraso.
+* `📁 database/`: Pasta que contém o script SQL estruturado do banco de dados do sistema, facilitando a implantação inicial.
+* `📁 includes/`: Arquivos globais e utilitários cruciais reutilizados no projeto, como a conexão com o banco de dados, barra de navegação global (`navbar`) e o motor da biblioteca **FPDF**.
+* `📁 img/`: Armazena as mídias, imagens e logotipos utilizados na interface visual.
+
+---
+
+## 🛠️ Como Rodar o Projeto Localmente
+
+### Pré-requisitos
+Antes de começar, você vai precisar ter instalado em sua máquina:
+* [XAMPP](https://www.apachefriends.org/index.html) (com PHP e MySQL ativos).
+* Um navegador web atualizado.
+
+### Passo a Passo
+
+1.  **Clonar o Repositório:**
+    Abra o terminal dentro do diretório `htdocs` do seu XAMPP e clone a branch de desenvolvimento:
+    ```bash
+    git clone https://github.com/EmillySilva1017/Projeto-Sistema-Biblioteca-3B.git
+    ```
+
+2.  **Configurar o Banco de Dados:**
+    * Abra o painel de controle do XAMPP e inicialize os serviços **Apache** e **MySQL**.
+    * Acesse `http://localhost/phpmyadmin` no navegador.
+    * Crie um novo banco de dados (certifique-se de que o nome seja o mesmo configurado no arquivo de conexão em `includes/`).
+    * Vá na aba **Importar**, selecione o arquivo `.sql` que está dentro da pasta `📁 database/` e execute a importação para estruturar as tabelas (`Livro`, `Turma`, `Emprestimo`, `Usuario`).
+
+3.  **Executar a Aplicação:**
+    * Certifique-se de que a pasta do projeto esteja dentro de `C:\xampp\htdocs\`.
+    * Acesse no seu navegador: `http://localhost/Projeto-Sistema-Biblioteca-3B/cadastro/index.php`
+
+---
+
+## 👥 Desenvolvedores (Equipe)
+
+Projeto desenvolvido com dedicação pelos alunos:
+* Emilly Rodrigues Silva - FullStack
+* Iago Damião Abel Gomes - PO
+* Jamily Vieira Menezes - TechLeader
+* Luiz Felipe de Oliveira Linhares - PO
+* Miguel Ângelo Amorim Silva Alves - DevFront
+
+**Professor Orientador:** Antonio Jefferson Ferreira de Macedo  
+**Componente Curricular:** Laboratório de Software
