@@ -1,4 +1,7 @@
-# <img src="img/LogoDark.png" alt="ManoTeca Logo" width="50" align="center"> ManoTeca - Sistema de Gestão de Biblioteca Escolar
+<p align="center">
+    <img src="img/LogoDark.png" alt="ManoTeca Logo" width="180" align="center"> 
+</p> 
+<h1 align="center">ManoTeca - Sistema de Gestão de Biblioteca Escolar
 
 O **ManoTeca** é um sistema web desenvolvido para modernizar, organizar e automatizar os processos de gerenciamento da biblioteca da **Escola Estadual de Ensino Profissional Manoel Mano** (Curso Técnico em Informática - 3º Ano B). 
 
@@ -12,15 +15,15 @@ Aqui estão algumas das principais interfaces desenvolvidas para o sistema:
 
 ### Dashboard (Painel Interativo)
 Controle em tempo real de livros cadastrados, empréstimos ativos, devoluções e pendências com gráficos dinâmicos.
-![Dashboard](img/Tela Dashboard.png)
+![Dashboard](img/Tela_Dashboard.png)
 
 ### Gerenciamento de Empréstimos
 Visualização fiel e ao vivo do status de cada livro (quem deve e quem entregou), facilitando a identificação de atrasos.
-![Empréstimos](img/Tela Emprestimos.png)
+![Empréstimos](img/Tela_Emprestimos.png)
 
 ### Controle de Turmas
 Módulo para cadastro e visualização de turmas com o recurso de automação para promover turmas de ano letivo.
-![Turmas](img/Tela Turmas.png)
+![Turmas](img/Tela_Turmas.png)
 
 ---
 
