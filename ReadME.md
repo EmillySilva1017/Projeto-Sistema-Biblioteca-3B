@@ -16,7 +16,7 @@ Controle em tempo real de livros cadastrados, empréstimos ativos, devoluções 
 
 ### Gerenciamento de Empréstimos
 Visualização fiel e ao vivo do status de cada livro (quem deve e quem entregou), facilitando a identificação de atrasos.
-![Empréstimos](IMG/Tela Emprestimos.png)
+![Empréstimos](img/Tela Emprestimos.png)
 
 ### Controle de Turmas
 Módulo para cadastro e visualização de turmas com o recurso de automação para promover turmas de ano letivo.
