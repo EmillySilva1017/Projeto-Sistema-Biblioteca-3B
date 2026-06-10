@@ -1,7 +1,7 @@
 <p align="center">
     <img src="img/LogoDark.png" alt="ManoTeca Logo" width="180" align="center"> 
 </p> 
-<h1 align="center">ManoTeca - Sistema de Gestão de Biblioteca Escolar
+<h1 align="center">ManoTeca - Sistema de Gestão de Biblioteca Escolar</h1>
 
 O **ManoTeca** é um sistema web desenvolvido para modernizar, organizar e automatizar os processos de gerenciamento da biblioteca da **Escola Estadual de Ensino Profissional Manoel Mano** (Curso Técnico em Informática - 3º Ano B). 
 
