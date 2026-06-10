@@ -18,7 +18,7 @@ $turma_id = isset($_GET['turma']) ? mysqli_real_escape_string($conn, $_GET['turm
 
 $filtro_ativo = !empty($busca) || !empty($curso) || !empty($turma_id);
 
-$condicoes = " WHERE 1=1"; 
+$condicoes = " WHERE 1=1";
 
 if (!empty($busca)) {
     $condicoes .= " AND (a.nome_aluno LIKE '%$busca%' OR a.matricula LIKE '%$busca%')";
@@ -53,15 +53,15 @@ $sql = "SELECT a.*, t.serie_atual, t.curso, t.identificador_curso,
                        e.status IN ('Pendente', 'Renovado', 'Atrasado')
                    ) THEN 'Sim' ELSE 'Não' END AS pendencias
         FROM alunos a 
-        INNER JOIN turmas t ON a.fk_id_turma = t.id_turma" . 
-        $condicoes . " ORDER BY t.serie_atual, t.identificador_curso ASC LIMIT $itens_por_pagina OFFSET $offset";
+        INNER JOIN turmas t ON a.fk_id_turma = t.id_turma" .
+    $condicoes . " ORDER BY t.serie_atual, t.identificador_curso ASC LIMIT $itens_por_pagina OFFSET $offset";
 
 $resAlunos = mysqli_query($conn, $sql);
-    
+
 // Busca os cursos e turmas para alimentar os selects dos filtros
 $sqlCursos = "SELECT DISTINCT curso FROM turmas ORDER BY curso DESC";
 $resCursos = mysqli_query($conn, $sqlCursos);
-    
+
 $sqlTodasTurmas = "SELECT id_turma, serie_atual, identificador_curso, curso FROM turmas ORDER BY serie_atual ASC, identificador_curso ASC";
 $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
 
@@ -86,15 +86,24 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
     <?php include('../includes/menu.php'); ?>
 
     <div class="container-fluid mt-4 px-3 px-sm-4">
-        <div class="row align-items-center mt-3 mb-3">
-            <div class="col-12 col-md-8 text-center text-md-start mb-md-0">
+        <div class="row align-items-center mt-3 mb-4 g-3">
+            <div class="col-12 col-md-6 text-center text-md-start">
                 <h2 class="fw-bold text-dark mb-0">Gestão de Alunos</h2>
             </div>
-            <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
-                <a href="cadastro_aluno.php" 
-                class="btn btn-success px-4 py-2 fw-bold rounded-3 shadow-sm w-sm-auto flex-fill flex-md-none">
-                    <i class="bi bi-plus-lg me-2"></i>NOVO ALUNO
-                </a>
+
+            <div class="col-12 col-md-6">
+                <div class="d-flex flex-column flex-sm-row justify-content-md-end gap-2">
+                    <a href="importar_alunos.php"
+                        class="btn btn-outline-info fw-bold d-inline-flex align-items-center justify-content-center shadow-sm px-4 py-2"
+                        style="height: 45px; border-radius: 10px;">
+                        <i class="bi bi-file-earmark-arrow-up me-2"></i>IMPORTAR PLANILHA
+                    </a>
+                    <a href="cadastrar_aluno.php"
+                        class="btn btn-success fw-bold d-inline-flex align-items-center justify-content-center shadow-sm px-4 py-2"
+                        style="height: 45px; border-radius: 10px;">
+                        <i class="bi bi-plus-lg me-2"></i>CADASTRAR ALUNO
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -103,7 +112,8 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
                 <?= $_SESSION['msg']; ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <?php unset($_SESSION['msg']); endif; ?>
+            <?php unset($_SESSION['msg']);
+        endif; ?>
 
         <form action="" method="GET" class="row g-3 mb-4 align-items-end">
             <div class="col-12 col-md-4 position-relative">
@@ -134,35 +144,36 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
                 </select>
             </div>
 
-           <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3">
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-filtrar flex-grow-1 btn-mobile-full">
                         <i class="bi bi-funnel me-2"></i>Filtrar
                     </button>
 
                     <?php if ($filtro_ativo): ?>
-                        <a href="visualizar.php" class="btn btn-limpar btn-mobile-full text-nowrap" title="Limpar todos os filtros">
+                        <a href="visualizar.php" class="btn btn-limpar btn-mobile-full text-nowrap"
+                            title="Limpar todos os filtros">
                             <i class="bi bi-x-circle me-1"></i>Limpar
                         </a>
                     <?php endif; ?>
                 </div>
             </div>
         </form>
-    <?php if (mysqli_num_rows($resAlunos) > 0): ?>
-        <div class="table-container shadow-sm mb-3">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover align-middle mb-0">
-                    <thead class="thead-verde text-center">
-                        <tr>
-                            <th class="py-3">Matrícula</th>
-                            <th class="py-3">Nome</th>
-                            <th class="py-3">Série</th>
-                            <th class="py-3">Curso</th>
-                            <th class="py-3">Pendências</th>
-                            <th class="py-3">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <?php if (mysqli_num_rows($resAlunos) > 0): ?>
+            <div class="table-container shadow-sm mb-3">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover align-middle mb-0">
+                        <thead class="thead-verde text-center">
+                            <tr>
+                                <th class="py-3">Matrícula</th>
+                                <th class="py-3">Nome</th>
+                                <th class="py-3">Série</th>
+                                <th class="py-3">Curso</th>
+                                <th class="py-3">Pendências</th>
+                                <th class="py-3">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php while ($aluno = mysqli_fetch_assoc($resAlunos)): ?>
                                 <tr>
                                     <td class="text-center fw-bold"><?= $aluno['matricula'] ?></td>
@@ -186,10 +197,12 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
                                     </td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-1">
-                                            <a href="editar_aluno.php?id=<?= $aluno['id_aluno'] ?>" class="btn btn-sm btn-warning px-2">
+                                            <a href="editar_aluno.php?id=<?= $aluno['id_aluno'] ?>"
+                                                class="btn btn-sm btn-warning px-2">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </a>
-                                            <a href="excluir_aluno.php?id=<?= $aluno['id_aluno'] ?>" class="btn btn-sm btn-danger px-2"
+                                            <a href="excluir_aluno.php?id=<?= $aluno['id_aluno'] ?>"
+                                                class="btn btn-sm btn-danger px-2"
                                                 onclick="return confirm('Deseja excluir este aluno? Esta ação não pode ser desfeita!')">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
@@ -197,40 +210,40 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
                                     </td>
                                 </tr>
                             <?php endwhile; ?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <?php if ($total_paginas > 1): ?>
-            <div class="d-flex justify-content-center align-items-center my-4 gap-2">
-                <a href="?busca=<?= urlencode($busca) ?>&curso=<?= urlencode($curso) ?>&turma=<?= urlencode($turma_id) ?>&pagina=<?= $pagina_atual - 1 ?>"
-                    class="seta-paginacao <?= ($pagina_atual <= 1) ? 'desativada' : '' ?>">
-                    <i class="bi bi-caret-left-fill"></i>
-                </a>
-
-                <?php
-                $max_bolinhas = 5;
-                $inicio = max(1, $pagina_atual - floor($max_bolinhas / 2));
-                $fim = min($total_paginas, $inicio + $max_bolinhas - 1);
-
-                if ($fim - $inicio + 1 < $max_bolinhas) {
-                    $inicio = max(1, $fim - $max_bolinhas + 1);
-                }
-
-                for ($i = $inicio; $i <= $fim; $i++): ?>
-                    <a href="?busca=<?= urlencode($busca) ?>&curso=<?= urlencode($curso) ?>&turma=<?= urlencode($turma_id) ?>&pagina=<?= $i ?>"
-                        class="paginacao-link <?= ($i == $pagina_atual) ? 'ativa' : '' ?>" title="Página <?= $i ?>">
-                        <i class="bi bi-circle-fill"></i>
+            <?php if ($total_paginas > 1): ?>
+                <div class="d-flex justify-content-center align-items-center my-4 gap-2">
+                    <a href="?busca=<?= urlencode($busca) ?>&curso=<?= urlencode($curso) ?>&turma=<?= urlencode($turma_id) ?>&pagina=<?= $pagina_atual - 1 ?>"
+                        class="seta-paginacao <?= ($pagina_atual <= 1) ? 'desativada' : '' ?>">
+                        <i class="bi bi-caret-left-fill"></i>
                     </a>
-                <?php endfor; ?>
 
-                <a href="?busca=<?= urlencode($busca) ?>&curso=<?= urlencode($curso) ?>&turma=<?= urlencode($turma_id) ?>&pagina=<?= $pagina_atual + 1 ?>"
-                    class="seta-paginacao <?= ($pagina_atual >= $total_paginas) ? 'desativada' : '' ?>">
-                    <i class="bi bi-caret-right-fill"></i>
-                </a>
-            </div>
-        <?php endif; ?>
+                    <?php
+                    $max_bolinhas = 5;
+                    $inicio = max(1, $pagina_atual - floor($max_bolinhas / 2));
+                    $fim = min($total_paginas, $inicio + $max_bolinhas - 1);
+
+                    if ($fim - $inicio + 1 < $max_bolinhas) {
+                        $inicio = max(1, $fim - $max_bolinhas + 1);
+                    }
+
+                    for ($i = $inicio; $i <= $fim; $i++): ?>
+                        <a href="?busca=<?= urlencode($busca) ?>&curso=<?= urlencode($curso) ?>&turma=<?= urlencode($turma_id) ?>&pagina=<?= $i ?>"
+                            class="paginacao-link <?= ($i == $pagina_atual) ? 'ativa' : '' ?>" title="Página <?= $i ?>">
+                            <i class="bi bi-circle-fill"></i>
+                        </a>
+                    <?php endfor; ?>
+
+                    <a href="?busca=<?= urlencode($busca) ?>&curso=<?= urlencode($curso) ?>&turma=<?= urlencode($turma_id) ?>&pagina=<?= $pagina_atual + 1 ?>"
+                        class="seta-paginacao <?= ($pagina_atual >= $total_paginas) ? 'desativada' : '' ?>">
+                        <i class="bi bi-caret-right-fill"></i>
+                    </a>
+                </div>
+            <?php endif; ?>
 
         <?php else: ?>
             <div class="alert alert-warning text-center rounded-4 shadow-sm py-4 border-0" role="alert">
