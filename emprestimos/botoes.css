@@ -1,0 +1,53 @@
+.btn-filtrar {
+  background-color: #0052cc;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  height: 45px; /* Altura ideal para toque no telemóvel */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-filtrar:hover {
+  background-color: #012e8f;
+  color: white;
+}
+
+.btn-emprest {
+  background-color: #26871b;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  height: 45px; /* Altura ideal para toque no telemóvel */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-emprest:hover {
+  background-color: #085e17;
+  color: white;
+}
+
+.btn-relatorio{
+  background-color: #c20a1c;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  height: 45px; /* Altura ideal para toque no telemóvel */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-relatorio:hover {
+  background-color: #910410;
+  color: white;
+}

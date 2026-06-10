@@ -1,0 +1,29 @@
+body {
+    background: #eeeeee;
+    font-family: 'Poppins', sans-serif;
+    }
+    .login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.container-center {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-alterar {
+    background: linear-gradient(45deg, #0f8a0b, #48ee1e);
+    border: none;
+    border-radius: 30px;
+    padding: 10px;
+    width: 100%;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+}

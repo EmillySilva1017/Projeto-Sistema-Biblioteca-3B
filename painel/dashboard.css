@@ -1,0 +1,60 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9; /* Um cinza claro moderno para destacar os cards brancos */
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.card-dashboard {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-dashboard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+.border-livros { border-left: 5px solid #1c942f !important; }
+.border-genero { border-left: 5px solid #df8508 !important; }
+.border-turma  { border-left: 5px solid #0d6efd !important; }
+
+.icon-shape {
+    width: 48px;
+    height: 48px;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; 
+}
+
+.text-muted-dashboard {
+    color: #2e3032;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.thead-pers th {
+    background-color: #1c942f !important;
+    color: white !important;   
+}
+/* Fix de Altura para o Gráfico Responsivo */
+.chart-container {
+    position: relative; 
+    height: 350px; 
+    width: 100%;
+}
+
+@media (max-width: 576px) {
+    .chart-container {
+        height: 260px; /* Gráfico menor em celulares para poupar rolagem */
+    }
+}

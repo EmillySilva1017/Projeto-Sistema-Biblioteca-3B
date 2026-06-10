@@ -1,0 +1,71 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+}
+.card-cadastro {
+  background: #ffffff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-header-custom {
+  background-color: #1c942f; /* Verde institucional */
+  color: white;
+  border-top-left-radius: 16px !important;
+  border-top-right-radius: 16px !important;
+  padding: 15px;
+  border-bottom: 5px solid #df8508; /* Linha Laranja padrão do sistema */
+}
+.form-label {
+  font-weight: 500;
+  color: #495057;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+  height: 46px;
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  padding-left: 12px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #1c942f;
+  box-shadow: 0 0 0 0.25rem rgba(28, 148, 47, 0.15);
+}
+
+.form-control:disabled {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.btn-salvar {
+  background-color: #1c942f;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  height: 48px;
+  transition: 0.2s ease;
+}
+
+.btn-salvar:hover:not(:disabled) {
+  background-color: #157224;
+  color: white;
+}
+
+.btn-cancelar {
+  border-radius: 10px;
+  height: 48px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
