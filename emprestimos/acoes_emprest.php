@@ -31,11 +31,28 @@ switch ($acao) {
         break;
 
     case 'renovar':
-        // Adiciona mais 7 dias a partir de hoje para a nova data prevista e marca como Renovado
-        $nova_data_prevista = date('Y-m-d', strtotime('+7 days'));
-        $sql = "UPDATE emprestimos SET data_prevista = '$nova_data_prevista', status = 'Renovado' WHERE id_emprestimos = $id";
-        if (mysqli_query($conn, $sql)) {
-            $_SESSION['mensagem'] = "Empréstimo renovado com sucesso por mais 7 dias!";
+        // 1. Primeiro, buscamos a data_prevista atual deste empréstimo no banco de dados
+        $sql_busca_data = "SELECT data_prevista FROM emprestimos WHERE id_emprestimos = $id LIMIT 1";
+        $res_busca_data = mysqli_query($conn, $sql_busca_data);
+        
+        if ($row_data = mysqli_fetch_assoc($res_busca_data)) {
+            $data_prevista_atual = $row_data['data_prevista'];
+            
+            // 2. Adiciona exatamente 7 dias em cima da data prevista original
+            $nova_data_prevista = date('Y-m-d', strtotime($data_prevista_atual . ' + 7 days'));
+            
+            // 3. Atualiza o banco de dados com a nova data e muda o status para 'Renovado'
+            $sql = "UPDATE emprestimos 
+                    SET data_prevista = '$nova_data_prevista', status = 'Renovado' 
+                    WHERE id_emprestimos = $id";
+                    
+            if (mysqli_query($conn, $sql)) {
+                $_SESSION['mensagem'] = "Empréstimo renovado com sucesso por mais 7 dias!";
+            } else {
+                $_SESSION['mensagem'] = "Erro ao tentar renovar o empréstimo.";
+            }
+        } else {
+            $_SESSION['mensagem'] = "Erro: Empréstimo não encontrado.";
         }
         break;
 }

@@ -25,13 +25,6 @@ mysqli_close($conn);
     <?php include '../includes/menu.php'; ?>
 
     <div class="container-fluid px-4 pt">
-        <?php if (isset($_SESSION['mensagem'])): ?>
-            <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert">
-                <?= $_SESSION['mensagem']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php unset($_SESSION['mensagem']); ?>
-        <?php endif; ?>
 
         <div class="row align-items-center mt-3 mb-3">
             <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
@@ -52,6 +45,14 @@ mysqli_close($conn);
             </div>
         </div>
 
+        <?php if (isset($_SESSION['mensagem'])): ?>
+            <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert">
+                <?= $_SESSION['mensagem']; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php unset($_SESSION['mensagem']); ?>
+        <?php endif; ?>
+        
         <div class="table-container shadow-sm mb-4">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover align-middle mb-0">

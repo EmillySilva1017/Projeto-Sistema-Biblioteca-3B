@@ -98,7 +98,7 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
                         style="height: 45px; border-radius: 10px;">
                         <i class="bi bi-file-earmark-arrow-up me-2"></i>IMPORTAR PLANILHA
                     </a>
-                    <a href="cadastrar_aluno.php"
+                    <a href="cadastro_aluno.php"
                         class="btn btn-success fw-bold d-inline-flex align-items-center justify-content-center shadow-sm px-4 py-2"
                         style="height: 45px; border-radius: 10px;">
                         <i class="bi bi-plus-lg me-2"></i>CADASTRAR ALUNO
