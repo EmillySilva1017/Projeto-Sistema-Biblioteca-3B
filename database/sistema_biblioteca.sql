@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/06/2026 às 02:14
+-- Tempo de geração: 13/06/2026 às 15:04
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -40,10 +40,14 @@ CREATE TABLE `alunos` (
 --
 
 INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `numero_chamada`, `matricula`, `fk_id_turma`) VALUES
-(2, 'Lucas Pereira Lima', 32, 12398754, 4),
-(9, 'Emilly Rodrigues Silva', 18, 2834250, 9),
-(10, 'jose', 21, 12365412, 7),
-(11, 'Guilherme Gomes', 24, 1498647, 9);
+(1, 'Antonio Juvenal', 1, 1234678, 2),
+(2, 'Ana Clara', 2, 1234679, 2),
+(3, 'Carlos Eduardo', 3, 1234680, 2),
+(4, 'Clotilde', 4, 1234681, 2),
+(5, 'Derick', 5, 1234682, 2),
+(6, 'Antonio Junior', 1, 1223345, 1),
+(7, 'Ana Laura', 2, 5443123, 1),
+(8, 'Carlos Thomás', 3, 9887456, 1);
 
 -- --------------------------------------------------------
 
@@ -68,16 +72,11 @@ CREATE TABLE `emprestimos` (
 --
 
 INSERT INTO `emprestimos` (`id_emprestimos`, `nome_aluno`, `fk_id_livro`, `data_saida`, `data_prevista`, `data_devolucao`, `fk_id_user`, `status`, `fk_id_turma`) VALUES
-(2, 'Lucas Pereira Lima', 6051, '2026-05-11', '2026-06-02', NULL, 1, 'Renovado', 4),
-(4, 'Emilly Rodrigues Silva', 1127, '2026-05-26', '2026-06-02', NULL, 1, 'Pendente', 9),
-(5, 'jose', 6064, '2026-05-30', '2026-06-06', NULL, 1, 'Pendente', 7),
-(6, 'Guilherme Gomes', 2162, '2026-05-30', '2026-06-06', '2026-05-30 19:29:50', 1, 'Entregue', 9),
-(7, 'jose', 820, '2026-05-11', '2026-05-18', NULL, 1, 'Atrasado', 7),
-(8, 'Emilly Rodrigues Silva', 5525, '2026-05-04', '2026-05-11', NULL, 1, 'Atrasado', 9),
-(9, 'jose', 4429, '2026-05-04', '2026-05-11', NULL, 1, 'Atrasado', 7),
-(10, 'Emilly Rodrigues Silva', 443, '2026-05-11', '2026-05-18', NULL, 1, 'Atrasado', 9),
-(11, 'Lucas Pereira Lima', 2203, '2026-05-11', '2026-05-18', NULL, 1, 'Atrasado', 4),
-(12, 'Guilherme Gomes', 878, '2026-05-11', '2026-05-18', NULL, 1, 'Atrasado', 9);
+(8, 'Carlos Eduardo', 2190, '2026-06-01', '2026-06-08', NULL, 1, 'Atrasado', 2),
+(9, 'Carlos Thomás', 4111, '2026-06-13', '2026-06-20', NULL, 1, 'Pendente', 1),
+(10, 'Derick', 984, '2026-06-03', '2026-06-17', NULL, 1, 'Renovado', 2),
+(11, 'Ana Laura', 4365, '2026-06-13', '2026-06-20', NULL, 1, 'Pendente', 1),
+(12, 'Antonio Junior', 5601, '2026-06-05', '2026-06-12', '2026-06-13 09:35:57', 1, 'Entregue', 1);
 
 -- --------------------------------------------------------
 
@@ -6114,7 +6113,7 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (6048, 'Cidades Mortas', 'Monteiro Lobato', 'Editora Brasiliense / Editora Pallotti', NULL, 'Sem Gênero', '869,935', '', '2011', 'S'),
 (6049, 'Quarteto Mágico', 'Múltiplos Autores', 'Autêntica', NULL, 'Sem Gênero', '869.3', '', '6904', 'S'),
 (6050, 'O livro das religiões', 'Múltiplos Autores', 'Companhia de Bolso', NULL, 'Sem Gênero', '291', '', '5085', 'N'),
-(6051, '10 Contos Escolhidos', 'Caio Porfírio Carneiro', 'Editora Horizonte', NULL, 'Conto', '869.93', '869.0(81)-', '2275', 'N'),
+(6051, '10 Contos Escolhidos', 'Caio Porfírio Carneiro', 'Editora Horizonte', '2026', 'Conto', '869.93', '869.0(81)-', '2275', 'N'),
 (6052, 'Era uma vez um conto', 'Múltiplos Autores', 'Companhia das Letrinhas', NULL, 'Sem Gênero', '028.5', '', '269', 'S'),
 (6053, '23 Histórias de um Viajante', 'Marina Colasanti', 'Editora Global', NULL, 'Sem Gênero', '869.93', '', '3183', 'N'),
 (6054, 'Laços de Família', 'Clarice Lispector', 'Rocco', NULL, 'Sem Gênero', '869.93', '869.0(81)-', '6520', 'N'),
@@ -6892,7 +6891,8 @@ INSERT INTO `livros` (`id`, `titulo_livro`, `autor`, `editora`, `ano_aquisicao`,
 (8886, 'OS VERDES ABUTRES DA COLINA', 'JOSÉ ALCIDES PINTO', 'UFC EDIÇÕES', '2000', 'Literatura Portuguesa/Brasileira', '869.0', '869.0', '2133', 'N'),
 (8887, 'O LIVRO DE OURO DA MITOLOGIA: HISTÓRIAS DE DEUSES E HEROIS', 'THOMAS BULFINCH', 'HARPER COLLINS', '2018', 'MITOLOGIA GREGA', '398.40981', '398.4(81)', '8914', 'N'),
 (8888, 'QUEM É VOCÊ, ALASCA?', 'JOHN GREEN', 'INTRÍNSECA', '2022', 'Ficção americana em Inglês', '813', '821.111', '7006', 'S'),
-(8889, 'O LABIRINTO DO FAUNO', 'GUILLERMO DEL TORO', 'INTRÍNSECA', '2023', 'LITERATURA INFANTOJUVENIL MEXICANA', '808.899282', '82-93 (72)', '8807', 'S');
+(8889, 'O LABIRINTO DO FAUNO', 'GUILLERMO DEL TORO', 'INTRÍNSECA', '2023', 'LITERATURA INFANTOJUVENIL MEXICANA', '808.899282', '82-93 (72)', '8807', 'S'),
+(8891, 'Ação', 'Ação', 'truco', '2026', 'Ação', '005.74', '869.0(81)-', '00001', 'S');
 
 -- --------------------------------------------------------
 
@@ -6913,14 +6913,18 @@ CREATE TABLE `turmas` (
 --
 
 INSERT INTO `turmas` (`id_turma`, `curso`, `identificador_curso`, `ano_conclusao`, `serie_atual`) VALUES
-(4, 'Desenvolvimento de Sistemas', 'E', '2028', '2'),
-(7, 'Administração', 'D', '2028', '2'),
-(8, 'Enfermagem', 'A', '2027', '3'),
-(9, 'Informática', 'B', '2027', '3'),
-(10, 'Desenvolvimento de Sistemas', 'E', '2027', '3'),
-(14, 'Enfermagem', 'A', '2028', '1'),
-(15, 'Informática', 'B', '2028', '1'),
-(16, 'Desenvolvimento de Sistemas', 'E', '2028', '1');
+(1, 'Enfermagem', 'A', '2028', '1'),
+(2, 'Informática', 'B', '2028', '1'),
+(3, 'Administração', 'D', '2028', '1'),
+(4, 'Desenvolvimento de Sistemas', 'E', '2028', '1'),
+(5, 'Enfermagem', 'A', '2027', '2'),
+(6, 'Informática', 'B', '2027', '2'),
+(7, 'Administração', 'D', '2027', '2'),
+(8, 'Desenvolvimento de Sistemas', 'E', '2027', '2'),
+(9, 'Enfermagem', 'A', '2026', '3'),
+(10, 'Informática', 'B', '2026', '3'),
+(11, 'Administração', 'D', '2026', '3'),
+(12, 'Comércio', 'C', '2026', '3');
 
 -- --------------------------------------------------------
 
@@ -6941,8 +6945,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_user`, `nome_user`, `email`, `senha`, `nivel`) VALUES
-(1, 'Administrador', 'admin@admin.com', '$2y$10$D7TakGwiAW8O3P7yjLLZF.5NFpBm2kdamC/Y7a9rwzUboysgCVrfu', 1),
-(3, 'Bibliotecário', 'biblio@escola.com', '$2y$10$krJuqMupmMcGJOTvaFdWwuf7ghECkAZtHd.bjfm7B.A0ViepIIHtW', 1);
+(1, 'Administrador', 'admin@admin.com', '$2y$10$D7TakGwiAW8O3P7yjLLZF.5NFpBm2kdamC/Y7a9rwzUboysgCVrfu', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -6963,7 +6966,7 @@ ALTER TABLE `emprestimos`
   ADD PRIMARY KEY (`id_emprestimos`),
   ADD KEY `fk_livros_emprestimos` (`fk_id_livro`),
   ADD KEY `fk_usuario_emprestimos` (`fk_id_user`),
-  ADD KEY `fk_emprestimo_turma` (`fk_id_turma`);
+  ADD KEY `fk_emprestimos_turmas` (`fk_id_turma`);
 
 --
 -- Índices de tabela `livros`
@@ -6991,7 +6994,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `emprestimos`
@@ -7003,19 +7006,19 @@ ALTER TABLE `emprestimos`
 -- AUTO_INCREMENT de tabela `livros`
 --
 ALTER TABLE `livros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8891;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8892;
 
 --
 -- AUTO_INCREMENT de tabela `turmas`
 --
 ALTER TABLE `turmas`
-  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para tabelas despejadas
@@ -7025,13 +7028,13 @@ ALTER TABLE `usuario`
 -- Restrições para tabelas `alunos`
 --
 ALTER TABLE `alunos`
-  ADD CONSTRAINT `fk_aluno_turma` FOREIGN KEY (`fk_id_turma`) REFERENCES `turmas` (`id_turma`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_alunos_turmas` FOREIGN KEY (`fk_id_turma`) REFERENCES `turmas` (`id_turma`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  ADD CONSTRAINT `fk_emprestimo_turma` FOREIGN KEY (`fk_id_turma`) REFERENCES `turmas` (`id_turma`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_emprestimos_turmas` FOREIGN KEY (`fk_id_turma`) REFERENCES `turmas` (`id_turma`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_livros_emprestimos` FOREIGN KEY (`fk_id_livro`) REFERENCES `livros` (`id`),
   ADD CONSTRAINT `fk_usuario_emprestimos` FOREIGN KEY (`fk_id_user`) REFERENCES `usuario` (`id_user`);
 COMMIT;
