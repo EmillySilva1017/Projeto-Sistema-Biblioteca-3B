@@ -9,12 +9,22 @@ if (!isset($_SESSION['id_user']) || $_SESSION['nivel'] != 1) {
 
 ### CARDS ####
 
-#Consulta 1: Total do acervo
-$sql_total = "SELECT COUNT(id) AS total_livros FROM livros";
+#Consulta 1: Total do acervo e livros atualmente disponíveis na estante
+$sql_total = "SELECT 
+                COUNT(l.id) AS total_livros,
+                (COUNT(l.id) - SUM(CASE WHEN e.status IN ('Pendente', 'Renovado', 'Atrasado') THEN 1 ELSE 0 END)) AS total_disponiveis
+              FROM livros l
+              LEFT JOIN emprestimos e ON l.id = e.fk_id_livro";
+
 $result_total = mysqli_query($conn, $sql_total);
+$total_livros = 0;
+$total_disponiveis = 0;
+
 if ($result_total) {
     $row = mysqli_fetch_assoc($result_total);
-    $total_livros = $row['total_livros'];
+    $total_livros = (int) $row['total_livros'];
+    // Garante que se o cálculo der nulo (banco vazio), ele mostre 0
+    $total_disponiveis = max(0, (int) $row['total_disponiveis']);
 }
 
 #Consulta 2: Gênero mais popular
@@ -91,17 +101,17 @@ while ($row = mysqli_fetch_assoc($result_grafico)) {
         <section>
             <div class="row">
                 <!-- #Consulta 1: Total do acervo -->
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="col-12 col-md-4 col-lg-4 mb-4">
                     <div class="card card-dashboard border-livros shadow-sm h-100">
-                        <div class="card-body p-4 d-flex align-items-center">
+                        <div class="card-body p-4 d-flex align-items-center justify-content-between">
                             <div class="flex-grow-1">
-                                <span class="text-muted-dashboard fw-bold">Total do Acervo</span>
-                                <h2 class="fw-bold text-dark my-1"><?php echo $total_livros; ?></h2>
-                                <p class="text-muted small mb-0"><i class="bi bi-journal-check text-success"></i> Livros
-                                    registrados</p>
+                                <span class="text-muted-dashboard fw-bold">Livros Disponíveis</span>
+                                <h3 class="fw-bold text-dark mb-1"><?= $total_disponiveis; ?></h3>
+                                <p class="text-muted small mb-0">Total no acervo: <span
+                                        class="fw-semibold text-secondary"><?= $total_livros; ?></span></p>
                             </div>
                             <div class="icon-shape ms-3">
-                                <i class="bi bi-bookshelf fs-4 text-success"></i>
+                                <i class="bi bi-book-half text-success fs-4"></i>
                             </div>
                         </div>
                     </div>
@@ -180,17 +190,17 @@ while ($row = mysqli_fetch_assoc($result_grafico)) {
         </section>
 
         <section class="row mb-4">
-                    <div class="col-12">
-                        <div class="card card-dashboard shadow-sm p-4">
-                            <h5 class="fw-bold text-dark mb-3">
-                                <i class="bi bi-graph-up text-success me-2"></i> Índice de Leitura por Turma
-                            </h5>
-                            <div class="chart-container">
-                                <canvas id="graficoLeituraTurmas"></canvas>
-                            </div>
-                        </div>
+            <div class="col-12">
+                <div class="card card-dashboard shadow-sm p-4">
+                    <h5 class="fw-bold text-dark mb-3">
+                        <i class="bi bi-graph-up text-success me-2"></i> Índice de Leitura por Turma
+                    </h5>
+                    <div class="chart-container">
+                        <canvas id="graficoLeituraTurmas"></canvas>
                     </div>
                 </div>
+            </div>
+            </div>
             </div>
         </section>
     </main>
@@ -207,7 +217,7 @@ while ($row = mysqli_fetch_assoc($result_grafico)) {
             const tbody = document.getElementById('corpoTabelaAtrasos');
             const containerPaginacao = document.getElementById('paginacaoAtrasos');
 
-           fetch(`buscar_atrasos.php?pag_atrasos=${pagina}`)
+            fetch(`buscar_atrasos.php?pag_atrasos=${pagina}`)
                 .then(response => {
                     if (!response.ok) throw new Error('Falha de comunicação.');
                     return response.json();
@@ -215,7 +225,7 @@ while ($row = mysqli_fetch_assoc($result_grafico)) {
                 .then(dados => {
                     tbody.innerHTML = dados.linhas;
                     containerPaginacao.innerHTML = '';
-                    
+
                     if (dados.total_paginas > 1) {
                         const btnAnt = document.createElement('button');
                         btnAnt.className = `btn btn-sm btn-outline-secondary ${dados.pagina_atual <= 1 ? 'disabled' : ''}`;
