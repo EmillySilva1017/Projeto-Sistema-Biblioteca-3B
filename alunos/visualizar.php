@@ -45,13 +45,7 @@ if ($pagina_atual > $total_paginas) {
 }
 
 // 3. QUERY PRINCIPAL (Com a sua lógica de subquery para checar pendências + LIMIT/OFFSET)
-$sql = "SELECT a.*, t.serie_atual, t.curso, t.identificador_curso,
-               CASE
-                   WHEN EXISTS(
-                       SELECT 1 FROM emprestimos e 
-                       WHERE a.nome_aluno = e.nome_aluno AND
-                       e.status IN ('Pendente', 'Renovado', 'Atrasado')
-                   ) THEN 'Sim' ELSE 'Não' END AS pendencias
+$sql = "SELECT a.*, t.serie_atual, t.curso, t.identificador_curso
         FROM alunos a 
         INNER JOIN turmas t ON a.fk_id_turma = t.id_turma" .
     $condicoes . " ORDER BY t.serie_atual, t.identificador_curso ASC LIMIT $itens_por_pagina OFFSET $offset";
@@ -160,7 +154,7 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
             </div>
         </form>
         <?php if (mysqli_num_rows($resAlunos) > 0): ?>
-            <div class="table-container shadow-sm mb-3">
+            <div class="table-container shadow-sm mb-4">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover align-middle mb-0">
                         <thead class="thead-verde text-center">
@@ -169,7 +163,6 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
                                 <th class="py-3">Nome</th>
                                 <th class="py-3">Série</th>
                                 <th class="py-3">Curso</th>
-                                <th class="py-3">Pendências</th>
                                 <th class="py-3">Ações</th>
                             </tr>
                         </thead>
@@ -182,19 +175,6 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
                                         <?= $aluno['serie_atual'] ?>º <?= $aluno['identificador_curso'] ?>
                                     </td>
                                     <td class="text-start small text-muted"><?= $aluno['curso'] ?></td>
-                                    <td class="text-center align-middle">
-                                        <?php if ($aluno['pendencias'] === 'Sim'): ?>
-                                            <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill fw-bold"
-                                                style="font-size: 0.8rem;">
-                                                <i class="bi bi-check-circle-fill me-1"></i> Sim
-                                            </span>
-                                        <?php else: ?>
-                                            <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-bold"
-                                                style="font-size: 0.8rem;">
-                                                <i class="bi bi-bookmark-dash-fill me-1"></i> Não
-                                            </span>
-                                        <?php endif; ?>
-                                    </td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-1">
                                             <a href="editar_aluno.php?id=<?= $aluno['id_aluno'] ?>"

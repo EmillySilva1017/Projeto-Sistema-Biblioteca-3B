@@ -11,7 +11,14 @@ $resTurma = mysqli_query($conn, $sqlTurma);
 $dadosTurma = mysqli_fetch_assoc($resTurma);
 
 // Busca alunos dessa turma específica usando a Chave Estrangeira
-$sqlAlunos = "SELECT * FROM alunos WHERE fk_id_turma = '$id_turma' ORDER BY numero_chamada ASC";
+$sqlAlunos = "SELECT a.*,
+CASE
+    WHEN EXISTS(
+        SELECT 1 FROM emprestimos e 
+        WHERE a.nome_aluno = e.nome_aluno AND
+        e.status IN ('Pendente', 'Renovado', 'Atrasado')
+        ) THEN 'Sim' ELSE 'Não' END AS pendencias 
+FROM alunos a WHERE a.fk_id_turma = '$id_turma' ORDER BY a.numero_chamada ASC";
 $resAlunos = mysqli_query($conn, $sqlAlunos);
 
 ?>
@@ -64,6 +71,7 @@ $resAlunos = mysqli_query($conn, $sqlAlunos);
                             <th>Nº Chamada</th>
                             <th>Matrícula</th>
                             <th>Nome do Aluno</th>
+                            <th>Pendências</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,6 +81,19 @@ $resAlunos = mysqli_query($conn, $sqlAlunos);
                                     <td class="text-center"><?= $aluno['numero_chamada'] ?></td>
                                     <td class="text-center"><?= $aluno['matricula'] ?></td>
                                     <td class="text-center"><?= $aluno['nome_aluno'] ?></td>
+                                    <td class="text-center align-middle">
+                                        <?php if ($aluno['pendencias'] === 'Sim'): ?>
+                                            <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill fw-bold"
+                                                style="font-size: 0.8rem;">
+                                                <i class="bi bi-check-circle-fill me-1"></i> Sim
+                                            </span>
+                                        <?php else: ?>
+                                            <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill fw-bold"
+                                                style="font-size: 0.8rem;">
+                                                <i class="bi bi-bookmark-dash-fill me-1"></i> Não
+                                            </span>
+                                        <?php endif; ?>
+                                    </td>
                                 </tr>
                             <?php endwhile; ?>
                         <?php else: ?>

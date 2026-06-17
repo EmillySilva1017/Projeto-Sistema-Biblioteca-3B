@@ -13,12 +13,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
     //limpeza dos dados contra o comando SQL Injection 
     $curso = mysqli_real_escape_string($conn, $_POST['curso']);
-    $id_curso = mysqli_real_escape_string($conn, $_POST['id_curso']);
     $serie_atual = mysqli_real_escape_string($conn, $_POST['serie_atual']);
     $ano_conclusao = mysqli_real_escape_string($conn, $_POST['ano_conclusao']);
-
+    
+    $id_curso_cru = $_POST['id_curso'];
+    $id_maiusculo = mb_strtoupper($id_curso_cru, 'UTF-8');
+    $id_tratado = mb_substr($id_maiusculo, 0, 1, 'UTF-8');
+    $id_curso_final = mysqli_real_escape_string($conn, $id_tratado);
+    
+    
     $sqlInserir = "INSERT INTO turmas (curso, identificador_curso, ano_conclusao, serie_atual)
-    VALUES('$curso', '$id_curso', '$ano_conclusao', '$serie_atual')";
+    VALUES('$curso', '$id_curso_final', '$ano_conclusao', '$serie_atual')";
 
     //Executamos e verificamos se deu certo
     if (mysqli_query($conn, $sqlInserir)){

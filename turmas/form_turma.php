@@ -41,11 +41,7 @@ session_start();
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label class="form-label">Letra / ID</label>
-                                    <select name="id_curso" class="form-select" required>
-                                        <option value="" selected disabled>Selecione</option>
-                                        <option value="A">A</option><option value="B">B</option>
-                                        <option value="C">C</option><option value="D">D</option><option value="E">E</option>
-                                    </select>
+                                    <input name="id_curso" class="form-control" maxlength="1" style="text-transform: uppercase;" placeholder="Digite o ID..." required></input>
                                 </div>
                             </div>
     

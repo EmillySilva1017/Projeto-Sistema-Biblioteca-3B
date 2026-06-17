@@ -55,11 +55,8 @@ mysqli_close($conn);
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label class="form-label fw-bold">Letra</label>
-                                    <select name="id_curso" class="form-select form-select-lg" required>
-                                        <?php foreach(['A','B','C','D','E'] as $letra): ?>
-                                            <option value="<?= $letra ?>" <?= ($dados['identificador_curso'] == $letra) ? 'selected' : ''; ?>><?= $letra ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <input name="id_curso" class="form-control" maxlength="1" style="text-transform: uppercase;" 
+                                    value="<?= htmlspecialchars($dados['identificador_curso']); ?>" required></input>
                                 </div>
                             </div>
     
