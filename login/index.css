@@ -1,0 +1,55 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-manoteca {
+    max-width: 170px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-portal {
+    border: none;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #ffffff;
+}
+
+.card-portal:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+/* Cores customizadas para cada portal */
+.portal-aluno .icon-circle {
+    background-color: #e3f2fd;
+    color: #0d6efd;
+}
+
+.portal-biblio .icon-circle {
+    background-color: #e8f5e9;
+    color: #1c942f;
+}
+
+.portal-adm .icon-circle {
+    background-color: #fff3e0;
+    color: #df8508;
+}

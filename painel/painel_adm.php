@@ -2,8 +2,8 @@
 include '../includes/conexao.php';
 
 // Verifica se está logado e se é administrador (nível 1)
-if (!isset($_SESSION['id_user']) || $_SESSION['nivel'] != 1) {
-    header('Location: ../cadastro/index.php');
+if (!isset($_SESSION['id_user']) || $_SESSION['nivel'] === 'aluno') {
+    header('Location: ../login/index.php'); 
     exit();
 }
 

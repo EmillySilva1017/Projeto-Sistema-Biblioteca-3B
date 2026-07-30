@@ -1,0 +1,51 @@
+/* Import da fonte caso não carregue no HTML */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    background-color: #f4f6f9 !important;
+    font-family: 'Poppins', sans-serif !important;
+    min-height: 100vh !important;
+}
+
+.logo-manoteca {
+    width: 170px; /* Altere este valor para regular o tamanho (ex: 80px, 90px, 100px) */
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+/* Card principal do Login */
+.card-login {
+    border-radius: 20px !important;
+    border: none !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    padding: 2.5rem 2rem !important;
+}
+
+/* Inputs arredondados e elegantes */
+.card-login .form-control {
+    border-radius: 12px !important;
+    padding: 0.75rem 1rem !important;
+    border: 1.5px solid #e2e8f0 !important;
+    background-color: #f8fafc !important;
+    font-size: 0.95rem !important;
+}
+
+.card-login .form-control:focus {
+    background-color: #ffffff !important;
+    border-color: #198754 !important; /* Cor de destaque no foco */
+    box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.1) !important;
+}
+
+/* Botão principal */
+.card-login .btn {
+    border-radius: 12px !important;
+    padding: 0.75rem !important;
+    font-size: 1rem !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.card-login .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}

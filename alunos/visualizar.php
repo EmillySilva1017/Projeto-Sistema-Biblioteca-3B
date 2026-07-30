@@ -4,7 +4,7 @@ include('../includes/conexao.php');
 /** @var mysqli $conn */
 
 // Configuração da paginação
-$itens_por_pagina = 10;
+$itens_por_pagina = 8;
 $pagina_atual = isset($_GET['pagina']) ? (int) $_GET['pagina'] : 1;
 if ($pagina_atual < 1) {
     $pagina_atual = 1;

@@ -5,7 +5,7 @@ include('../includes/conexao.php');
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['id_user'])) {
-    header('Location: ../index.php');
+    header('Location: ../login/index.php');
     exit();
 }
 
@@ -110,14 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <p class="text-muted small">Crie uma nova senha de acesso para sua conta</p>
                         </div>
 
-                        <?php if (isset($_SESSION['msg'])): ?>
-                        <div class="alert alert-<?= $_SESSION['msg_tipo'] ?> alert-dismissible fade show" role="alert">
-                            <?= $_SESSION['msg'] ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <?php unset($_SESSION['msg']); 
-                            unset($_SESSION['msg_tipo']); ?> 
-                        <?php endif; ?>
+                        <?php include '../includes/alerta.php'; ?>
 
                         <form action="" method="POST">
                             <div class="mb-3">

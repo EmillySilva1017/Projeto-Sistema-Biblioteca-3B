@@ -22,7 +22,7 @@
                 <i class="bi bi-person-circle fs-3 text-white"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end shadow animate slideIn" aria-labelledby="dropdownUser">
-                <li><a class="dropdown-item py-2" href="../painel/perfil.php"><i class="bi bi-person me-2"></i>Meu
+                <li><a class="dropdown-item py-2" href="../perfil/perfil.php"><i class="bi bi-person me-2"></i>Meu
                         Perfil</a></li>
                 <li>
             </ul>
