@@ -131,13 +131,7 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                             <p class="text-muted small">Faça o upload de uma planilha CSV para cadastrar a turma inteira de uma vez só.</p>
                         </div>
 
-                        <?php if (isset($_SESSION['msg'])): ?>
-                            <div class="alert alert-<?= $_SESSION['msg_tipo'] ?> alert-dismissible fade show" role="alert">
-                                <?= $_SESSION['msg'] ?>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                            <?php unset($_SESSION['msg']); unset($_SESSION['msg_tipo']); ?>
-                        <?php endif; ?>
+                        <?php include('../includes/alerta.php'); ?>
 
                         <form action="" method="POST" enctype="multipart/form-data">
                             

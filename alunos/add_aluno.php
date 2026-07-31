@@ -7,8 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Verificação de campos vazios
     if (empty($_POST['nome']) || empty($_POST['matricula'])) {
-        $_SESSION['mensagem'] = "Preencha todos os campos!";
-        $_SESSION['tipo_mensagem'] = "danger";
+        $_SESSION['msg'] = "Preencha todos os campos!";
+        $_SESSION['msg_tipo'] = "danger";
         header('Location: cadastro_aluno.php');
         exit();
     }
@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Se o número de linhas retornadas for maior que 0, a matrícula já existe
     if (mysqli_num_rows($resCheck) > 0) {
-        $_SESSION['mensagem'] = "Erro: Esta matrícula já está cadastrada!";
-        $_SESSION['tipo_mensagem'] = "danger";
+        $_SESSION['msg'] = "Erro: Esta matrícula já está cadastrada!";
+        $_SESSION['msg_tipo'] = "danger";
         header('Location: cadastro_aluno.php');
         exit();
     }
@@ -36,12 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Executamos e verificamos se deu certo
     if (mysqli_query($conn, $sqlInserir)) {
-        $_SESSION['mensagem'] = "Aluno cadastrado com sucesso!";
+        $_SESSION['msg'] = "Aluno cadastrado com sucesso!";
+        $_SESSION['msg_tipo'] = "success";
         header('Location: cadastro_aluno.php');
         exit();
     } else {
         // Se der erro no banco (ex: coluna com nome errado)
-        $_SESSION['mensagem'] = "Erro ao salvar no banco: " . mysqli_error($conn);
+        $_SESSION['msg'] = "Erro ao salvar no banco: " . mysqli_error($conn);
+        $_SESSION['msg_tipo'] = "danger";
         header('Location: cadastro_aluno.php');
         exit();
     }

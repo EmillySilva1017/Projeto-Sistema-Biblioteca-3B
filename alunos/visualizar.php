@@ -59,12 +59,9 @@ $resCursos = mysqli_query($conn, $sqlCursos);
 $sqlTodasTurmas = "SELECT id_turma, serie_atual, identificador_curso, curso FROM turmas ORDER BY serie_atual ASC, identificador_curso ASC";
 $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,7 +72,6 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
     <link rel="stylesheet" href="alunos.css">
     <link rel="stylesheet" href="botoes.css">
 </head>
-
 <body>
     <?php include('../includes/menu.php'); ?>
 
@@ -101,13 +97,7 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
             </div>
         </div>
 
-        <?php if (isset($_SESSION['msg'])): ?>
-            <div class="alert alert-info alert-dismissible fade show mb-4" role="alert">
-                <?= $_SESSION['msg']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php unset($_SESSION['msg']);
-        endif; ?>
+        <?php include('../includes/alerta.php'); ?>
 
         <form action="" method="GET" class="row g-3 mb-4 align-items-end">
             <div class="col-12 col-md-4 position-relative">
@@ -233,8 +223,6 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
         <?php endif; ?>
     </div>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

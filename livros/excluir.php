@@ -10,10 +10,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if(mysqli_query($conn, $sqlExcluir)){
         $_SESSION['mensagem'] = "Livro excluído com sucesso!";
+        $_SESSION['msg_tipo'] = "success";
         header('Location: visualizacao_livro.php');
         exit();
     } else {
         $_SESSION['mensagem'] = "Erro ao excluir: " . mysqli_error($conn);
+        $_SESSION['msg_tipo'] = "danger";
         header("Location: visualizacao_livro.php");
         exit();
     }

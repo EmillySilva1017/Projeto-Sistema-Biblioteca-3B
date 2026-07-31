@@ -30,10 +30,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 4. Executa e define a mensagem de retorno
     if(mysqli_query($conn, $sqlAtualizar)){
         $_SESSION['mensagem'] = "Livro <strong>$titulo</strong> de registro <strong>$n_registro</strong> atualizado com sucesso!";
+        $_SESSION['msg_tipo'] = "success";
         header('Location: visualizacao_livro.php'); 
         exit();
     } else {
         $_SESSION['mensagem'] = "Erro ao atualizar: " . mysqli_error($conn);
+        $_SESSION['msg_tipo'] = "danger";
         header("Location: editar.php?id=$id"); 
         exit();
     }

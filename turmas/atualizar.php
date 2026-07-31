@@ -23,11 +23,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(mysqli_query($conn, $sqlAtualizar)){
         // Sucesso: Guarda a mensagem e vai para a LISTA
         $_SESSION['mensagem'] = "Cadastro da turma <strong>$serie_atual ° $id_curso</strong> atualizado com sucesso!";
+        $_SESSION['msg_tipo'] = 'success';
         header('Location: index.php'); 
         exit();
     } else {
         // Erro: Guarda o erro e volta para o formulário de EDIÇÃO
         $_SESSION['mensagem'] = "Erro ao atualizar: " . mysqli_error($conn);
+        $_SESSION['msg_tipo'] = 'danger';
         header("Location: editar.php?id=$id"); 
         exit();
     }

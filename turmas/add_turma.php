@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     //verificação se os campos não estao vazios
     if(empty($_POST['curso']) || empty($_POST['id_curso'])){
         $_SESSION['mensagem'] = "Preencha todos os campos!";
-        $_SESSION['tipo_mensagem'] = "danger";
+        $_SESSION['msg_tipo'] = "warning";
         header('Location: form_turma.php');
         exit();
     }
@@ -28,11 +28,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     //Executamos e verificamos se deu certo
     if (mysqli_query($conn, $sqlInserir)){
         $_SESSION['mensagem'] = "Turma cadastrada com sucesso!";
+        $_SESSION['msg_tipo'] = "success";
         header('Location: form_turma.php');
         exit();
     } else {
         // Se der erro no banco (ex: coluna com nome errado)
         $_SESSION['mensagem'] = "Erro ao salvar no banco: " . mysqli_error($conn);
+        $_SESSION['msg_tipo'] = "danger";
         header('Location: form_turma.php');
         exit();
     }

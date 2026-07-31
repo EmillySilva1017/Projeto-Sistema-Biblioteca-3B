@@ -41,21 +41,8 @@ include '../includes/conexao.php';
                 <i class="bi bi-arrow-left fs-5"></i> <span>Voltar</span>
             </a>
         </div>
-        <?php if (isset($_SESSION['mensagem'])): ?>
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                <?= $_SESSION['mensagem']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php unset($_SESSION['mensagem']); endif; ?>
-
-        <?php if (isset($_SESSION['msg'])): ?>
-            <div class="alert alert-<?= $_SESSION['msg_tipo'] ?> alert-dismissible fade show" role="alert">
-                <?= $_SESSION['msg'] ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php unset($_SESSION['msg']);
-            unset($_SESSION['msg_tipo']); ?>
-        <?php endif; ?>
+        
+        <?php include('../includes/alerta.php'); ?>
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-5 mb-4">

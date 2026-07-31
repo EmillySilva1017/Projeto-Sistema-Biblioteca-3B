@@ -18,6 +18,7 @@ mysqli_query($conn, $sql_para_segundo);
 
 // Mensagem de sucesso para o index.php
 $_SESSION['mensagem'] = "Ano Letivo Atualizado! As turmas foram promovidas com sucesso.";
+$_SESSION['msg_tipo'] = 'success';
 
 mysqli_close($conn);
 

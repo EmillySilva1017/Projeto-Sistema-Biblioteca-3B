@@ -28,6 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     } else {
         // Erro: Guarda o erro e volta para o formulário de EDIÇÃO
         $_SESSION['msg'] = "Erro ao atualizar: " . mysqli_error($conn);
+        $_SESSION['msg_tipo'] = "danger";
         header("Location: editar_aluno.php?id=$id"); 
         exit();
     }
@@ -36,5 +37,3 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     header('Location: visualizar.php');
     exit();
 }
-
-?>

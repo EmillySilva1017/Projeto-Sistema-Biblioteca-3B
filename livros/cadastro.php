@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //Verificação de campos vazios
     if (empty($_POST['titulo']) || empty($_POST['autor']) || empty($_POST['n_registro'])) {
         $_SESSION['mensagem'] = "Preencha todos os campos!";
+        $_SESSION['msg_tipo'] = "warning";
         header('Location: form_livro.php');
         exit();
     }
@@ -29,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Se o número de linhas retornadas for maior que 0, o número de registro já existe
     if (mysqli_num_rows($resCheck) > 0) {
         $_SESSION['mensagem'] = "Erro: Este N° de Registro já está cadastrado!";
+        $_SESSION['msg_tipo'] = "danger";
         header('Location: form_livro.php');
         exit();
     }
@@ -40,11 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //Executamos e verificamos se deu certo
     if (mysqli_query($conn, $sqlInserir)) {
         $_SESSION['mensagem'] = "Livro cadastrado com sucesso!";
+        $_SESSION['msg_tipo'] = "success";
         header('Location: form_livro.php');
         exit();
     } else {
         // Se der erro no banco (ex: coluna com nome errado)
         $_SESSION['mensagem'] = "Erro ao salvar no banco: " . mysqli_error($conn);
+        $_SESSION['msg_tipo'] = "danger";
         header('Location: form_livro.php');
         exit();
     }

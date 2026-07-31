@@ -6,6 +6,7 @@ include '../includes/conexao.php';
 // Verifica se o ID foi passado na URL
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     $_SESSION['mensagem'] = "ID do aluno não fornecido.";
+    $session['msg_tipo'] = "danger";
     header('Location: ../turmas/visualizar_turma.php');
     exit();
 }
@@ -24,8 +25,10 @@ $sql_delete = "DELETE FROM alunos WHERE id_aluno = $id";
 
 if (mysqli_query($conn, $sql_delete)){
     $_SESSION['msg'] = "Aluno excluído com sucesso!";
+    $_SESSION['msg_tipo'] = "success";
 } else {
     $_SESSION['msg'] = "Erro ao excluir: <br>" . mysqli_error($conn);
+    $_SESSION['msg_tipo'] = "danger";
 }
 
 mysqli_close($conn);

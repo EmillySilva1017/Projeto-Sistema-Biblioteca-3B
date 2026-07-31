@@ -43,13 +43,7 @@ $dados = mysqli_fetch_assoc($result);
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
-                <?php if (isset($_SESSION['mensagem'])): ?>
-                    <div class="alert alert-info alert-dismissible fade show mb-4" role="alert">
-                        <?= $_SESSION['mensagem']; ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    <?php unset($_SESSION['mensagem']);
-                endif; ?>
+                <?php include('../includes/alerta.php'); ?>
 
                 <div class="card card-cadastro">
                     <div

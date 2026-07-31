@@ -36,13 +36,7 @@ $resAlunos = mysqli_query($conn, $sqlAlunos);
 
 <body>
     <div class="container mt-4">
-        <?php if (isset($_SESSION['msg'])): ?>
-            <div class="alert alert-info alert-dismissible fade show shadow-sm" role="alert">
-                <?= $_SESSION['msg']; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <?php unset($_SESSION['msg']); ?>
-        <?php endif; ?>
+        <?php include('../includes/alerta.php'); ?>
         
         <div class="d-flex align-items-center gap-3 mt-3 mb-4">
             <a href="index.php"

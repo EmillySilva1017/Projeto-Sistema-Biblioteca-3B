@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Validação básica de segurança
     if ($fk_id_turma === 0 || empty($nome_aluno) || $fk_id_livro === 0) {
         $_SESSION['mensagem'] = "Erro: Dados incompletos ou inválidos no formulário.";
+        $_SESSION['msg_tipo'] = "warning";
         header("Location: cadastro_emprest.php");
         exit;
     }
@@ -38,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (mysqli_num_rows($res_trava) > 0) {
         $_SESSION['mensagem'] = "Erro: Este livro já se encontra emprestado no momento!";
+        $_SESSION['msg_tipo'] = "danger";
         header("Location: cadastro_emprest.php");
         exit;
     }
@@ -51,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (mysqli_num_rows($res_pendencias) > 0) {
         $_SESSION['mensagem'] = "Erro: Este aluno possui empréstimos pendentes!";
+        $_SESSION['msg_tipo'] = "danger";
         header("Location: cadastro_emprest.php");
         exit;
     }
@@ -61,10 +64,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (mysqli_query($conn, $sqlInsert)) {
         $_SESSION['mensagem'] = "Empréstimo cadastrado com sucesso!";
+        $_SESSION['msg_tipo'] = "success";
         header("Location: list_emprest.php");
         exit;
     } else {
         $_SESSION['mensagem'] = "Erro ao salvar no banco: " . mysqli_error($conn);
+        $_SESSION['msg_tipo'] = "danger";
         header("Location: cadastro_emprest.php");
         exit;
     }

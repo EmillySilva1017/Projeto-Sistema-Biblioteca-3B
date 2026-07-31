@@ -5,6 +5,7 @@ include('../includes/conexao.php');
 
 if (!isset($_SESSION['id_user'])) {
     $_SESSION['mensagem'] = "Erro: Acesso não autorizado.";
+    $_SESSION['msg_tipo'] = "danger";
     header("Location: list_emprest.php");
     exit;
 }
@@ -14,6 +15,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($id === 0) {
     $_SESSION['mensagem'] = "Erro: Registro inválido.";
+    $_SESSION['msg_tipo'] = "danger";
     header("Location: list_emprest.php");
     exit;
 }
@@ -27,6 +29,7 @@ switch ($acao) {
         $sql = "UPDATE emprestimos SET data_devolucao = '$hoje', status = 'Entregue' WHERE id_emprestimos = $id";
         if (mysqli_query($conn, $sql)) {
             $_SESSION['mensagem'] = "Livro devolvido com sucesso!";
+            $_SESSION['msg_tipo'] = "success";
         }
         break;
 
@@ -48,11 +51,14 @@ switch ($acao) {
                     
             if (mysqli_query($conn, $sql)) {
                 $_SESSION['mensagem'] = "Empréstimo renovado com sucesso por mais 7 dias!";
+                $_SESSION['msg_tipo'] = "success";
             } else {
                 $_SESSION['mensagem'] = "Erro ao tentar renovar o empréstimo.";
+                $_SESSION['msg_tipo'] = "danger";
             }
         } else {
             $_SESSION['mensagem'] = "Erro: Empréstimo não encontrado.";
+            $_SESSION['msg_tipo'] = "warning";
         }
         break;
 }

@@ -18,12 +18,7 @@ session_start();
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 
-                <?php if (isset($_SESSION['mensagem'])): ?>
-                    <div class="alert alert-info alert-dismissible fade show mb-4" role="alert">
-                        <?= $_SESSION['mensagem']; ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php unset($_SESSION['mensagem']); endif; ?>
+                <?php include('../includes/alerta.php'); ?>
 
                 <div class="card card-cadastro">
                     <div class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
