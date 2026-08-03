@@ -1,0 +1,134 @@
+body {
+    background-color: #f4f6f9;
+    font-family: 'Poppins', sans-serif;
+    color: #2c3e50;
+}
+
+/* Topbar com a cor institucional do sistema */
+.topbar-adm {
+    background-color: #1e5631;
+    padding: 12px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo dos Cards do Painel ADM */
+.card-stat {
+    background: #ffffff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.card-stat.border-green {
+    border-left: 5px solid #1e5631;
+}
+
+.card-stat.border-orange {
+    border-left: 5px solid #f39c12;
+}
+
+.card-stat.border-blue {
+    border-left: 5px solid #2980b9;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.bg-icon-green {
+    background-color: #e8f5e9;
+    color: #1e5631;
+}
+
+.bg-icon-orange {
+    background-color: #fef5e7;
+    color: #f39c12;
+}
+
+.bg-icon-blue {
+    background-color: #ebf5fb;
+    color: #2980b9;
+}
+
+/* Estilo dos blocos e tabelas no padrão do sistema */
+.card-box {
+    background: #ffffff;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.box-header-green {
+    background-color: #075d24;
+    color: #ffffff;
+    padding: 14px 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Tabela com bordas e divisões bem definidas */
+.table-divided {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.table-divided thead th {
+    background-color: #278c49 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 16px;
+    border-bottom: 2px solid #278c49;
+}
+
+.table-divided tbody tr {
+    border-bottom: 1px solid #e2e8f0; /* Divisória entre cada linha */
+    transition: background-color 0.2s ease;
+}
+
+/* Cor alternada para facilitar a leitura */
+.table-divided tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.table-divided tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+.table-divided td {
+    padding: 14px 16px; /* Espaçamento interno para não aglomerar texto */
+    vertical-align: middle;
+    border-bottom: 1px solid #e2e8f0; /* Borda inferior em cada célula */
+}
+
+/* Divisória vertical opcional entre colunas */
+.table-divided td:not(:last-child),
+.table-divided th:not(:last-child) {
+    border-right: 1px solid #e2e8f0;
+}
+
+.badge-genero {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}

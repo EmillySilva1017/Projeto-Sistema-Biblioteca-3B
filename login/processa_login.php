@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Login do Aluno Autorizado (Sem Senha)
             $_SESSION['id_user'] = $dados_aluno['id_aluno']; // Ajuste se for apenas 'id'
-            $_SESSION['nome'] = $dados_aluno['nome'];
+            $_SESSION['nome_aluno'] = $dados_aluno['nome_aluno'];
             $_SESSION['nivel'] = 'aluno';
 
-            header('Location: ../aluno/painel_aluno.php');
+            header('Location: ../aluno/dashboard_aluno.php');
             exit();
         } else {
             $_SESSION['mensagem'] = "Matrícula não encontrada!";

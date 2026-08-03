@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13/06/2026 às 15:04
+-- Tempo de geração: 03/08/2026 às 02:04
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -47,7 +47,9 @@ INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `numero_chamada`, `matricula`, `
 (5, 'Derick', 5, 1234682, 2),
 (6, 'Antonio Junior', 1, 1223345, 1),
 (7, 'Ana Laura', 2, 5443123, 1),
-(8, 'Carlos Thomás', 3, 9887456, 1);
+(8, 'Carlos Thomás', 3, 9887456, 1),
+(9, 'Emilly Rodrigues Silva', 18, 90143521, 10),
+(10, 'Guilherme Gomes', 14, 8765431, 10);
 
 -- --------------------------------------------------------
 
@@ -73,10 +75,11 @@ CREATE TABLE `emprestimos` (
 
 INSERT INTO `emprestimos` (`id_emprestimos`, `nome_aluno`, `fk_id_livro`, `data_saida`, `data_prevista`, `data_devolucao`, `fk_id_user`, `status`, `fk_id_turma`) VALUES
 (8, 'Carlos Eduardo', 2190, '2026-06-01', '2026-06-08', NULL, 1, 'Atrasado', 2),
-(9, 'Carlos Thomás', 4111, '2026-06-13', '2026-06-20', NULL, 1, 'Pendente', 1),
-(10, 'Derick', 984, '2026-06-03', '2026-06-17', NULL, 1, 'Renovado', 2),
-(11, 'Ana Laura', 4365, '2026-06-13', '2026-06-20', NULL, 1, 'Pendente', 1),
-(12, 'Antonio Junior', 5601, '2026-06-05', '2026-06-12', '2026-06-13 09:35:57', 1, 'Entregue', 1);
+(9, 'Carlos Thomás', 4111, '2026-06-13', '2026-06-20', NULL, 1, 'Atrasado', 1),
+(10, 'Derick', 984, '2026-06-03', '2026-06-17', NULL, 1, 'Atrasado', 2),
+(11, 'Ana Laura', 4365, '2026-06-13', '2026-06-20', NULL, 1, 'Atrasado', 1),
+(12, 'Antonio Junior', 5601, '2026-06-05', '2026-06-12', '2026-06-13 09:35:57', 1, 'Entregue', 1),
+(13, 'Clotilde', 1727, '2026-06-08', '2026-06-15', NULL, 1, 'Atrasado', 2);
 
 -- --------------------------------------------------------
 
@@ -6924,7 +6927,9 @@ INSERT INTO `turmas` (`id_turma`, `curso`, `identificador_curso`, `ano_conclusao
 (9, 'Enfermagem', 'A', '2026', '3'),
 (10, 'Informática', 'B', '2026', '3'),
 (11, 'Administração', 'D', '2026', '3'),
-(12, 'Comércio', 'C', '2026', '3');
+(12, 'Comércio', 'C', '2026', '3'),
+(13, 'Engenharia de Pesca', 'F', '2028', '1'),
+(14, 'Engenharia de Pesca', 'F', '2028', '1');
 
 -- --------------------------------------------------------
 
@@ -6937,7 +6942,7 @@ CREATE TABLE `usuario` (
   `nome_user` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `nivel` int(1) NOT NULL DEFAULT 1
+  `nivel` enum('adm','bibliotecario') NOT NULL DEFAULT 'bibliotecario'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -6945,7 +6950,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_user`, `nome_user`, `email`, `senha`, `nivel`) VALUES
-(1, 'Administrador', 'admin@admin.com', '$2y$10$D7TakGwiAW8O3P7yjLLZF.5NFpBm2kdamC/Y7a9rwzUboysgCVrfu', 1);
+(1, 'Administrador', 'admin@admin.com', '$2y$10$D7TakGwiAW8O3P7yjLLZF.5NFpBm2kdamC/Y7a9rwzUboysgCVrfu', 'adm'),
+(2, 'Machado de Assis', 'assis@gm.com', '$2y$10$Lf20ugbI5TkPchuQpMSLgesZi4zzbq67LQOTk5ifOfbIvN3tszPp6', 'bibliotecario'),
+(3, 'Maria Serafina', 'maria@gm.com', '$2y$10$aCbHnzLehYZH2ebg.DTSr.QDO1/uQ1p6qr.ZKxpOb5HCLkVzqCDJu', 'bibliotecario'),
+(4, 'Emilly', 'emilly@test.com', '$2y$10$l3TS73aBvm/BbVcPEiJtq.tIdHweCxkA3h7yvDp3qacF6cBSvTjIi', 'bibliotecario');
 
 --
 -- Índices para tabelas despejadas
@@ -6994,13 +7002,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `id_emprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_emprestimos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `livros`
@@ -7012,13 +7020,13 @@ ALTER TABLE `livros`
 -- AUTO_INCREMENT de tabela `turmas`
 --
 ALTER TABLE `turmas`
-  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_turma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restrições para tabelas despejadas
