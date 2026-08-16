@@ -4,14 +4,7 @@ body {
     color: #2c3e50;
 }
 
-/* Topbar com a cor institucional do sistema */
-.topbar-adm {
-    background-color: #1e5631;
-    padding: 12px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Estilo dos Cards do Painel ADM */
+/* Cards do Painel */
 .card-stat {
     background: #ffffff;
     border: none;
@@ -22,17 +15,9 @@ body {
     transition: all 0.2s ease;
 }
 
-.card-stat.border-green {
-    border-left: 5px solid #1e5631;
-}
-
-.card-stat.border-orange {
-    border-left: 5px solid #f39c12;
-}
-
-.card-stat.border-blue {
-    border-left: 5px solid #2980b9;
-}
+.card-stat.border-green { border-left: 5px solid #2d572c; }
+.card-stat.border-orange { border-left: 5px solid #f39200; }
+.card-stat.border-blue { border-left: 5px solid #2980b9; }
 
 .stat-icon {
     width: 48px;
@@ -44,32 +29,21 @@ body {
     font-size: 1.3rem;
 }
 
-.bg-icon-green {
-    background-color: #e8f5e9;
-    color: #1e5631;
-}
+.bg-icon-green { background-color: #e8f5e9; color: #2d572c; }
+.bg-icon-orange { background-color: #fef5e7; color: #f39200; }
+.bg-icon-blue { background-color: #ebf5fb; color: #2980b9; }
 
-.bg-icon-orange {
-    background-color: #fef5e7;
-    color: #f39c12;
-}
-
-.bg-icon-blue {
-    background-color: #ebf5fb;
-    color: #2980b9;
-}
-
-/* Estilo dos blocos e tabelas no padrão do sistema */
+/* Estilo dos blocos principais */
 .card-box {
     background: #ffffff;
     border-radius: 12px;
-    border: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
     overflow: hidden;
 }
 
 .box-header-green {
-    background-color: #075d24;
+    background-color: #2d572c;
     color: #ffffff;
     padding: 14px 20px;
     font-weight: 600;
@@ -79,56 +53,80 @@ body {
     justify-content: space-between;
 }
 
-/* Tabela com bordas e divisões bem definidas */
+/* Tabela Clean e Padronizada */
 .table-divided {
-    border-collapse: separate;
-    border-spacing: 0;
     width: 100%;
+    margin-bottom: 0;
+    border-collapse: collapse;
 }
 
+/* Cabeçalho mais leve, em tom cinza suave e texto em caixa alta */
 .table-divided thead th {
-    background-color: #278c49 !important;
-    color: #ffffff !important;
-    font-weight: 600;
-    font-size: 0.8rem;
+    background-color: #f8fafc !important;
+    color: #475569 !important;
+    font-weight: 700;
+    font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     padding: 12px 16px;
-    border-bottom: 2px solid #278c49;
+    border-bottom: 2px solid #e2e8f0 !important;
+    border-top: none !important;
 }
 
+/* Linhas e separações internas */
 .table-divided tbody tr {
-    border-bottom: 1px solid #e2e8f0; /* Divisória entre cada linha */
     transition: background-color 0.2s ease;
+    border-bottom: 1px solid #f1f5f9;
 }
 
-/* Cor alternada para facilitar a leitura */
-.table-divided tbody tr:nth-child(even) {
-    background-color: #f8fafc;
+.table-divided tbody tr:last-child {
+    border-bottom: none;
 }
 
 .table-divided tbody tr:hover {
-    background-color: #f1f5f9;
+    background-color: #f8fafc;
 }
 
 .table-divided td {
-    padding: 14px 16px; /* Espaçamento interno para não aglomerar texto */
+    padding: 12px 16px;
     vertical-align: middle;
-    border-bottom: 1px solid #e2e8f0; /* Borda inferior em cada célula */
+    border: none;
 }
 
-/* Divisória vertical opcional entre colunas */
-.table-divided td:not(:last-child),
-.table-divided th:not(:last-child) {
-    border-right: 1px solid #e2e8f0;
-}
-
+/* Badge do Gênero combinando com a paleta */
 .badge-genero {
-    background-color: #f1f5f9;
-    color: #475569;
-    font-size: 0.72rem;
+    background-color: #e2e8f0;
+    color: #334155;
+    font-size: 0.68rem;
     font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 20px;
+    padding: 4px 8px;
+    border-radius: 6px;
     text-transform: uppercase;
+}
+
+@media (max-width: 767.98px) {
+    /* Reduz os espaçamentos internos para aproveitar a tela pequena */
+    .table-divided td, 
+    .table-divided thead th {
+        padding: 10px 12px !important;
+        font-size: 0.8rem !important;
+    }
+
+    /* Oculta as divisórias verticais no celular para não espremer o texto */
+    .table-divided td:not(:last-child),
+    .table-divided th:not(:last-child) {
+        border-right: none !important;
+    }
+
+    /* Reduz levemente a tipografia do cabeçalho */
+    .box-header-green {
+        padding: 12px 15px;
+        font-size: 0.88rem;
+    }
+
+    /* Ajusta as badges em telas menores */
+    .badge-genero {
+        font-size: 0.62rem;
+        padding: 3px 6px;
+    }
 }

@@ -33,9 +33,10 @@ if ($role === 'bibliotecario') {
 <body class="d-flex align-items-center">
     <div class="container py-5">
 
-         <div class="text-center mb-3">
+        <div class="text-center mb-3">
             <img src="../img/LOGO MANOTECA - CIRCULAR.png" alt="Logo Manoteca" class="logo-manoteca mb-3">
         </div> 
+         
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-6 col-lg-4">

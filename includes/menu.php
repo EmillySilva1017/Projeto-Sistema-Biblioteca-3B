@@ -37,8 +37,8 @@
     <div class="offcanvas-header border-bottom">
         <div class="d-flex align-items-center w-100">
             <div class="d-flex align-items-center justify-content-center" style="height: 120px; width: 100%;">
-                <img src="../img/Logo_Manoteca.png" alt="Logo Manoteca"
-                    style="height: auto; width: 80%; max-width: 220px; object-fit: contain;">
+                <img src="../img/LOGO MANOTECA - CIRCULAR.png" alt="Logo Manoteca"
+                    style="height: 100px; width: 100px; object-fit: cover;" class="rounded-circle">
             </div>
             <button type="button" class="btn-close ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -99,7 +99,7 @@
 
     .profile-dropdown .dropdown-toggle::after {
         display: none;
-        /* Remove a setinha padrão do Bootstrap se preferir igual ao protótipo */
+        /* Remove a setinha padrão do Bootstrap igual ao protótipo */
     }
 
     .dropdown-menu {
@@ -151,8 +151,8 @@
 
     /* --- RESPONSIVIDADE DA NAVBAR --- */
     .navbar {
-        padding: 0.4rem 0.75rem !important;
         /* Diminui o espaçamento interno no mobile */
+        padding: 0.4rem 0.75rem !important;
     }
 
     @media (max-width: 576px) {

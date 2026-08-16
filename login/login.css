@@ -8,7 +8,7 @@ body {
 }
 
 .logo-manoteca {
-    width: 170px; /* Altere este valor para regular o tamanho (ex: 80px, 90px, 100px) */
+    width: 140px; /* Altere este valor para regular o tamanho (ex: 80px, 90px, 100px) */
     height: auto;
     border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
