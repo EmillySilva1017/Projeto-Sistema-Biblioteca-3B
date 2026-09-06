@@ -9,19 +9,18 @@ body {
   border: none;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
 
 .card-header-custom {
   background-color: #1c942f; /* Verde institucional */
   color: white;
-  border-top-left-radius: 16px !important;
-  border-top-right-radius: 16px !important;
-  padding: 15px;
+  padding: 20px 25px;
   border-bottom: 5px solid #df8508; /* Linha Laranja padrão do sistema */
 }
 
 .form-label {
-  font-weight: 500;
+  font-weight: 600;
   color: #495057;
   font-size: 0.9rem;
   margin-bottom: 6px;
@@ -29,10 +28,11 @@ body {
 
 .form-control,
 .form-select {
-  height: 46px;
+  height: 48px;
   border-radius: 10px;
   border: 1px solid #ced4da;
-  padding-left: 12px;
+  padding-left: 14px;
+  font-size: 0.95rem;
   transition: all 0.2s ease-in-out;
 }
 
@@ -48,6 +48,7 @@ body {
   font-weight: 500;
 }
 
+/* --- BOTÕES DO FORMULÁRIO --- */
 .btn-salvar {
   background-color: #1c942f;
   color: white;
@@ -55,6 +56,9 @@ body {
   border: none;
   border-radius: 10px;
   height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: 0.2s ease;
 }
 
@@ -70,4 +74,46 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Impede a rolagem horizontal indesejada no celular */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* --- AJUSTES PARA TELAS MENORES (Celular) --- */
+@media (max-width: 576px) {
+  /* Reduz o arredondamento e sombra para telas pequenas */
+  .card-cadastro {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Ajusta o cabeçalho do cartão */
+  .card-header-custom {
+    padding: 15px !important;
+  }
+
+  .card-header-custom h4 {
+    font-size: 1.15rem;
+  }
+
+  /* Reduz o padding do formulário para ganhar espaço nas laterais */
+  .card-body {
+    padding: 1rem !important;
+  }
+
+  /* Garante que os campos de texto não extrapolem a largura */
+  .form-control, .form-select {
+    height: 44px;
+    font-size: 0.9rem;
+  }
+
+  /* Força os botões a ocuparem 100% da largura empilhados */
+  .btn-salvar, .btn-cancelar {
+    width: 100% !important;
+    height: 44px;
+    font-size: 0.95rem;
+  }
 }

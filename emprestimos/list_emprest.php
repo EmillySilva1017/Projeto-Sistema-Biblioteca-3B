@@ -91,15 +91,12 @@ $res_dados = mysqli_query($conn, $sql_dados);
             <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
                 <h2 class="fw-bold text-dark mb-0">Gestão de Empréstimos</h2>
             </div>
-            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
-                <a href="cadastro_emprest.php"
-                    class="btn btn-emprest px-4 py-2 fw-bold rounded-3 shadow-sm w-sm-auto flex-fill flex-md-none">
-                    <i class="bi bi-plus-circle me-2"></i> Novo Empréstimo
+            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3 mt-md-0">
+                <a href="cadastro_emprest.php" class="btn btn-emprest">
+                    <i class="bi bi-plus-lg me-2"></i> Novo Empréstimo
                 </a>
-                <a href="gerar_relatorio.php"
-                    class="btn btn-relatorio px-4 py-2 fw-bold rounded-3 shadow-sm w-sm-auto flex-fill flex-md-none"
-                    target="_blank">
-                    <i class="bi bi-file-earmark-pdf-fill me-2"></i> Gerar PDF
+                <a href="gerar_relatorio.php" class="btn btn-relatorio" target="_blank">
+                    <i class="bi bi-file-earmark-pdf me-2"></i> Gerar PDF
                 </a>
             </div>
         </div>
@@ -140,10 +137,8 @@ $res_dados = mysqli_query($conn, $sql_dados);
                     <i class="bi bi-funnel-fill me-2"></i> Filtrar
                 </button>
                 <?php if (!empty($busca) || $turma_filtro > 0 || !empty($status_filtro)): ?>
-                <a href="list_emprest.php"
-                    class="btn btn-danger d-inline-flex align-items-center justify-content-center rounded-3 px-3"
-                    style="height: 45px;" title="Limpar Filtros">
-                    <i class="bi bi-x-circle fs-5"></i>
+                <a href="list_emprest.php" class="btn btn-limpar-filtro" title="Limpar Filtros">
+                    <i class="bi bi-x-lg"></i>
                 </a>
                 <?php endif; ?>
             </div>
@@ -252,19 +247,20 @@ $res_dados = mysqli_query($conn, $sql_dados);
                                 <?php if ($row['status'] != 'Entregue'): ?>
                                 <div class="d-flex justify-content-center gap-1">
                                     <a href="acoes_emprest.php?acao=devolver&id=<?= $row['id_emprestimos'] ?>"
-                                        class="btn btn-sm btn-success px-2" title="Devolver Livro"
+                                        class="btn tbl-btn tbl-btn-success" title="Devolver Livro"
                                         onclick="return confirm('Confirma a devolução deste livro?');">
                                         <i class="bi bi-check-lg"></i>
                                     </a>
                                     <a href="acoes_emprest.php?acao=renovar&id=<?= $row['id_emprestimos'] ?>"
-                                        class="btn btn-sm btn-warning text-dark px-2" title="Renovar Prazo"
+                                        class="btn tbl-btn tbl-btn-warning" title="Renovar Prazo"
                                         onclick="return confirm('Confirma a renovação deste empréstimo?');">
                                         <i class="bi bi-arrow-repeat"></i>
                                     </a>
                                 </div>
                                 <?php else: ?>
-                                <span class="text-success small fw-bold" style="font-size: 0.8rem;"><i
-                                        class="bi bi-cloud-check-fill"></i> Ok</span>
+                                <span class="text-success small fw-bold" style="font-size: 0.8rem;">
+                                    <i class="bi bi-check-circle-fill me-1"></i> Ok
+                                </span>
                                 <?php endif; ?>
                             </td>
                         </tr>

@@ -24,38 +24,3 @@ body {
   border: none;
 }
 
-.btn-promover {
-  background-color: rgb(12, 104, 216);
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  transition: 0.2s ease;
-  height: 45px; /* Altura ideal para toque no telemóvel */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-promover:hover {
-  background-color: rgb(3, 63, 136);
-  color: white;
-}
-
-.btn-cadastro {
-  background-color: rgb(229, 129, 15);
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  transition: 0.2s ease;
-  height: 45px; /* Altura ideal para toque no telemóvel */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-cadastro:hover {
-  background-color: rgb(151, 75, 4);
-  color: white;
-}

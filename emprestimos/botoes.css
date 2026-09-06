@@ -1,42 +1,109 @@
-.btn-filtrar {
-  background-color: #0052cc;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  transition: 0.2s ease;
-  height: 45px; /* Altura ideal para toque no telemóvel */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-filtrar:hover {
-  background-color: #012e8f;
-  color: white;
-}
-
+/* --- BOTÃO PRINCIPAL (Ação de Cadastro / Criação) --- */
 .btn-emprest {
   background-color: #26871b;
-  color: white;
-  font-weight: bold;
+  color: #ffffff;
+  font-weight: 600;
   border: none;
-  border-radius: 10px;
-  transition: 0.2s ease;
-  height: 45px; /* Altura ideal para toque no telemóvel */
+  border-radius: 8px;
+  height: 42px;
+  padding: 0 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .btn-emprest:hover {
-  background-color: #085e17;
-  color: white;
+  background-color: #1e6b15;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
 }
 
-.btn-relatorio{
-  background-color: #c20a1c;
-  color: white;
+/* --- BOTÃO DE RELATÓRIO / PDF (Suave / Outline Red) --- */
+.btn-relatorio {
+  background-color: #fff5f5;
+  color: #c20a1c;
+  border: 1px solid #f8d7da;
+  font-weight: 600;
+  border-radius: 8px;
+  height: 42px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-relatorio:hover {
+  background-color: #b83340;
+  color: #ffffff;
+  border-color: #c20a1c;
+}
+
+.btn-voltar {
+  background-color: #ffffff;
+  color: #495057;
+  border: 1px solid #ced4da;
+  font-weight: 600;
+  border-radius: 8px;
+  height: 40px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-voltar:hover {
+  background-color: #e9ecef;
+  color: #212529;
+  border-color: #adb5bd;
+}
+
+/* --- BOTÕES DE FILTRO --- */
+.btn-filtrar {
+  background-color: #f0f5ff;
+  color: #0052cc;
+  border: 1px solid #d1e0f5;
+  font-weight: 600;
+  border-radius: 8px;
+  height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-filtrar:hover {
+  background-color: #1c5ec0;
+  color: #ffffff;
+  border-color: #2f5a9b;
+}
+
+.btn-limpar-filtro {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  height: 45px;
+  width: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-limpar-filtro:hover {
+  background-color: #b83340;
+  color: #ffffff;
+  border-color: #dc3545;
+}
+
+.btn-promover {
+  background-color: rgb(196, 215, 238);
+  color: rgb(23, 16, 116);
   font-weight: bold;
   border: none;
   border-radius: 10px;
@@ -47,7 +114,102 @@
   justify-content: center;
 }
 
-.btn-relatorio:hover {
-  background-color: #910410;
+.btn-promover:hover {
+  background-color: rgb(31, 87, 155);
   color: white;
+}
+
+.btn-importar {
+  background-color: #e7faf4;
+  color: #23867e;
+  border: 1px solid #bbf7d0;
+  font-weight: 600;
+  border-radius: 8px;
+  height: 42px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-importar:hover {
+  background-color: #23867e;
+  color: #ffffff;
+}
+
+.btn-cadastro {
+  background-color: #26871b;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  height: 42px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn-cadastro:hover {
+  background-color: #1e6b15;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* --- BOTÕES DE AÇÃO NA TABELA (GHOST / SUBTIS) --- */
+.tbl-btn {
+  width: 40px;
+  height: 35px;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.15s ease-in-out;
+}
+
+/* sucesso */
+.tbl-btn-success {
+  color: #16a34a;
+}
+.tbl-btn-success:hover {
+  background-color: #16a34a;
+  color: #ffffff;
+  border-color: #16a34a;
+}
+
+/* renovar/editar */
+.tbl-btn-warning {
+  color: #d97706;
+}
+.tbl-btn-warning:hover {
+  background-color: #d97706;
+  color: #ffffff;
+  border-color: #d97706;
+}
+
+/* excluir */
+.tbl-btn-danger {
+  color: #dc2626;
+}
+.tbl-btn-danger:hover {
+  background-color: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+
+/* reset */
+.tbl-btn-info {
+  color: #0284c7;
+}
+.tbl-btn-info:hover {
+  background-color: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
 }

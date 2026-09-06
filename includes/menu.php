@@ -18,7 +18,9 @@
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                 id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="me-2 d-none d-sm-inline fw-semibold"><?php echo $_SESSION['nome']; ?></span>
+                <span class="me-2 d-none d-sm-inline fw-semibold">
+                    <?php echo $_SESSION['nome_user'] ?? $_SESSION['nome'] ?? 'Usuário'; ?>
+                </span>
                 <i class="bi bi-person-circle fs-3 text-white"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end shadow animate slideIn" aria-labelledby="dropdownUser">

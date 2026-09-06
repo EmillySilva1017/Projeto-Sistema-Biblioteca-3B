@@ -128,7 +128,7 @@ if ($busca_ativa) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="livro.css">
-    <link rel="stylesheet" href="botoes.css">
+    <link rel="stylesheet" href="../emprestimos/botoes.css">
 
 </head>
 
@@ -136,7 +136,9 @@ if ($busca_ativa) {
     <?php include('../includes/menu.php'); ?>
 
     <div class="container-fluid mt-4 px-3 px-sm-4">
-        <h2 class="text-center mb-3 fw-bold text-dark">Gestão de Livros</h2>
+        <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
+            <h2 class="fw-bold text-dark mb-0">Gestão de Livros</h2>
+        </div>
 
         <form action="" method="GET" class="row g-3 mb-4 align-items-end">
             <div class="col-12 col-md-5 position-relative">
@@ -171,12 +173,12 @@ if ($busca_ativa) {
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-filtrar flex-grow-1">
-                        <i class="bi bi-funnel me-2"></i>Filtrar
+                        <i class="bi bi-funnel-fill me-2"></i> Filtrar
                     </button>
 
                     <?php if ($busca_ativa): ?>
-                        <a href="visualizacao_livro.php" class="btn btn-limpar" title="Limpar todos os filtros">
-                            <i class="bi bi-x-circle me-2"></i> Limpar
+                        <a href="visualizacao_livro.php" class="btn btn-limpar-filtro" title="Limpar todos os filtros">
+                            <i class="bi bi-x-lg"></i>
                         </a>
                     <?php endif; ?>
                 </div>
@@ -246,11 +248,11 @@ if ($busca_ativa) {
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-1">
                                             <a href="editar_livro.php?id=<?= $livro['id'] ?>"
-                                                class="btn btn-sm btn-warning px-2">
+                                                class="btn tbl-btn tbl-btn-warning" title="Editar livro">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </a>
-                                            <a href="excluir.php?id=<?= $livro['id'] ?>" class="btn btn-sm btn-danger px-2"
-                                                onclick="return confirm('Deseja excluir este exemplar?')">
+                                            <a href="excluir.php?id=<?= $livro['id'] ?>" class="btn tbl-btn tbl-btn-danger"
+                                                onclick="return confirm('Deseja excluir este exemplar?')" title="Excluir Livro">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </div>

@@ -19,6 +19,7 @@ mysqli_close($conn);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="lista.css">
+    <link rel="stylesheet" href="../emprestimos/botoes.css">
 </head>
 
 <body>
@@ -30,18 +31,19 @@ mysqli_close($conn);
             <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
                 <h2 class="fw-bold m-0">Gerenciar Turmas</h2>
             </div>
-            <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
+            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
                 <a href="promover_turmas.php"
-                    class="btn btn-promover px-4 py-2 fw-bold rounded-3 shadow-sm w-sm-auto flex-fill flex-md-none"
+                    class="btn btn-promover"
                     onclick="return confirm('Deseja promover todas as turmas? O 3º ano será arquivado!')">
                     <i class="bi bi-arrow-up-circle me-1"></i> Promover Turmas
                 </a>
+                <a href="form_turma.php"
+                    class="btn btn-cadastro">
+                    <i class="bi bi-plus-lg me-1"></i> Nova Turma
+                </a>
             </div>
             <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
-                <a href="form_turma.php"
-                    class="btn btn-cadastro px-4 py-2 fw-bold rounded-3 shadow-sm w-sm-auto flex-fill flex-md-none">
-                    <i class="bi bi-plus-lg me-1"></i> NOVA TURMA
-                </a>
+                
             </div>
         </div>
 
@@ -69,18 +71,18 @@ mysqli_close($conn);
                                 <td class="text-center"><?= $turma['ano_conclusao'] ?></td>
                                 <td class="text-center">
                                     <a href="visualizar_turma.php?id=<?= $turma['id_turma']; ?>"
-                                        class="btn btn-sm btn-success px-3" title="Ver Alunos">
+                                        class="btn btn-sm btn-outline-success" title="Ver Alunos">
                                         <i class="bi bi-person-fill me-1"></i>Ver alunos
                                     </a>
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
                                         <a href="editar.php?id=<?= $turma['id_turma'] ?>"
-                                            class="btn btn-sm btn-warning me-2">
+                                            class="btn tbl-btn tbl-btn-warning" title="Editar turma">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
-                                        <a href="excluir.php?id=<?= $turma['id_turma'] ?>" class="btn btn-sm btn-danger"
-                                            onclick="return confirm('Deseja excluir esta turma?')">
+                                        <a href="excluir.php?id=<?= $turma['id_turma'] ?>" class="btn tbl-btn tbl-btn-danger"
+                                            onclick="return confirm('Deseja excluir esta turma?')" title="Excluir turma">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </div>

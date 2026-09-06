@@ -40,15 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
     } else {
+        $usuario_input = $_POST['usuario'] ?? $_POST['email'] ?? '';
         // --- PORTAL ADM OU BIBLIOTECÁRIO (EMAIL + SENHA CRIPTOGRAFADA) ---
-        if (empty($_POST['usuario']) || empty($_POST['senha'])) {
+        if (empty($usuario_input) || empty($_POST['senha'])) {
             $_SESSION['mensagem'] = "Preencha todos os campos!";
             $_SESSION['msg_tipo'] = 'warning';
             header("Location: login.php?role=$role");
             exit();
         }
 
-        $email = mysqli_real_escape_string($conn, $_POST['usuario']);
+        $email = mysqli_real_escape_string($conn, $usuario_input);
         $senha = $_POST['senha'];
 
         // Busca na tabela 'usuario' filtrando pelo email e pela string do nível ('adm' ou 'bibliotecario')
@@ -62,10 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (password_verify($senha, $dados['senha'])) {
 
                 $_SESSION['id_user'] = $dados['id_user'];
-                $_SESSION['nome'] = $dados['nome_user'];
+                $_SESSION['nome_user'] = $dados['nome_user']; // Nome correto salvo na sessão!
                 $_SESSION['email'] = $dados['email'];
-                $_SESSION['nivel'] = $dados['nivel']; // Salva 'adm' ou 'bibliotecario'
-                
+                $_SESSION['nivel'] = $dados['nivel'];
+
                 header('Location: ../painel/painel_adm.php');
                 exit();
             }

@@ -1,5 +1,6 @@
 <?php session_start();
 include('../includes/conexao.php');
+include('../includes/verifica_login.php');
 /** @var mysqli $conn */
 date_default_timezone_set('America/Fortaleza');
 

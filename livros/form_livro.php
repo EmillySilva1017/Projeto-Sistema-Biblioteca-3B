@@ -87,8 +87,7 @@
                             </div>
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                                <button type="submit" class="btn btn-salvar btn-lg px-5 shadow text-uppercase">Cadastrar
-                                    Livro</button>
+                                <button type="submit" class="btn btn-salvar btn-lg px-5 shadow">Cadastrar Livro</button>
                                 <a href="visualizacao_livro.php"
                                     class="btn btn-outline-danger btn-cancelar btn-lg px-4 fw-bold">Cancelar</a>
                             </div>

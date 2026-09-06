@@ -62,6 +62,7 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,30 +71,25 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="alunos.css">
-    <link rel="stylesheet" href="botoes.css">
+    <link rel="stylesheet" href="../emprestimos/botoes.css">
 </head>
+
 <body>
     <?php include('../includes/menu.php'); ?>
 
-    <div class="container-fluid mt-4 px-3 px-sm-4">
-        <div class="row align-items-center mt-3 mb-4 g-3">
-            <div class="col-12 col-md-6 text-center text-md-start">
+    <div class="container-fluid px-4 pt">
+        <div class="row align-items-center mt-3 mb-3">
+            <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
                 <h2 class="fw-bold text-dark mb-0">Gestão de Alunos</h2>
             </div>
-
-            <div class="col-12 col-md-6">
-                <div class="d-flex flex-column flex-sm-row justify-content-md-end gap-2">
-                    <a href="importar_alunos.php"
-                        class="btn btn-outline-info fw-bold d-inline-flex align-items-center justify-content-center shadow-sm px-4 py-2"
-                        style="height: 45px; border-radius: 10px;">
-                        <i class="bi bi-file-earmark-arrow-up me-2"></i>IMPORTAR PLANILHA
-                    </a>
-                    <a href="cadastro_aluno.php"
-                        class="btn btn-success fw-bold d-inline-flex align-items-center justify-content-center shadow-sm px-4 py-2"
-                        style="height: 45px; border-radius: 10px;">
-                        <i class="bi bi-plus-lg me-2"></i>CADASTRAR ALUNO
-                    </a>
-                </div>
+            <div 
+                class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3 mt-md-0">
+                <a href="importar_alunos.php" class="btn btn-importar">
+                    <i class="bi bi-file-earmark-arrow-up me-2"></i>Importar planilha
+                </a>
+                <a href="cadastro_aluno.php" class="btn btn-cadastro">
+                    <i class="bi bi-plus-lg me-1"></i>Cadastrar aluno
+                </a>
             </div>
         </div>
 
@@ -135,9 +131,8 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
                     </button>
 
                     <?php if ($filtro_ativo): ?>
-                        <a href="visualizar.php" class="btn btn-limpar btn-mobile-full text-nowrap"
-                            title="Limpar todos os filtros">
-                            <i class="bi bi-x-circle me-1"></i>Limpar
+                        <a href="visualizar.php" class="btn btn-limpar-filtro" title="Limpar filtros">
+                            <i class="bi bi-x-lg"></i>
                         </a>
                     <?php endif; ?>
                 </div>
@@ -164,15 +159,15 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
                                     <td class="text-center">
                                         <?= $aluno['serie_atual'] ?>º <?= $aluno['identificador_curso'] ?>
                                     </td>
-                                    <td class="text-start small text-muted"><?= $aluno['curso'] ?></td>
+                                    <td class="text-center small text-muted"><?= $aluno['curso'] ?></td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-1">
                                             <a href="editar_aluno.php?id=<?= $aluno['id_aluno'] ?>"
-                                                class="btn btn-sm btn-warning px-2">
+                                                class="btn tbl-btn tbl-btn-warning">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </a>
                                             <a href="excluir_aluno.php?id=<?= $aluno['id_aluno'] ?>"
-                                                class="btn btn-sm btn-danger px-2"
+                                                class="btn tbl-btn tbl-btn-danger"
                                                 onclick="return confirm('Deseja excluir este aluno? Esta ação não pode ser desfeita!')">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
@@ -225,4 +220,5 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

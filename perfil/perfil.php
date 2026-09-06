@@ -17,15 +17,23 @@ include '../includes/conexao.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../emprestimos/botoes.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f4f6f9;
+            overflow-x: hidden;
         }
 
         .profile-card {
             border-radius: 16px;
             border: none;
+        }
+
+        @media (max-width: 576px) {
+            .profile-card {
+                border-radius: 12px;
+            }
         }
     </style>
 </head>
@@ -33,85 +41,79 @@ include '../includes/conexao.php';
 <body>
     <?php include '../includes/menu.php'; ?>
 
-    <div class="container mt-4 px-3">
+    <main class="container py-3 py-md-4 px-3">
 
-        <div class="mb-4">
-            <a href="../painel/painel_adm.php" class="btn btn-outline-secondary shadow-sm d-inline-flex align-items-center gap-2"
-                style="border-radius: 10px;">
-                <i class="bi bi-arrow-left fs-5"></i> <span>Voltar</span>
+        <div class="mb-3">
+            <a href="../painel/painel_adm.php" class="btn btn-voltar">
+                <i class="bi bi-arrow-left"></i> Voltar
             </a>
         </div>
-        
+
         <?php include('../includes/alerta.php'); ?>
 
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-10 col-md-8 col-lg-5 mb-4">
-
+        <div class="row justify-content-center g-4">
+            
+            <!-- Cartão do Perfil do Usuário -->
+            <div class="col-12 col-md-8 col-lg-5">
                 <div class="card shadow-sm profile-card">
-                    <div class="card-body text-center p-4 p-sm-5">
+                    <div class="card-body text-center p-3 p-sm-4">
 
                         <div class="mb-3">
-                            <i class="bi bi-person-circle text-success" style="font-size: 4.5rem;"></i>
+                            <i class="bi bi-person-circle text-success" style="font-size: 4rem;"></i>
                         </div>
 
-                        <h3 class="fw-bold mb-1 text-dark text-truncate">
-                            <?php echo htmlspecialchars($_SESSION['nome']); ?>
-                        </h3>
+                        <h4 class="fw-bold mb-1 text-dark text-truncate">
+                            <?php echo $_SESSION['nome_user'] ?? $_SESSION['nome'] ?? 'Usuário'; ?>
+                        </h4>
 
                         <p class="text-muted small text-uppercase fw-semibold tracking-wider mb-4">
-                            <?php echo ($_SESSION['nivel'] === 'adm') ? 'Administrador(a) Supremo(a)' : 'Bibliotecário(a)'; ?>
+                            <?php echo ($_SESSION['nivel'] === 'adm') ? 'Administrador(a)' : 'Bibliotecário(a)'; ?>
                         </p>
 
                         <div class="text-start bg-light p-3 rounded-3 mb-4 border-start border-success border-3">
-                            <small class="text-uppercase fw-bold text-muted d-block" style="font-size: 0.75rem;">E-mail
-                                cadastrado</small>
-                            <span class="text-dark fw-medium text-break">
+                            <small class="text-uppercase fw-bold text-muted d-block mb-1" style="font-size: 0.75rem;">E-mail cadastrado</small>
+                            <span class="text-dark fw-medium text-break d-block">
                                 <?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : 'E-mail não informado'; ?>
                             </span>
                         </div>
 
                         <div class="d-grid gap-2">
-                            <a class="btn btn-outline-success py-2 fw-semibold" style="border-radius: 10px;"
-                                href="alterar_senha.php">
+                            <a class="btn btn-outline-success py-2 fw-semibold rounded-3" href="alterar_senha.php">
                                 <i class="bi bi-key me-2"></i> Alterar Senha
                             </a>
-                            <a href="../includes/logout.php" class="btn btn-outline-danger py-2 fw-semibold"
-                                style="border-radius: 10px;">
+                            <a href="../includes/logout.php" class="btn btn-logout py-2 fw-semibold rounded-3 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-box-arrow-right me-2"></i> Encerrar Sessão
                             </a>
                         </div>
 
                     </div>
                 </div>
-
             </div>
 
+            <!-- Painel Controle de Equipe (Exclusivo ADM) -->
             <?php if ($_SESSION['nivel'] === 'adm'): ?>
-                <div class="col-12 col-lg-7 mb-4">
+                <div class="col-12 col-lg-7">
                     <div class="card shadow-sm profile-card border-0 h-100">
-                        <div class="card-body p-4">
+                        <div class="card-body p-3 p-sm-4">
 
-                            <div
-                                class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-4">
+                            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mb-4">
                                 <div>
-                                    <h4 class="fw-bold text-success mb-1">Controle de Equipe</h4>
-                                    <p class="text-muted small mb-0">Gerencie contas de Administradores e Bibliotecários.
-                                    </p>
+                                    <h4 class="fw-bold text-dark mb-1">Controle de Equipe</h4>
+                                    <small class="text-muted">Gerencie contas de Administradores e Bibliotecários.</small>
                                 </div>
-                                <a href="cadastrar_conta.php" class="btn btn-warning btn-sm fw-bold text-white px-3 py-2"
-                                    style="border-radius: 10px;">
-                                    <i class="bi bi-person-plus-fill me-1"></i> Cadastrar Novo
+                                <a href="cadastrar_conta.php" class="btn btn-cadastro">
+                                    <i class="bi bi-person-plus-fill me-2"></i> Cadastrar Novo
                                 </a>
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-hover align-middle" style="font-size: 0.9rem;">
+                                <table class="table table-hover align-middle mb-0" style="font-size: 0.9rem;">
                                     <thead class="table-light">
                                         <tr>
-                                            <th>Nome</th>
-                                            <th>Cargo</th>
-                                            <th>Email</th>
-                                            <th class="text-center">Ações</th>
+                                            <th class="text-nowrap">Nome</th>
+                                            <th class="text-nowrap">Cargo</th>
+                                            <th class="text-nowrap">Email</th>
+                                            <th class="text-center text-nowrap">Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -123,38 +125,40 @@ include '../includes/conexao.php';
                                             while ($user = mysqli_fetch_assoc($result_users)):
                                                 ?>
                                                 <tr>
-                                                    <td class="fw-semibold text-dark text-truncate" style="max-width: 150px;">
+                                                    <td class="fw-semibold text-dark text-truncate" style="max-width: 130px;">
                                                         <?= htmlspecialchars($user['nome_user']); ?>
                                                     </td>
                                                     <td>
                                                         <?php if ($user['nivel'] === 'adm'): ?>
-                                                            <span
-                                                                class="badge bg-danger-subtle text-danger rounded-pill px-2 py-1">Admin</span>
+                                                            <span class="badge bg-warning-subtle text-warning rounded-pill px-2 py-1">Admin</span>
                                                         <?php else: ?>
-                                                            <span
-                                                                class="badge bg-info-subtle text-info rounded-pill px-2 py-1">Bibliotecário</span>
+                                                            <span class="badge bg-success-subtle text-success rounded-pill px-2 py-1">Bibliotecário</span>
                                                         <?php endif; ?>
                                                     </td>
-                                                    <td><?= htmlspecialchars($user['email']); ?></td>
+                                                    <td class="text-truncate" style="max-width: 150px;">
+                                                        <?= htmlspecialchars($user['email']); ?>
+                                                    </td>
                                                     <td class="text-center">
-                                                        <a href="resetar_senha.php?id=<?= $user['id_user']; ?>"
-                                                            class="btn btn-sm btn-success rounded-3 px-2 py-1"
-                                                            onclick="return confirm('Tem certeza que deseja resetar a senha deste usuário?');"
-                                                            title="Resetar Senha para o padrão">
-                                                            <i class="bi bi-arrow-counterclockwise"></i>
-                                                        </a>
-                                                        <a href="editar_usuario.php?id=<?= $user['id_user']; ?>"
-                                                            class="btn btn-sm btn-primary rounded-3 px-2 py-1"
-                                                            title="Editar Funcionário">
-                                                            <i class="bi bi-pencil"></i>
-                                                        </a>
+                                                        <div class="d-flex justify-content-center gap-1 flex-nowrap">
+                                                            <a href="resetar_senha.php?id=<?= $user['id_user']; ?>"
+                                                                class="btn tbl-btn tbl-btn-info"
+                                                                onclick="return confirm('Tem certeza que deseja resetar a senha deste usuário?');"
+                                                                title="Resetar Senha para o padrão">
+                                                                <i class="bi bi-arrow-counterclockwise"></i>
+                                                            </a>
+                                                            <a href="editar_usuario.php?id=<?= $user['id_user']; ?>"
+                                                                class="btn tbl-btn tbl-btn-warning"
+                                                                title="Editar Funcionário">
+                                                                <i class="bi bi-pencil"></i>
+                                                            </a>
 
-                                                        <a href="deletar_usuario.php?id=<?= $user['id_user']; ?>"
-                                                            class="btn btn-sm btn-danger rounded-3 px-2 py-1"
-                                                            title="Remover Funcionário"
-                                                            onclick="return confirm('Tem certeza que deseja remover o acesso deste funcionário?');">
-                                                            <i class="bi bi-trash"></i>
-                                                        </a>
+                                                            <a href="deletar_usuario.php?id=<?= $user['id_user']; ?>"
+                                                                class="btn tbl-btn tbl-btn-danger"
+                                                                title="Remover Funcionário"
+                                                                onclick="return confirm('Tem certeza que deseja remover o acesso deste funcionário?');">
+                                                                <i class="bi bi-trash"></i>
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -162,8 +166,7 @@ include '../includes/conexao.php';
                                         else:
                                             ?>
                                             <tr>
-                                                <td colspan="3" class="text-center text-muted py-3">Nenhum funcionário
-                                                    encontrado.</td>
+                                                <td colspan="4" class="text-center text-muted py-3">Nenhum funcionário encontrado.</td>
                                             </tr>
                                         <?php endif; ?>
                                     </tbody>
@@ -176,7 +179,7 @@ include '../includes/conexao.php';
             <?php endif; ?>
 
         </div>
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
