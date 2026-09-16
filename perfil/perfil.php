@@ -81,7 +81,7 @@ include '../includes/conexao.php';
                             <a class="btn btn-outline-success py-2 fw-semibold rounded-3" href="alterar_senha.php">
                                 <i class="bi bi-key me-2"></i> Alterar Senha
                             </a>
-                            <a href="../includes/logout.php" class="btn btn-logout py-2 fw-semibold rounded-3 d-flex align-items-center justify-content-center">
+                            <a href="../includes/logout.php" class="btn btn-outline-danger py-2 fw-semibold rounded-3 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-box-arrow-right me-2"></i> Encerrar Sessão
                             </a>
                         </div>

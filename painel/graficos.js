@@ -1,24 +1,22 @@
 // CONFIGURAÇÃO DO CHART.JS DO DASHBOARD
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById('graficoLeituraTurmas');
-    if (!ctx) return; // Proteção caso o canvas suma da tela
+    if (!ctx) return; 
+
+    // Define cor destacada para a maior pontuação
+    const maxVal = Math.max(...dadosValores);
+    const backgroundColors = dadosValores.map(v => (v === maxVal && v > 0) ? '#df8508' : '#1c942f');
 
     new Chart(ctx.getContext('2d'), {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: dadosLabels, 
             datasets: [{
-                label: 'Quantidade de Empréstimos',
+                label: 'Empréstimos no Mês',
                 data: dadosValores, 
-                borderColor: '#1c942f', 
-                backgroundColor: 'rgba(28, 148, 47, 0.08)', 
-                borderWidth: 3,
-                tension: 0.25, 
-                pointBackgroundColor: '#df8508', 
-                pointBorderColor: '#ffffff',
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                fill: true 
+                backgroundColor: backgroundColors,
+                borderRadius: 6, // Arredonda o topo das barras
+                borderSkipped: false
             }]
         },
         options: {
@@ -27,6 +25,13 @@ document.addEventListener("DOMContentLoaded", function () {
             plugins: {
                 legend: {
                     display: false 
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return ` ${context.raw} livro(s) emprestado(s)`;
+                        }
+                    }
                 }
             },
             scales: {
@@ -43,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 x: {
                     ticks: {
                         color: '#393b3e',
-                        maxRotation: 45, // Evita textos atropelados no celular inclinando-os se preciso
+                        maxRotation: 45,
                         minRotation: 0
                     },
                     grid: {

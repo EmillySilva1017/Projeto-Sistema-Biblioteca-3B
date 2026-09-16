@@ -135,7 +135,7 @@ if ($busca_ativa) {
 <body>
     <?php include('../includes/menu.php'); ?>
 
-    <div class="container-fluid mt-4 px-3 px-sm-4">
+    <div class="container-fluid px-4 pt-4">
         <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
             <h2 class="fw-bold text-dark mb-0">Gestão de Livros</h2>
         </div>
@@ -226,7 +226,12 @@ if ($busca_ativa) {
                                             <?= htmlspecialchars($livro['titulo_livro']) ?>
                                         </span>
                                     </td>
-                                    <td class="text-start small"><?= $livro['autor'] ?></td>
+                                    <!-- Troque a TD do Autor por esta estrutura: -->
+                                    <td class="text-start small">
+                                        <span class="text-truncate-custom" title="<?= htmlspecialchars($livro['autor']) ?>">
+                                            <?= htmlspecialchars($livro['autor']) ?>
+                                        </span>
+                                    </td>
                                     <td class="text-center text-muted small">
                                         <span class="text-truncate-custom" title="<?= $livro['genero'] ?>">
                                             <?= $livro['genero'] ?>
