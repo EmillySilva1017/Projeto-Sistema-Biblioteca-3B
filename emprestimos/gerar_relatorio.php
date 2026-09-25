@@ -1,13 +1,10 @@
 <?php
 session_start();
+require_once '../includes/verifica_login.php';
 ob_start();
 
 include('../includes/conexao.php');
 /** @var mysqli $conn */ 
-
-if (!isset($_SESSION['id_user'])) {
-    die("Erro: Utilizador não autenticado. Por favor, faça login no sistema.");
-}
 
 date_default_timezone_set('America/Fortaleza');
 $hoje_formatado = date('d/m/Y');

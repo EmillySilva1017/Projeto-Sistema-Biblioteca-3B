@@ -2,6 +2,7 @@
 session_start();
 include '../includes/conexao.php';
 /** @var mysqli $conn */
+require_once '../includes/verifica_admin.php';
 
 // TRAVA: Apenas ADM pode deletar
 if (!isset($_SESSION['id_user']) || $_SESSION['nivel'] !== 'adm') {

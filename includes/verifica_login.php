@@ -3,9 +3,9 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// 1. Trava de Segurança: Se não tiver id_user, não está logado
-if (!isset($_SESSION['id_user'])) {
-    header('Location: ../login/login.php?erro=restrito');
+// Only staff accounts may access staff pages.
+if (!isset($_SESSION['id_user']) || !in_array($_SESSION['nivel'] ?? '', ['adm', 'bibliotecario'], true)) {
+    header('Location: ../login/login.php?role=bibliotecario&erro=restrito');
     exit();
 }
 

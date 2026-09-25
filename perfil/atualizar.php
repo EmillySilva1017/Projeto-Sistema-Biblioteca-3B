@@ -2,6 +2,7 @@
 session_start();
 include '../includes/conexao.php';
 /** @var mysqli $conn */
+require_once '../includes/verifica_admin.php';
 
 // 1. TRAVA DE SEGURANÇA: Apenas Administrador pode atualizar usuários
 if (!isset($_SESSION['id_user']) || $_SESSION['nivel'] !== 'adm') {

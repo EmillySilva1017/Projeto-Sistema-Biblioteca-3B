@@ -1,4 +1,5 @@
 <?php
+require_once '../includes/verifica_login.php';
 include('../includes/conexao.php');
 /** @var mysqli $conn */
 

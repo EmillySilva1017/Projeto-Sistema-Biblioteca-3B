@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); require_once '../includes/verifica_login.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">

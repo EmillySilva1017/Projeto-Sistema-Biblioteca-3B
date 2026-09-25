@@ -1,11 +1,6 @@
 <?php session_start();
+require_once '../includes/verifica_login.php';
 include '../includes/conexao.php';
-
-// Verifica se está logado e se é administrador (nível 1)
-if (!isset($_SESSION['id_user']) || $_SESSION['nivel'] === 'aluno') {
-    header('Location: ../login/index.php');
-    exit();
-}
 
 setlocale(LC_TIME, 'pt_BR.utf-8', 'pt_BR', 'portuguese');
 $nome_mes_atual = date('m/Y'); // Formato Mês/Ano para exibir no topo dos cards

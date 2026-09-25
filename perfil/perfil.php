@@ -1,8 +1,5 @@
 <?php session_start();
-if (!isset($_SESSION['id_user'])) {
-    header('Location: ../index.php');
-    exit();
-}
+require_once '../includes/verifica_login.php';
 // Inclui a conexão para listar os funcionários caso seja o ADM
 include '../includes/conexao.php';
 /** @var mysqli $conn */

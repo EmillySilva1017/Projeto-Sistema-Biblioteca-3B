@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require_once '../includes/verifica_admin.php';
 include('../includes/conexao.php'); // Ajuste o caminho da conexão se necessário
 
 // TRAVA DE SEGURANÇA: Só o ADM cria contas no sistema!

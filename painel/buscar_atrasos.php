@@ -1,5 +1,6 @@
 <?php
 // Certifica que nenhuma saída HTML aconteça antes do JSON
+require_once '../includes/verifica_login.php';
 header('Content-Type: application/json; charset=utf-8');
 
 include('../includes/conexao.php');

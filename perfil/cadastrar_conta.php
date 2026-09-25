@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include('../includes/conexao.php');
-include('../includes/verifica_login.php');
+require_once('../includes/verifica_admin.php');
 /** @var mysqli $conn */
 ?>
 <!DOCTYPE html>

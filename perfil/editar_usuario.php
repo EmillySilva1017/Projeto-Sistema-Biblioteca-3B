@@ -2,6 +2,7 @@
 session_start();
 include '../includes/conexao.php';
 /** @var mysqli $conn */
+require_once '../includes/verifica_admin.php';
 
 // TRAVA DE SEGURANÇA: Apenas ADM pode acessar
 if (!isset($_SESSION['id_user']) || $_SESSION['nivel'] !== 'adm') {
