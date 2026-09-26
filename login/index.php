@@ -31,7 +31,7 @@ $total_adms = ($res_check) ? mysqli_fetch_assoc($res_check)['total'] : 0;
 
 <div class="container py-5">
     <div class="text-center mb-4">
-        <img src="../img/LOGO MANOTECA - CIRCULAR.png" alt="Logo Manoteca" class="logo-manoteca mb-3">
+        <img src="../img/LogoManoteca-removebg-preview.png" alt="Logo Manoteca" class="logo-manoteca mb-3">
         
         <h2 class="fw-bold text-dark mb-2">Bem-vindo ao Portal da MANOTECA</h2>
         <p class="text-muted">Selecione o seu portal de acesso para continuar</p>

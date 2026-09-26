@@ -1,0 +1,115 @@
+:root {
+    --verde-eeep: #2d572c;
+    --laranja-eeep: #f39200;
+    --branco: #ffffff;
+}
+
+body {
+    background-color: #f4f7f6;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem 0.75rem !important;
+    background-color: var(--verde-eeep) !important;
+    border-bottom: 4px solid var(--laranja-eeep);
+}
+
+.navbar-brand-logo {
+    width: auto;
+    height: 50px;
+    max-width: min(42vw, 220px);
+    object-fit: contain;
+}
+
+.dropdown-menu {
+    margin-top: 10px !important;
+    border: none;
+    border-radius: 8px;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    transition: background 0.3s;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: var(--verde-eeep);
+}
+
+.bi-person-circle {
+    color: var(--branco);
+    transition: opacity 0.2s;
+}
+
+.bi-person-circle:hover {
+    opacity: 0.8;
+}
+
+.btn-orange {
+    color: var(--branco);
+    background-color: var(--laranja-eeep);
+    border: none;
+    font-weight: bold;
+}
+
+.btn-orange:hover {
+    color: var(--branco);
+    background-color: #d88200;
+}
+
+.btn-menu-toggle {
+    color: var(--branco);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-menu-toggle:hover,
+.btn-menu-toggle:focus-visible {
+    color: var(--branco);
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.sidebar-menu {
+    width: min(280px, 85vw);
+}
+
+.sidebar-menu .nav-link {
+    color: #212529;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-menu .nav-link:hover,
+.sidebar-menu .nav-link:focus-visible {
+    color: var(--verde-eeep) !important;
+    background-color: #f1f5f1;
+}
+
+.sidebar-menu .nav-link.active {
+    color: var(--verde-eeep) !important;
+    background-color: #e8f0e7;
+    border-left: 4px solid var(--laranja-eeep);
+    font-weight: 600;
+}
+
+.sidebar-menu .nav-link:focus-visible,
+.btn-menu-toggle:focus-visible,
+.sidebar-menu .btn-close:focus-visible {
+    outline: 3px solid var(--laranja-eeep);
+    outline-offset: 2px;
+}
+
+@media (max-width: 576px) {
+    .navbar-brand-logo {
+        height: 40px;
+        max-width: 38vw;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        right: 0;
+        left: auto;
+    }
+}

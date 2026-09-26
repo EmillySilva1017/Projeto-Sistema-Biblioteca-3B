@@ -27,21 +27,17 @@ if ($role === 'bibliotecario') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="login.css?v=1.0">
+    <link rel="stylesheet" href="login.css?v=1.2">
 </head>
 
 <body class="d-flex align-items-center">
-    <div class="container py-5">
-
-        <div class="text-center mb-3">
-            <img src="../img/LOGO MANOTECA - CIRCULAR.png" alt="Logo Manoteca" class="logo-manoteca mb-3">
-        </div> 
-         
+    <div class="container py-4">
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-6 col-lg-4">
 
                 <div class="card card-login">
+                    <img src="../img/LogoManoteca-removebg-preview.png" alt="Logo Manoteca" class="logo-manoteca">
                     <h4 class="fw-bold text-center mb-4 text-dark"><?= $titulo_portal; ?></h4>
 
                     <?php include '../includes/alerta.php'; ?>
@@ -83,4 +79,5 @@ if ($role === 'bibliotecario') {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

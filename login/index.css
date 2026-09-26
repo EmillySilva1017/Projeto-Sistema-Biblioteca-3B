@@ -1,26 +1,36 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f4f6f9;
+    background-color: #f1f7ff;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1320px;
 }
 
 .logo-manoteca {
-    max-width: 170px;
+    display: block;
+    width: min(100%, 260px);
     height: auto;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    max-height: 200px;
+    object-fit: contain;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .card-portal {
+    background-color: #ffffff;
+    border-radius: 10px;
     border: none;
-    border-radius: 16px;
-    transition: all 0.3s ease;
+    padding: 20px;
     cursor: pointer;
     text-decoration: none;
-    background-color: #ffffff;
+    transition: all 0.3s ease;
 }
 
 .card-portal:hover {
@@ -52,4 +62,35 @@ body {
 .portal-adm .icon-circle {
     background-color: #fff3e0;
     color: #df8508;
+}
+
+@media (max-width: 767.98px) {
+    body {
+        align-items: flex-start;
+    }
+
+    .container {
+        padding-right: 1.25rem;
+        padding-left: 1.25rem;
+    }
+
+    .logo-manoteca {
+        width: min(72vw, 220px);
+        max-height: 150px;
+    }
+
+    .card-portal {
+        padding: 1.5rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .card-portal {
+        padding: 1.25rem !important;
+    }
 }
