@@ -4,7 +4,7 @@ require_once '../includes/verifica_login.php';
 ob_start();
 
 include('../includes/conexao.php');
-/** @var mysqli $conn */ 
+/** @var mysqli $conn */
 
 date_default_timezone_set('America/Fortaleza');
 $hoje_formatado = date('d/m/Y');
@@ -12,27 +12,31 @@ $hoje_formatado = date('d/m/Y');
 // Inclui o ficheiro principal da biblioteca FPDF
 require('../includes/fpdf/fpdf.php');
 
-function converterTexto($texto) {
-    if (empty($texto)) return '';
-    
+function converterTexto($texto)
+{
+    if (empty($texto))
+        return '';
+
     // Tenta converter usando ISO-8859-1 ignorando caracteres inválidos
     $resultado = iconv('UTF-8', 'ISO-8859-1//IGNORE', $texto);
-    
+
     // Se o iconv falhar e retornar falso, usa o método alternativo seguro
     if ($resultado === false) {
         $resultado = mb_convert_encoding($texto, 'ISO-8859-1', 'UTF-8');
     }
-    
+
     return $resultado;
 }
 
 // 3. CRIAÇÃO DA ESTRUTURA PERSONALIZADA DO PDF (CABEÇALHO E RODAPÉ)
 
 // Herdamos a classe FPDF para poder customizar as funções Header() e Footer() que rodam em cada página
-class PDF extends FPDF {
-    
+class PDF extends FPDF
+{
+
     // Esta função é executada automaticamente pelo FPDF sempre que uma nova página é criada
-    function Header() {
+    function Header()
+    {
         // Caminho para a logo da escola
         $logo = '../img/LogoEscola.png';
         // Verifica se a imagem realmente existe antes de tentar desenhar, evitando que o script quebre
@@ -40,7 +44,7 @@ class PDF extends FPDF {
             $largura_logo = 25;
             $posicao_logo = (210 - $largura_logo) / 2; // Centraliza a logo horizontalmente
             $this->Image($logo, $posicao_logo, 8, $largura_logo);
-            
+
             $this->Ln(28);
         } else {
             // Se a imagem não existir por algum motivo, dá apenas um pequeno espaço inicial
@@ -54,16 +58,16 @@ class PDF extends FPDF {
         // Subtítulo do Relatório
         $this->SetFont('Arial', '', 11); // Muda para estilo normal, tamanho 11
         $this->Cell(0, 6, converterTexto('Relatório de Alunos com Empréstimos em Atraso'), 0, 1, 'C');
-        
+
         // Espaço em branco de 10mm antes de começar a tabela
         $this->Ln(8);
-        
+
         // Configuração visual do cabeçalho da tabela de dados
         $this->SetFont('Arial', 'B', 10);
         $this->SetFillColor(22, 120, 30); // Verde Bootstrap
         $this->SetTextColor(255, 255, 255); // Texto Branco
         $this->SetLineWidth(0.3);
-        
+
         // Parâmetros do Cell: (Largura, Altura, Texto, Borda[1=sim], PróximaLinha[0=não, 1=sim], Alinhamento, Preenchimento[true=usa cor de fundo])
         $this->Cell(55, 8, converterTexto(' Aluno'), 1, 0, 'L', true);
         $this->Cell(20, 8, converterTexto('Turma'), 1, 0, 'C', true);
@@ -73,12 +77,13 @@ class PDF extends FPDF {
     }
 
     // Esta função é executada automaticamente sempre que o PDF chega perto do fim da página
-    function Footer() {
+    function Footer()
+    {
         // Define a posição do rodapé para 15 milímetros antes do fim da folha
         $this->SetY(-15);
         $this->SetFont('Arial', 'I', 8); // Fonte Arial, Itálico (Italic), tamanho 8
         $this->SetTextColor(128, 128, 128); // Cor cinzenta para o número da página
-        
+
         // Imprime o número da página atual. O '{nb}' será substituído dinamicamente pelo total de páginas
         $this->Cell(0, 10, converterTexto('Página ') . $this->PageNo() . '/{nb}', 0, 0, 'C');
     }
@@ -114,17 +119,17 @@ $zebra = false;
 
 // Verifica se a consulta retornou pelo menos 1 aluno em atraso
 if (mysqli_num_rows($resultado) > 0) {
-    
+
     // Percorre cada registo retornado da base de dados
     while ($row = mysqli_fetch_assoc($resultado)) {
-        
+
         // Se a variável $zebra for verdadeira, pinta a linha de cinzento claro, caso contrário deixa branca
         if ($zebra) {
             $pdf->SetFillColor(245, 245, 245); // Cinzento bem suave
         } else {
             $pdf->SetFillColor(255, 255, 255); // Branco completo
         }
-        
+
         // Formata as datas com segurança
         $dt_saida = (!empty($row['data_saida'])) ? date('d/m/Y', strtotime($row['data_saida'])) : '--/--/----';
         $dt_prevista = (!empty($row['data_prevista'])) ? date('d/m/Y', strtotime($row['data_prevista'])) : '--/--/----';

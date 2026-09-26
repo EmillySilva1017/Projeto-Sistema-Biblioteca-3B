@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require_once '../includes/verifica_login.php';
 include('../includes/conexao.php');

@@ -32,14 +32,16 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
     <main class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
-                
+
                 <?php include('../includes/alerta.php'); ?>
 
                 <div class="card card-cadastro">
-                    <div class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
+                    <div
+                        class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="fw-bold mb-1"><i class="bi bi-bookmark-plus me-2"></i> Novo Empréstimo</h4>
-                            <p class="small text-white-50 mb-0">Preencha os dados abaixo para registrar a saída da obra.</p>
+                            <p class="small text-white-50 mb-0">Preencha os dados abaixo para registrar a saída da obra.
+                            </p>
                         </div>
                     </div>
                     <div class="card-body p-4 p-md-">
@@ -54,7 +56,7 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                                     <label class="form-label fw-bold">Titulo Livro</label>
                                     <input type="text" class="form-control form-control-lg border-2" name="titulo"
                                         id="titulo" readonly placeholder="Digite o registro para buscar..." required>
-    
+
                                     <input type="hidden" name="fk_id_livro" id="fk_id_livro">
                                 </div>
 
@@ -73,11 +75,12 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label fw-bold">Aluno</label>
-                                    <select name="aluno" id="aluno" class="form-control form-control-lg border-2" required>
+                                    <select name="aluno" id="aluno" class="form-control form-control-lg border-2"
+                                        required>
                                         <option value="">Selecione a turma primeiro.</option>
                                     </select>
                                 </div>
-    
+
                                 <div class="col-12 col-md-6">
                                     <label class="form-label fw-bold">Data Saída</label>
                                     <input type="date" class="form-control form-control-lg border-2" name="data_saida"
@@ -86,15 +89,17 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                                 <div class="col-12 col-md-6">
                                     <?php $data_prevista = date('Y-m-d', strtotime('+7 days')); ?>
                                     <label class="form-label fw-bold">Data Prevista</label>
-                                    <input type="date" class="form-control form-control-lg border-2" name="data_prevista"
-                                        value="<?php echo $data_prevista; ?>" required>
+                                    <input type="date" class="form-control form-control-lg border-2"
+                                        name="data_prevista" value="<?php echo $data_prevista; ?>" required>
                                 </div>
-                                
+
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                                    <button type="submit" class="btn btn-salvar btn-lg px-5 shadow text-uppercase">Cadastrar</button>
-                                    <a href="list_emprest.php" class="btn btn-outline-danger btn-cancelar btn-lg px-4 fw-bold">Cancelar</a>
+                                    <button type="submit"
+                                        class="btn btn-salvar btn-lg px-5 shadow text-uppercase">Cadastrar</button>
+                                    <a href="list_emprest.php"
+                                        class="btn btn-outline-danger btn-cancelar btn-lg px-4 fw-bold">Cancelar</a>
                                 </div>
-                                
+
                             </div>
                         </form>
 
@@ -167,7 +172,7 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                         btnSalvar.disabled = false; // Bloqueia o botão para impedir o envio!
                         alert(dados.msg); // Mostra a mensagem dinâmica ("já emprestado" ou "não encontrado")
                     }
-                }) 
+                })
                 .catch(error => {
                     console.error('Erro na busca do livro:', error);
                     inputTitulo.value = '';
@@ -175,7 +180,7 @@ $resTurmas = mysqli_query($conn, $sqlTurmas);
                     btnSalvar.disabled = true; // Bloqueia o botão em caso de erro
                     alert('Ocorreu um erro ao buscar o livro. Tente novamente.');
                 });
-            });
+        });
     </script>
 </body>
 

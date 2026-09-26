@@ -38,7 +38,7 @@ $resAlunos = mysqli_query($conn, $sqlAlunos);
 <body>
     <div class="container mt-4">
         <?php include('../includes/alerta.php'); ?>
-        
+
         <div class="d-flex align-items-center gap-3 mt-3 mb-4">
             <a href="index.php"
                 class="btn btn-outline-secondary shadow-sm d-inline-flex align-items-center justify-content-center"

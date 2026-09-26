@@ -80,7 +80,8 @@ $res_dados = mysqli_query($conn, $sql_dados);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- Ícones -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="list.css"> <link rel="stylesheet" href="botoes.css">
+    <link rel="stylesheet" href="list.css">
+    <link rel="stylesheet" href="botoes.css">
 </head>
 
 <body>
@@ -92,7 +93,8 @@ $res_dados = mysqli_query($conn, $sql_dados);
             <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
                 <h2 class="fw-bold text-dark mb-0">Gestão de Empréstimos</h2>
             </div>
-            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3 mt-md-0">
+            <div
+                class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3 mt-md-0">
                 <a href="cadastro_emprest.php" class="btn btn-emprest">
                     <i class="bi bi-plus-lg me-2"></i> Novo Empréstimo
                 </a>

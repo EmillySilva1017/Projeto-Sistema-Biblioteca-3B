@@ -6,9 +6,10 @@ header('Content-Type: application/json; charset=utf-8');
 include('../includes/conexao.php');
 /** @var mysqli $conn */
 
-$itens_por_pagina = 5; 
+$itens_por_pagina = 5;
 $pagina = isset($_GET['pag_atrasos']) ? intval($_GET['pag_atrasos']) : 1;
-if ($pagina < 1) $pagina = 1;
+if ($pagina < 1)
+    $pagina = 1;
 $offset = ($pagina - 1) * $itens_por_pagina;
 
 // 1. QUERY DE CONTAGEM TOTAL

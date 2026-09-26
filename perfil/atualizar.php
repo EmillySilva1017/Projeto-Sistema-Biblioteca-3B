@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 4. Executa a atualização
     if (mysqli_query($conn, $sql)) {
-        
+
         // Se o Administrador atualizou o PRÓPRIO nome ou e-mail, atualiza a sessão dele na hora
         if ($id == $_SESSION['id_user']) {
             $_SESSION['nome'] = $nome;

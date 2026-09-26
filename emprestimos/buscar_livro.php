@@ -5,11 +5,11 @@ include('../includes/conexao.php');
 
 if (isset($_GET['n_registro'])) {
     $n_registro = mysqli_real_escape_string($conn, $_GET['n_registro']);
-    
+
     // 1. Busca se o livro existe pelo número de registro
     $sql_livro = "SELECT id, titulo_livro FROM livros WHERE numero_registro = '$n_registro' LIMIT 1";
     $res_livro = mysqli_query($conn, $sql_livro);
-    
+
     if ($row_livro = mysqli_fetch_assoc($res_livro)) {
         $id_livro = $row_livro['id'];
         $titulo = $row_livro['titulo_livro'];
@@ -32,8 +32,8 @@ if (isset($_GET['n_registro'])) {
         } else {
             // O livro existe e está livre para empréstimo
             echo json_encode([
-                'sucesso' => true, 
-                'id_livro' => $id_livro, 
+                'sucesso' => true,
+                'id_livro' => $id_livro,
                 'titulo' => $titulo
             ]);
         }

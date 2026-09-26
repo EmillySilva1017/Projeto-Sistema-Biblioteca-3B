@@ -83,7 +83,7 @@ $resTodasTurmas = mysqli_query($conn, $sqlTodasTurmas);
             <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
                 <h2 class="fw-bold text-dark mb-0">Gestão de Alunos</h2>
             </div>
-            <div 
+            <div
                 class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3 mt-md-0">
                 <a href="importar_alunos.php" class="btn btn-importar">
                     <i class="bi bi-file-earmark-arrow-up me-2"></i>Importar planilha

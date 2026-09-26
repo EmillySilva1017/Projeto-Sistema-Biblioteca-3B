@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include('../includes/conexao.php');
 require_once('../includes/verifica_admin.php');
@@ -23,28 +23,33 @@ require_once('../includes/verifica_admin.php');
     <main class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
-                
+
                 <?php include('../includes/alerta.php'); ?>
 
                 <div class="card card-cadastro">
-                    <div class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
+                    <div
+                        class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
                         <div>
-                            <h4 class="fw-bold mb-1"><i class="bi bi-person-plus-fill me-2"></i> Cadastrar Novo Funcionário</h4>
+                            <h4 class="fw-bold mb-1"><i class="bi bi-person-plus-fill me-2"></i> Cadastrar Novo
+                                Funcionário</h4>
                             <p class="small text-white-50 mb-0">Adicione um novo membro à equipe da biblioteca.</p>
                         </div>
                     </div>
-                    
+
                     <div class="card-body p-4 p-md-5">
-                        <form action="cadastro.php" method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                        <form action="cadastro.php" method="POST" class="needs-validation" novalidate=""
+                            autocomplete="off">
                             <div class="row g-4">
                                 <div class="col-12 col-md-6">
                                     <label class="form-label fw-bold">Nome Completo</label>
-                                    <input type="text" name="nome" class="form-control border-2" placeholder="Ex: Maria Silva" required>
+                                    <input type="text" name="nome" class="form-control border-2"
+                                        placeholder="Ex: Maria Silva" required>
                                 </div>
 
                                 <div class="col-12 col-md-6">
                                     <label class="form-label fw-bold">E-mail Institucional</label>
-                                    <input type="email" name="email" class="form-control border-2" placeholder="nome@escola.ce.gov.br" required>
+                                    <input type="email" name="email" class="form-control border-2"
+                                        placeholder="nome@escola.ce.gov.br" required>
                                 </div>
 
                                 <div class="col-12 col-md-6">
@@ -58,12 +63,14 @@ require_once('../includes/verifica_admin.php');
 
                                 <div class="col-12 col-md-6">
                                     <label class="form-label fw-bold">Senha Provisória</label>
-                                    <input type="password" name="senha" class="form-control border-2" placeholder="••••••••" required>
+                                    <input type="password" name="senha" class="form-control border-2"
+                                        placeholder="••••••••" required>
                                 </div>
 
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                                     <button type="submit" class="btn btn-salvar btn-lg px-5 shadow">Cadastrar</button>
-                                    <a href="perfil.php" class="btn btn-outline-danger btn-cancelar btn-lg px-4 fw-bold">Cancelar</a>
+                                    <a href="perfil.php"
+                                        class="btn btn-outline-danger btn-cancelar btn-lg px-4 fw-bold">Cancelar</a>
                                 </div>
                             </div>
                         </form>

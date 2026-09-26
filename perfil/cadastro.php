@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require_once '../includes/verifica_admin.php';
 include('../includes/conexao.php'); // Ajuste o caminho da conexão se necessário
@@ -9,7 +9,7 @@ if (!isset($_SESSION['id_user']) || $_SESSION['nivel'] !== 'adm') {
     exit();
 }
 
-if(empty($_POST['nome']) || empty($_POST['email']) || empty($_POST['senha'])){
+if (empty($_POST['nome']) || empty($_POST['email']) || empty($_POST['senha'])) {
     $_SESSION['mensagem'] = "Preencha todos os campos!";
     $_SESSION['msg_tipo'] = "warning";
     header('Location: cadastrar_conta.php');
@@ -20,7 +20,7 @@ $nome = mysqli_real_escape_string($conn, trim($_POST['nome']));
 $email = mysqli_real_escape_string($conn, trim($_POST['email']));
 $nivel_novo = mysqli_real_escape_string($conn, $_POST['nivel_novo']);
 
-$senha_pura = trim($_POST['senha']); 
+$senha_pura = trim($_POST['senha']);
 $senha = password_hash($senha_pura, PASSWORD_DEFAULT);
 
 // Verifica se o e-mail já existe
@@ -28,7 +28,7 @@ $sql = "SELECT count(*) AS total FROM usuario WHERE email = '$email' ";
 $result = mysqli_query($conn, $sql);
 $dados = mysqli_fetch_assoc($result);
 
-if($dados['total'] > 0){
+if ($dados['total'] > 0) {
     $_SESSION['mensagem'] = "Email já cadastrado!";
     $_SESSION['msg_tipo'] = "warning";
     header('Location: cadastrar_conta.php');
@@ -39,7 +39,7 @@ if($dados['total'] > 0){
 $sqlInserir = "INSERT INTO usuario (nome_user, email, senha, nivel)
 VALUES ('$nome', '$email', '$senha', '$nivel_novo')";
 
-if(mysqli_query($conn, $sqlInserir)){
+if (mysqli_query($conn, $sqlInserir)) {
     $_SESSION['mensagem'] = "Conta do funcionário criada com sucesso!";
     $_SESSION['msg_tipo'] = "success";
     header('Location: perfil.php'); // Volta para o perfil

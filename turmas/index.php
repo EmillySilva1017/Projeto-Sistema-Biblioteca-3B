@@ -32,24 +32,24 @@ mysqli_close($conn);
             <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
                 <h2 class="fw-bold m-0">Gerenciar Turmas</h2>
             </div>
-            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
-                <a href="promover_turmas.php"
-                    class="btn btn-promover"
+            <div
+                class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
+                <a href="promover_turmas.php" class="btn btn-promover"
                     onclick="return confirm('Deseja promover todas as turmas? O 3º ano será arquivado!')">
                     <i class="bi bi-arrow-up-circle me-1"></i> Promover Turmas
                 </a>
-                <a href="form_turma.php"
-                    class="btn btn-cadastro">
+                <a href="form_turma.php" class="btn btn-cadastro">
                     <i class="bi bi-plus-lg me-1"></i> Nova Turma
                 </a>
             </div>
-            <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
-                
+            <div
+                class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end align-items-center gap-2 mt-3">
+
             </div>
         </div>
 
         <?php include('../includes/alerta.php'); ?>
-        
+
         <div class="table-container shadow-sm mb-4">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover align-middle mb-0">
@@ -82,7 +82,8 @@ mysqli_close($conn);
                                             class="btn tbl-btn tbl-btn-warning" title="Editar turma">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
-                                        <a href="excluir.php?id=<?= $turma['id_turma'] ?>" class="btn tbl-btn tbl-btn-danger"
+                                        <a href="excluir.php?id=<?= $turma['id_turma'] ?>"
+                                            class="btn tbl-btn tbl-btn-danger"
                                             onclick="return confirm('Deseja excluir esta turma?')" title="Excluir turma">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>

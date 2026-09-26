@@ -18,7 +18,7 @@ $id = mysqli_real_escape_string($conn, trim($_GET['id']));
 // Consulta SQL para deletar o registro
 $sql_delete = "DELETE FROM turmas WHERE id_turma = $id";
 
-if (mysqli_query($conn, $sql_delete)){
+if (mysqli_query($conn, $sql_delete)) {
     $_SESSION['mensagem'] = "Turma excluída com sucesso!";
     $_SESSION['msg_tipo'] = 'success';
 } else {

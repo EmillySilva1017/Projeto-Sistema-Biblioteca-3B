@@ -4,6 +4,7 @@ require_once '../includes/verifica_login.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,20 +13,23 @@ require_once '../includes/verifica_login.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="cadastro.css">
 </head>
+
 <body>
     <?php include('../includes/menu.php'); ?>
 
     <main class="container py-5">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
-                
+
                 <?php include('../includes/alerta.php'); ?>
 
                 <div class="card card-cadastro">
-                    <div class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
+                    <div
+                        class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="fw-bold mb-1"><i class="bi bi-mortarboard-fill me-2"></i> Cadastro de Turma</h4>
-                            <p class="small text-white-50 mb-0">Insira as informações técnicas para integrar a turma ao sistema.</p>
+                            <p class="small text-white-50 mb-0">Insira as informações técnicas para integrar a turma ao
+                                sistema.</p>
                         </div>
                     </div>
                     <div class="card-body p-4 p-md-5">
@@ -33,14 +37,17 @@ require_once '../includes/verifica_login.php';
                             <div class="row g-3 mb-4">
                                 <div class="col-12 col-md-8">
                                     <label class="form-label">Curso</label>
-                                    <input type="text" class="form-control" name="curso" placeholder="Ex: Informática" required>
+                                    <input type="text" class="form-control" name="curso" placeholder="Ex: Informática"
+                                        required>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label class="form-label">Letra / ID</label>
-                                    <input name="id_curso" class="form-control" maxlength="1" style="text-transform: uppercase;" placeholder="Digite o ID..." required></input>
+                                    <input name="id_curso" class="form-control" maxlength="1"
+                                        style="text-transform: uppercase;" placeholder="Digite o ID..."
+                                        required></input>
                                 </div>
                             </div>
-    
+
                             <div class="row g-3 mb-4">
                                 <div class="col-12 col-md-6">
                                     <label class="form-label">Série Atual</label>
@@ -52,10 +59,11 @@ require_once '../includes/verifica_login.php';
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label">Ano de Conclusão</label>
-                                    <input type="number" name="ano_conclusao" class="form-control" value="<?= date('Y');?>" required>
+                                    <input type="number" name="ano_conclusao" class="form-control"
+                                        value="<?= date('Y'); ?>" required>
                                 </div>
                             </div>
-    
+
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                                 <button type="submit" class="btn btn-salvar btn-lg px-5 shadow text-uppercase">Cadastrar
                                     Turma</button>
@@ -71,4 +79,5 @@ require_once '../includes/verifica_login.php';
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

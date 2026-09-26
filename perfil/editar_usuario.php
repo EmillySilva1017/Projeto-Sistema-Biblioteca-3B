@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include '../includes/conexao.php';
 /** @var mysqli $conn */
@@ -33,62 +33,88 @@ $dados = mysqli_fetch_assoc($result);
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edição de Usuário | Manoteca</title>
+    <title>Editar Funcionário | ManoTeca</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="../emprestimos/cadastro.css">
 </head>
+
 <body>
-    <section class="h-100">
-        <div class="container-center">
-            <div class="box">
-                <h3 class="title"><i class="bi bi-person-fill me-2"></i>Editar Usuário</h3>
-                <p class="subtitle">Altere as informações do funcionário</p>
+    <?php include '../includes/menu.php'; ?>
+
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
 
                 <?php include '../includes/alerta.php'; ?>
 
-                <form action="atualizar.php" method="POST" autocomplete="off">
-                    <input type="hidden" name="id" value="<?= $dados['id_user']; ?>">
-
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="bi bi-person"></i></span>
-                        <input type="text" name="nome" class="form-control" value="<?= htmlspecialchars($dados['nome_user']);?>" placeholder="Nome Completo" required>
+                <div class="card card-cadastro">
+                    <div
+                        class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
+                        <div>
+                            <h4 class="fw-bold mb-1"><i class="bi bi-person-fill-gear me-2"></i>Editar Funcionário</h4>
+                            <p class="small text-white-50 mb-0">Atualize os dados e as permissões da conta.</p>
+                        </div>
                     </div>
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                        <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($dados['email']); ?>" placeholder="E-mail Institucional" required>
-                    </div>
+                    <div class="card-body p-4 p-md-5">
+                        <form action="atualizar.php" method="POST" autocomplete="off">
+                            <input type="hidden" name="id" value="<?= $dados['id_user']; ?>">
 
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="bi bi-shield-lock"></i></span>
-                        <select name="nivel_novo" class="form-select" required style="border-left: none; border-radius: 10px; border: 2px solid #ddd;">
-                            <option value="bibliotecario" <?= ($dados['nivel'] === 'bibliotecario') ? 'selected' : ''; ?>>Bibliotecário</option>
-                            <option value="adm" <?= ($dados['nivel'] === 'adm') ? 'selected' : ''; ?>>Administrador (Acesso Total)</option>
-                        </select>
-                    </div>
+                            <div class="row g-4">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">Nome Completo</label>
+                                    <input type="text" name="nome" class="form-control border-2"
+                                        value="<?= htmlspecialchars($dados['nome_user']); ?>"
+                                        placeholder="Ex: Maria Silva" required>
+                                </div>
 
-                    <div class="input-group mb-4">
-                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                        <input type="password" name="senha" class="form-control" placeholder="Nova Senha (deixe em branco se não quiser alterar)">
-                    </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">E-mail Institucional</label>
+                                    <input type="email" name="email" class="form-control border-2"
+                                        value="<?= htmlspecialchars($dados['email']); ?>"
+                                        placeholder="nome@escola.ce.gov.br" required>
+                                </div>
 
-                    <div class="align-items-center d-flex mb-3">
-                        <button type="submit" class="btn-main">Atualizar Usuário</button>
-                    </div>
-                </form>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">Nível de Acesso</label>
+                                    <select name="nivel_novo" class="form-select border-2" required>
+                                        <option value="bibliotecario" <?= ($dados['nivel'] === 'bibliotecario') ? 'selected' : ''; ?>>Bibliotecário</option>
+                                        <option value="adm" <?= ($dados['nivel'] === 'adm') ? 'selected' : ''; ?>>
+                                            Administrador (Acesso Total)</option>
+                                    </select>
+                                </div>
 
-                <div class="mt-3 link">
-                    <a href="perfil.php" class="text-muted small text-decoration-none">
-                        <i class="bi bi-arrow-left"></i> Voltar para o Perfil
-                    </a>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">Nova Senha</label>
+                                    <input type="password" name="senha" class="form-control border-2"
+                                        placeholder="Deixe em branco para manter a senha atual"
+                                        autocomplete="new-password">
+                                </div>
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                    <button type="submit" class="btn btn-salvar btn-lg px-5 shadow">
+                                        <i class="bi bi-check-lg me-2"></i>Salvar Alterações
+                                    </button>
+                                    <a href="perfil.php"
+                                        class="btn btn-outline-danger btn-cancelar btn-lg px-4 fw-bold">
+                                        Cancelar
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

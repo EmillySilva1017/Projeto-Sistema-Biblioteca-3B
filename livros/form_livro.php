@@ -1,4 +1,5 @@
-<?php session_start(); require_once '../includes/verifica_login.php'; ?>
+<?php session_start();
+require_once '../includes/verifica_login.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,10 +26,12 @@
                 <?php include('../includes/alerta.php'); ?>
 
                 <div class="card card-cadastro">
-                    <div class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
+                    <div
+                        class="card-header-custom text-center text-sm-start d-sm-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="fw-bold mb-1"><i class="bi bi-book-half me-2"></i> Cadastro de Obra</h4>
-                            <p class="small text-white-50 mb-0">Insira as informações técnicas para integrar o livro ao acervo.</p>
+                            <p class="small text-white-50 mb-0">Insira as informações técnicas para integrar o livro ao
+                                acervo.</p>
                         </div>
                     </div>
                     <div class="card-body p-4 p-md-5">

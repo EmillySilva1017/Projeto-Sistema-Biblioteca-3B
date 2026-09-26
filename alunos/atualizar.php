@@ -1,10 +1,10 @@
-<?php 
+<?php
 session_start();
 require_once '../includes/verifica_login.php';
 include('../includes/conexao.php');
 /** @var mysqli $conn */
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Sanitização
     $id = mysqli_real_escape_string($conn, $_POST['id_aluno']);
     $nome = mysqli_real_escape_string($conn, $_POST['nome']);
@@ -21,16 +21,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     WHERE id_aluno = $id";
 
     // 4. Executa e define a mensagem de retorno
-    if(mysqli_query($conn, $sqlAtualizar)){
+    if (mysqli_query($conn, $sqlAtualizar)) {
         // Sucesso: Guarda a mensagem e vai para a LISTA
         $_SESSION['msg'] = "Cadastro do aluno <strong>$nome</strong> atualizado com sucesso!";
-        header('Location: visualizar.php?id=' . $fk_id_turma); 
+        header('Location: visualizar.php?id=' . $fk_id_turma);
         exit();
     } else {
         // Erro: Guarda o erro e volta para o formulário de EDIÇÃO
         $_SESSION['msg'] = "Erro ao atualizar: " . mysqli_error($conn);
         $_SESSION['msg_tipo'] = "danger";
-        header("Location: editar_aluno.php?id=$id"); 
+        header("Location: editar_aluno.php?id=$id");
         exit();
     }
 } else {

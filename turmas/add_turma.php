@@ -1,12 +1,12 @@
-<?php 
+<?php
 session_start();
 require_once '../includes/verifica_login.php';
 include('../includes/conexao.php');
 /** @var mysqli $conn */
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //verificação se os campos não estao vazios
-    if(empty($_POST['curso']) || empty($_POST['id_curso'])){
+    if (empty($_POST['curso']) || empty($_POST['id_curso'])) {
         $_SESSION['mensagem'] = "Preencha todos os campos!";
         $_SESSION['msg_tipo'] = "warning";
         header('Location: form_turma.php');
@@ -16,18 +16,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $curso = mysqli_real_escape_string($conn, $_POST['curso']);
     $serie_atual = mysqli_real_escape_string($conn, $_POST['serie_atual']);
     $ano_conclusao = mysqli_real_escape_string($conn, $_POST['ano_conclusao']);
-    
+
     $id_curso_cru = $_POST['id_curso'];
     $id_maiusculo = mb_strtoupper($id_curso_cru, 'UTF-8');
     $id_tratado = mb_substr($id_maiusculo, 0, 1, 'UTF-8');
     $id_curso_final = mysqli_real_escape_string($conn, $id_tratado);
-    
-    
+
+
     $sqlInserir = "INSERT INTO turmas (curso, identificador_curso, ano_conclusao, serie_atual)
     VALUES('$curso', '$id_curso_final', '$ano_conclusao', '$serie_atual')";
 
     //Executamos e verificamos se deu certo
-    if (mysqli_query($conn, $sqlInserir)){
+    if (mysqli_query($conn, $sqlInserir)) {
         $_SESSION['mensagem'] = "Turma cadastrada com sucesso!";
         $_SESSION['msg_tipo'] = "success";
         header('Location: form_turma.php');
@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         exit();
     }
 
-}else{
+} else {
     // Se alguém tentar acessar o arquivo direto pelo navegador sem preencher o formulário
     header('Location: form_turma.php');
     exit();

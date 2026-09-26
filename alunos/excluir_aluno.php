@@ -24,7 +24,7 @@ $id_turma_retorno = $aluno['fk_id_turma'];
 // Consulta SQL para deletar o registro
 $sql_delete = "DELETE FROM alunos WHERE id_aluno = $id";
 
-if (mysqli_query($conn, $sql_delete)){
+if (mysqli_query($conn, $sql_delete)) {
     $_SESSION['msg'] = "Aluno excluído com sucesso!";
     $_SESSION['msg_tipo'] = "success";
 } else {

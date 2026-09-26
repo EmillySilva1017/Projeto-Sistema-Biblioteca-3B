@@ -149,16 +149,19 @@ $res_historico_todos = mysqli_query($conn, $sql_historico_todos);
                                     $atrasado = (strtotime($livro['data_prevista']) < strtotime(date('Y-m-d')));
                                     $data_formatada = date('d/m/Y', strtotime($livro['data_prevista']));
                                     ?>
-                                    <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border bg-light">
+                                    <div
+                                        class="d-flex align-items-center justify-content-between p-3 rounded-3 border bg-light">
                                         <div class="d-flex align-items-center gap-3">
                                             <div>
-                                                <h6 class="fw-bold mb-1 text-dark"><?= htmlspecialchars($livro['titulo_livro']); ?></h6>
+                                                <h6 class="fw-bold mb-1 text-dark">
+                                                    <?= htmlspecialchars($livro['titulo_livro']); ?></h6>
                                                 <p class="text-muted small mb-1"><?= htmlspecialchars($livro['autor']); ?></p>
                                                 <span class="badge-genero"><?= htmlspecialchars($livro['genero']); ?></span>
                                             </div>
                                         </div>
                                         <div class="text-end ms-2">
-                                            <span class="d-block small <?= $atrasado ? 'text-danger fw-bold' : 'text-muted'; ?>">
+                                            <span
+                                                class="d-block small <?= $atrasado ? 'text-danger fw-bold' : 'text-muted'; ?>">
                                                 <?= $atrasado ? 'Atrasado' : 'Devolução'; ?>
                                             </span>
                                             <small class="<?= $atrasado ? 'text-danger fw-bold' : 'text-dark fw-semibold'; ?>">
@@ -207,7 +210,8 @@ $res_historico_todos = mysqli_query($conn, $sql_historico_todos);
                                             ?>
                                             <tr>
                                                 <td>
-                                                    <div class="fw-bold text-dark mb-0"><?= htmlspecialchars($hist['titulo_livro']); ?></div>
+                                                    <div class="fw-bold text-dark mb-0">
+                                                        <?= htmlspecialchars($hist['titulo_livro']); ?></div>
                                                     <small class="text-muted"><?= htmlspecialchars($hist['autor']); ?></small>
                                                 </td>
                                                 <td>
@@ -264,7 +268,8 @@ $res_historico_todos = mysqli_query($conn, $sql_historico_todos);
                                         <tr>
                                             <td>
                                                 <div class="fw-bold text-dark mb-0">
-                                                    <?= htmlspecialchars($item['titulo_livro']); ?></div>
+                                                    <?= htmlspecialchars($item['titulo_livro']); ?>
+                                                </div>
                                                 <small class="text-muted"><?= htmlspecialchars($item['autor']); ?></small>
                                             </td>
                                             <td>

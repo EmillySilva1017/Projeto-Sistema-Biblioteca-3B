@@ -49,7 +49,7 @@ include '../includes/conexao.php';
         <?php include('../includes/alerta.php'); ?>
 
         <div class="row justify-content-center g-4">
-            
+
             <!-- Cartão do Perfil do Usuário -->
             <div class="col-12 col-md-8 col-lg-5">
                 <div class="card shadow-sm profile-card">
@@ -68,7 +68,8 @@ include '../includes/conexao.php';
                         </p>
 
                         <div class="text-start bg-light p-3 rounded-3 mb-4 border-start border-success border-3">
-                            <small class="text-uppercase fw-bold text-muted d-block mb-1" style="font-size: 0.75rem;">E-mail cadastrado</small>
+                            <small class="text-uppercase fw-bold text-muted d-block mb-1"
+                                style="font-size: 0.75rem;">E-mail cadastrado</small>
                             <span class="text-dark fw-medium text-break d-block">
                                 <?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : 'E-mail não informado'; ?>
                             </span>
@@ -78,7 +79,8 @@ include '../includes/conexao.php';
                             <a class="btn btn-outline-success py-2 fw-semibold rounded-3" href="alterar_senha.php">
                                 <i class="bi bi-key me-2"></i> Alterar Senha
                             </a>
-                            <a href="../includes/logout.php" class="btn btn-outline-danger py-2 fw-semibold rounded-3 d-flex align-items-center justify-content-center">
+                            <a href="../includes/logout.php"
+                                class="btn btn-outline-danger py-2 fw-semibold rounded-3 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-box-arrow-right me-2"></i> Encerrar Sessão
                             </a>
                         </div>
@@ -93,7 +95,8 @@ include '../includes/conexao.php';
                     <div class="card shadow-sm profile-card border-0 h-100">
                         <div class="card-body p-3 p-sm-4">
 
-                            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mb-4">
+                            <div
+                                class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mb-4">
                                 <div>
                                     <h4 class="fw-bold text-dark mb-1">Controle de Equipe</h4>
                                     <small class="text-muted">Gerencie contas de Administradores e Bibliotecários.</small>
@@ -127,9 +130,11 @@ include '../includes/conexao.php';
                                                     </td>
                                                     <td>
                                                         <?php if ($user['nivel'] === 'adm'): ?>
-                                                            <span class="badge bg-warning-subtle text-warning rounded-pill px-2 py-1">Admin</span>
+                                                            <span
+                                                                class="badge bg-warning-subtle text-warning rounded-pill px-2 py-1">Admin</span>
                                                         <?php else: ?>
-                                                            <span class="badge bg-success-subtle text-success rounded-pill px-2 py-1">Bibliotecário</span>
+                                                            <span
+                                                                class="badge bg-success-subtle text-success rounded-pill px-2 py-1">Bibliotecário</span>
                                                         <?php endif; ?>
                                                     </td>
                                                     <td class="text-truncate" style="max-width: 150px;">
@@ -144,14 +149,12 @@ include '../includes/conexao.php';
                                                                 <i class="bi bi-arrow-counterclockwise"></i>
                                                             </a>
                                                             <a href="editar_usuario.php?id=<?= $user['id_user']; ?>"
-                                                                class="btn tbl-btn tbl-btn-warning"
-                                                                title="Editar Funcionário">
+                                                                class="btn tbl-btn tbl-btn-warning" title="Editar Funcionário">
                                                                 <i class="bi bi-pencil"></i>
                                                             </a>
 
                                                             <a href="deletar_usuario.php?id=<?= $user['id_user']; ?>"
-                                                                class="btn tbl-btn tbl-btn-danger"
-                                                                title="Remover Funcionário"
+                                                                class="btn tbl-btn tbl-btn-danger" title="Remover Funcionário"
                                                                 onclick="return confirm('Tem certeza que deseja remover o acesso deste funcionário?');">
                                                                 <i class="bi bi-trash"></i>
                                                             </a>
@@ -163,7 +166,8 @@ include '../includes/conexao.php';
                                         else:
                                             ?>
                                             <tr>
-                                                <td colspan="4" class="text-center text-muted py-3">Nenhum funcionário encontrado.</td>
+                                                <td colspan="4" class="text-center text-muted py-3">Nenhum funcionário
+                                                    encontrado.</td>
                                             </tr>
                                         <?php endif; ?>
                                     </tbody>

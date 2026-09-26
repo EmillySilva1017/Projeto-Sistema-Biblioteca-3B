@@ -14,9 +14,9 @@ if (!isset($_SESSION['id_user']) || $_SESSION['nivel'] !== 'adm') {
 
 // 2. Verifica se o ID do usuário foi passado na URL
 if (isset($_GET['id']) && !empty($_GET['id'])) {
-    
+
     $id_user_target = mysqli_real_escape_string($conn, $_GET['id']);
-    
+
     // Opcional: Impedir que o ADM resete a própria senha por esse botão
     if ($id_user_target == $_SESSION['id_user']) {
         $_SESSION['msg'] = "Para alterar sua própria senha, use o botão 'Alterar Senha'.";
@@ -26,7 +26,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     }
 
     // 3. Define a senha padrão e criptografa
-    $senha_padrao = "123456"; 
+    $senha_padrao = "123456";
     $senha_hash = password_hash($senha_padrao, PASSWORD_DEFAULT);
 
     // 4. Atualiza no banco de dados
