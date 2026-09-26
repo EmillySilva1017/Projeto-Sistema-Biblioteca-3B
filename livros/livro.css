@@ -13,11 +13,12 @@ body {
   font-size: 0.95rem;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   white-space: nowrap;
 }
 
-.table-striped > tbody > tr:nth-of-type(odd) {
+.table-striped>tbody>tr:nth-of-type(odd) {
   background-color: #a8ffa8 !important;
 }
 
@@ -36,28 +37,52 @@ body {
   padding: 0 4px;
   transition: 0.2s;
 }
+
 .paginacao-link:hover {
   color: #1c942f;
 }
+
 .paginacao-link.ativa {
   color: #1c942f;
 }
+
 .seta-paginacao {
   color: black;
   font-size: 1.5rem;
   text-decoration: none;
 }
+
 .seta-paginacao.desativada {
   opacity: 0.25;
   pointer-events: none;
 }
 
-.col-registro { min-width: 80px; }
-.col-obra     { min-width: 180px; max-width: 200px; }
-.col-autor    { min-width: 150px; max-width: 180px; }
-.col-genero   { min-width: 130px; max-width: 150px; }
-.col-status   { min-width: 120px; }
-.col-acoes    { min-width: 100px; }
+.col-registro {
+  min-width: 80px;
+}
+
+.col-obra {
+  min-width: 180px;
+  max-width: 200px;
+}
+
+.col-autor {
+  min-width: 150px;
+  max-width: 180px;
+}
+
+.col-genero {
+  min-width: 130px;
+  max-width: 150px;
+}
+
+.col-status {
+  min-width: 120px;
+}
+
+.col-acoes {
+  min-width: 100px;
+}
 
 .sugestoes-titulos {
   position: absolute;

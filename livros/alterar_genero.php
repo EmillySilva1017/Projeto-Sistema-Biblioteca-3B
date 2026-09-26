@@ -132,7 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <tbody>
                                 <?php foreach ($livros as $livro): ?>
                                     <tr>
-                                        <td class="text-center"><?= htmlspecialchars($livro['numero_registro'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
+                                        <td class="text-center">
+                                            <?= htmlspecialchars($livro['numero_registro'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                                         <td><?= htmlspecialchars($livro['titulo_livro'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                                         <td><?= htmlspecialchars($livro['autor'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
                                         <td><?= htmlspecialchars($livro['genero'] ?? '', ENT_QUOTES, 'UTF-8') ?></td>
