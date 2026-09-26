@@ -58,3 +58,24 @@ body {
 .col-genero   { min-width: 130px; max-width: 150px; }
 .col-status   { min-width: 120px; }
 .col-acoes    { min-width: 100px; }
+
+.sugestoes-titulos {
+  position: absolute;
+  z-index: 1050;
+  top: 100%;
+  right: 0;
+  left: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sugestoes-titulos .list-group-item {
+  cursor: pointer;
+  white-space: normal;
+}
+
+.sugestoes-titulos .list-group-item[aria-selected="true"] {
+  color: #fff;
+  background-color: #198754;
+}

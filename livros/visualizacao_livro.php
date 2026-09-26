@@ -137,8 +137,11 @@ if ($busca_ativa) {
     <?php include('../includes/menu.php'); ?>
 
     <div class="container-fluid px-4 pt-4">
-        <div class="col-12 col-md-6 text-center text-md-start mb-md-0">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
             <h2 class="fw-bold text-dark mb-0">Gestão de Livros</h2>
+            <a href="alterar_genero.php" class="btn btn-alterar">
+                <i class="bi bi-tags-fill me-2"></i>Alterar gênero por título
+            </a>
         </div>
 
         <form action="" method="GET" class="row g-3 mb-4 align-items-end">
